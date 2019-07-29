@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'constantiaregular';
+    src: url('fonts/constantia-webfont.eot');
+    src: url('fonts/constantia-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/constantia-webfont.woff') format('woff'),
+         url('fonts/constantia-webfont.ttf') format('truetype'),
+         url('fonts/constantia-webfont.svg#constantiaregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
