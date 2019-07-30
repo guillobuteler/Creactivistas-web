@@ -111,7 +111,7 @@ class Form extends React.Component {
           <Grid container spacing={3}>
             <Grid container justify="center" item xs={12}>
               <Grid item xs={9}>
-                <Paper className="instructions-paper">
+                <Paper className="instructions-paper" style={{marginTop: 35}}>
                   Este es un test de personalidad gratuito.
                   <br />
                   Se deriva del Myers Briggs Type Indicator (MBTI) y busca describir, con pocas variables, las preferencias de una persona.
@@ -126,13 +126,13 @@ class Form extends React.Component {
                 </Paper>
               </Grid>
               <Grid item xs={5}>
-                <Paper className="instructions-paper">
+                <Paper className="instructions-paper" style={{marginTop: 15}}>
                   Para cada par de frases completá los casilleros del 0 al 5 según la siguiente escala:
                 </Paper>
               </Grid>
               <Grid item xs={12}></Grid>
               <Grid item xs={5}>
-                <Paper className="instructions-paper">
+                <Paper className="instructions-paper" style={{marginTop: 15}}>
                   <span className="valor-mbti">0</span> = no lo prefiero casi nunca
                   <br />
                   <span className="valor-mbti">1</span> = pocas veces lo prefiero
