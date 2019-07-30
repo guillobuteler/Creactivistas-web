@@ -1,0 +1,26 @@
+.valor-mbti {
+	display: inline-block;
+	width: 30px;
+	color: #ed1c24;
+	font-size: 18px;
+}
+.instructions-paper {
+  background: #E4E4E0 !important;
+  border-radius: 18px !important;
+  padding: 20px !important;
+  margin-top: 30px !important;
+  margin-bottom: 10px !important;
+  text-align: left !important;
+}
+.questions-container {
+  border: 1px solid #ed1c24;
+  border-radius: 3px;
+  padding: 18px;
+}
+.questions-title {
+  text-align: left !important;
+  color: #ed1c24 !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+  margin-top: 0px;
+}
