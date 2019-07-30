@@ -14,13 +14,17 @@ const marks = [
 ];
 
 class FormQuestion extends React.Component {
+  onChange = (event, value) => {
+    const { handleChange } = this.props;
+    handleChange(event.target.id, value);
+  }
+
   render() {
-    const { id, label, value, handleChange, index} = this.props;
+    const { id, label, value, index } = this.props;
     return (
       <Grid container spacing={2}>
         <Grid item xs={10} style={{ 
           borderBottom: index === 1 && '1px dotted red',
-          // marginBottom: index === 1 && '15px'
         }}>
           <p className="question-label">
             {label}
@@ -28,18 +32,17 @@ class FormQuestion extends React.Component {
         </Grid>
         <Grid item xs={1} style={{ 
           borderBottom: index === 1 && '1px dotted red',
-          // marginBottom: index === 1 && '15px'
         }}>
           <Slider
             id={id}
             value={value}
-            // defaultValue={0}
-            aria-labelledby="discrete-slider-always"
+            // aria-labelledby="discrete-slider-always"
+            aria-labelledby="discrete-slider"
+            valueLabelDisplay="auto"
             marks={marks}
             min={0}
             max={5}
-            step={1}
-            onChange={handleChange}
+            onChange={this.onChange}
           />
         </Grid>
       </Grid>

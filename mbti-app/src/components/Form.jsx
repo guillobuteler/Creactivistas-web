@@ -1,7 +1,9 @@
 import React from 'react';
+// import fromJS from 'immutable';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-// import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 import FormQuestionGroup from './FormQuestionGroup';
 import './Form.css';
@@ -92,20 +94,25 @@ const questions = [
 class Form extends React.Component {
     constructor(props) {
       super(props);
-      this.handleChange = this.handleChange.bind(this);
-      this.state = { answers: [] };
+      this.handleChangeSlider = this.handleChangeSlider.bind(this);
+      this.state = {
+        answers: {},
+        name: '',
+        email: '',
+      };
     }
 
-    handleChange(event, value) {
-      console.log(event);
-      console.log(event.target);
-      console.log(event.target.id);
-      console.log(event.target.value);
-      console.log(value);
-    //   this.setState({ value: e.target.value });
+    handleChangeSlider(id, value) {
+      this.setState(state => {
+        const answers = state.answers;
+        answers[id] = value;
+        return { answers };
+      });
     }
 
     render() {
+      const { answers, name, email } = this.state;
+
       return (
         <div className="Form">
           <Grid container spacing={3}>
@@ -155,10 +162,29 @@ class Form extends React.Component {
                       <FormQuestionGroup
                         key={i}
                         questionGroup={questionGroup}
-                        handleChange={this.handleChange}
+                        handleChange={this.handleChangeSlider}
+                        answers={answers}
                       />
                     ))
                   }
+                  <br />
+                  <TextField
+                    id="name"
+                    label="Name"
+                    value={name}
+                    // onChange={handleChange('name')}
+                    margin="normal"
+                  />
+                  <br />
+                  <TextField
+                    id="email"
+                    label="Email"
+                    value={email}
+                    // onChange={handleChange('email')}
+                    margin="normal"
+                  />
+                  <br />
+                  <Button>Procesar</Button>
                 </Paper>
               </Grid>
             </Grid>
