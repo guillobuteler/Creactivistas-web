@@ -16,7 +16,11 @@ const marks = [
 class FormQuestion extends React.Component {
   onChange = (event, value) => {
     const { handleChange } = this.props;
-    handleChange(event.target.id, value);
+    const id = event.target.id;
+    if (id !== '') {
+      console.log('id', id, typeof id);
+      handleChange(id, value);
+    }
   }
 
   render() {
