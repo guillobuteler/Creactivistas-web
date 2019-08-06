@@ -25,9 +25,9 @@ class FormResultsGroup extends React.Component {
   sumAxisTotal = (keysArray) => {
     const { answers } = this.props;
     let total = 0;
-    keysArray.map((key, i)=>(
-      total + answers[key]
-    ));
+    keysArray.map((key, i) => {
+      total += answers[key];
+    });
     return total;
   };
 
