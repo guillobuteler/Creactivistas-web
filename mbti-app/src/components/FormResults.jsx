@@ -26,6 +26,7 @@ class FormResults extends React.Component {
     this.state = {
       showGraph: false,
       totals: totalsInit,
+      mbti: '',
     };
   }
   handleClickOpen = () => {
@@ -42,17 +43,19 @@ class FormResults extends React.Component {
     }
   }
   renderMBTI = () => {
-    const { totals } = this.state;
-    let mbti = (totals.i > totals.e) ? 'I' : 'E';
-    mbti += (totals.n > totals.s) ? 'N' : 'S';
-    mbti += (totals.t > totals.f) ? 'T' : 'F';
-    mbti += (totals.p > totals.j) ? 'P' : 'J';
-    return mbti;
+    const { mbti, totals } = this.state;
+    let mbtiAux = (totals.I > totals.E) ? 'I' : 'E';
+    mbtiAux += (totals.N > totals.S) ? 'N' : 'S';
+    mbtiAux += (totals.T > totals.F) ? 'T' : 'F';
+    mbtiAux += (totals.P > totals.J) ? 'P' : 'J';
+    if (mbti === '') this.setState(() => ({ mbti: mbtiAux }));
+    return mbtiAux;
   }
   render() {
-    const { showGraph } = this.state;
+    const { showGraph, mbti, totals } = this.state;
     const { name, answers } = this.props.data;
 
+    console.log(totals);
     return (
       <div className="FormResults">
         <Grid container spacing={3}>
@@ -103,7 +106,7 @@ class FormResults extends React.Component {
                   El gráfico de tus resultados
                 </DialogTitle>
                 <DialogContent dividers>
-                  <ResultsChart />
+                  <ResultsChart totals={totals} mbti={mbti} />
                 </DialogContent>
                 <DialogActions>
                   <Button onClick={this.handleClose} color="primary">

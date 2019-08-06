@@ -29,7 +29,6 @@ class FormResultsGroup extends React.Component {
       total += answers[key];
       return key;
     });
-    console.log(char);
     handleTotalsCalculation(char, total);
     return total;
   };

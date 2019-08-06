@@ -18,8 +18,7 @@
   margin-bottom: 10px !important;
   text-align: left !important;
 }
-/* .questions-container {
-  border: 1px solid #ed1c24;
-  border-radius: 3px;
-  padding: 18px;
-} */
+.MuiDialog-paperWidthSm {
+  width: 900px !important;
+  max-width: 900px !important;
+}
