@@ -1,5 +1,4 @@
 import React from 'react';
-// import fromJS from 'immutable';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
@@ -12,130 +11,55 @@ import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 import FormQuestionGroup from './FormQuestionGroup';
+import { questions, answersInit } from '../constants'
 import './Form.css';
 
-
-const questions = [
-  [
-    { id: '1a', label: 'Tomar decisiones después de conocer qué piensan los demás' },
-    { id: '1b', label: 'Tomar decisiones sin consultar a otros' },
-  ],
-  [
-    { id: '2a', label: 'Ser identificado como imaginativo o intuitivo' },
-    { id: '2b', label: 'Ser identificado como concreto y preciso' },
-  ],
-  [
-    { id: '3a', label: 'Tomar decisiones sobre las personas basándome en datos disponibles y un análisis sistemático de las situaciones' },
-    { id: '3b', label: 'Tomar decisiones sobre las personas basándome en la empatía, emociones y entendimiento de sus necesidades y valores' },
-  ],
-  [
-    { id: '4a', label: 'Permitir que los compromisos ocurran sólo si los otros quieren asumirlos' },
-    { id: '4b', label: 'Presionar para asegurarme de que los compromisos sean cumplidos' },
-  ],
-  [
-    { id: '5a', label: 'Tener tiempo para reflexionar y estar tranquilo y en silencio solo' },
-    { id: '5b', label: 'Tener tiempo para estar activo y enérgico con otros' },
-  ],
-  [
-    { id: '6a', label: 'Usar métodos que conozco bien y son efectivos para cumplir con mi trabajo' },
-    { id: '6b', label: 'Pensar en nuevos métodos para hacer las tareas' },
-  ],
-  [
-    { id: '7a', label: 'Llegar a conclusiones basándome en un análisis lógico, racional y metódico' },
-    { id: '7b', label: 'Llegar a conclusiones basándome en lo que siento y creo desde la experiencia acerca de la vida y las personas' },
-  ],
-  [
-    { id: '8a', label: 'Evitar comprometerme con fechas límite (deadlines)' },
-    { id: '8b', label: 'Armar un esquema de trabajo y seguirlo' },
-  ],
-  [
-    { id: '9a', label: 'Los pensamientos y emociones que otros no pueden ver' },
-    { id: '9b', label: 'Actividades y ocurrencias en las cuales otros participan' },
-  ],
-  [
-    { id: '10a', label: 'Lo abstracto y teórico' },
-    { id: '10b', label: 'Lo concreto y real' },
-  ],
-  [
-    { id: '11a', label: 'Ayudar a otros a explorar sus emociones' },
-    { id: '11b', label: 'Ayudar a otros a tomar decisiones lógicas' },
-  ],
-  [
-    { id: '12a', label: 'Comunicar muy poco de mis pensamientos y emociones' },
-    { id: '12b', label: 'Comunicar libremente mis pensamientos y emociones' },
-  ],
-  [
-    { id: '13a', label: 'Planificar de antemano basándome en proyecciones' },
-    { id: '13b', label: 'Planificar a medida que aparecen las necesidades' },
-  ],
-  [
-    { id: '14a', label: 'Conocer gente nueva' },
-    { id: '14b', label: 'Estar solo o con una persona a quien conozco bien' },
-  ],
-  [
-    { id: '15a', label: 'El mundo de las ideas' },
-    { id: '15b', label: 'El mundo de las hechos comprobables' },
-  ],
-  [
-    { id: '16a', label: 'Las convicciones' },
-    { id: '16b', label: 'Conclusiones verificables' },
-  ],
-  [
-    { id: '17a', label: 'Llevar registro de mis compromisos y citas en agendas lo más que pueda' },
-    { id: '17b', label: 'Evitar registrar mis compromisos y citas en agendas lo más que pueda' },
-  ],
-  [
-    { id: '18a', label: 'Llevar a la práctica planes cuidadosa y detalladamente precisos' },
-    { id: '18b', label: 'Diseñar planes y estructuras sin necesariamente llevarlos a la práctica' },
-  ],
-  [
-    { id: '19a', label: 'Sentirme libre de hacer las cosas según se presenten' },
-    { id: '19b', label: 'Saber anticipadamente qué es lo que tengo que hacer' },
-  ],
-  [
-    { id: '20a', label: 'Experimentar situaciones, discusiones o películas con alto contenido emocional' },
-    { id: '20b', label: 'Usar mi habilidad para analizar situaciones' },
-  ],
-];
 
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
     this.handleChangeSlider = this.handleChangeSlider.bind(this);
+    this.handleFormComplete = props.onComplete;
     this.state = {
-      answers: {},
+      answers: answersInit,
       name: '',
       email: '',
       formErrors: false,
     };
   }
+
   handleChange = fieldType => (event) => {
     const value = event.target.value;
     this.setState(() => (fieldType === 'name' ? { name: value } : { email: value }))
-  };
+  }
+
   handleChangeSlider(id, value) {
     this.setState(state => {
       const answers = state.answers;
       answers[id] = value;
       return { answers };
     });
-  };
-  processForm = () => {
-    const { answers, name, email, formErrors } = this.state;
-    // this.setState(() => (fieldType === 'name' ? { name: value } : { email: value }))
-    console.log(answers, name, email, formErrors);
-    if (Object.keys(answers).length < 20) {
-      this.setState(() => ({ formErrors: true }));
-    }
-  };
+  }
+
   handleSnackbarClose = () => {
     this.setState(() => ({ formErrors: false }));
   }
 
+  processForm = () => {
+    const { answers, name, email, formErrors } = this.state;
+    if (name === '') {
+      this.setState(() => ({ formErrors: true }));
+    } else {
+      // @todo send email
+      this.handleFormComplete(name, answers);
+    }
+    console.log(answers, name, email, formErrors);
+  }
+
   render() {
     const { answers, name, email, formErrors } = this.state;
-    const message = 'Por favor completá todas las respuestas.'
+    const message = 'Por favor completá tu nombre junto con las respuestas.'
 
     return (
       <div className="Form">

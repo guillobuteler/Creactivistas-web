@@ -2,29 +2,29 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
 
+import { marks } from '../constants'
 import './FormQuestion.css';
 
-const marks = [
-  { value: 0, label: '0' },
-  { value: 1, label: '1' },
-  { value: 2, label: '2' },
-  { value: 3, label: '3' },
-  { value: 4, label: '4' },
-  { value: 5, label: '5' },
-];
 
 class FormQuestion extends React.Component {
-  onChange = (event, value) => {
-    const { handleChange } = this.props;
-    const id = event.target.id;
-    if (id !== '') {
-      console.log('id', id, typeof id);
-      handleChange(id, value);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.value,
+    };
+  }
+  handleChange = (event, value) => {
+    this.setState(() => ({ value: value }));
+  }
+  handleChangeParent = (event, value) => {
+    const { id, handleChange } = this.props;
+    this.setState(() => ({ value: value }));
+    handleChange(id, value);
   }
 
   render() {
-    const { id, label, value, index } = this.props;
+    const { value } = this.state;
+    const { id, label, index } = this.props;
     return (
       <Grid container spacing={2}>
         <Grid item xs={10} style={{ 
@@ -40,13 +40,13 @@ class FormQuestion extends React.Component {
           <Slider
             id={id}
             value={value}
-            // aria-labelledby="discrete-slider-always"
             aria-labelledby="discrete-slider"
             valueLabelDisplay="auto"
             marks={marks}
             min={0}
             max={5}
-            onChange={this.onChange}
+            onChange={this.handleChange}
+            onChangeCommitted={this.handleChangeParent}
           />
         </Grid>
       </Grid>
