@@ -34,7 +34,7 @@ class FormQuestion extends React.Component {
             {label}
           </p>
         </Grid>
-        <Grid item xs={1} style={{ 
+        <Grid item xs={2} style={{ 
           borderBottom: index === 1 && '1px dotted red',
         }}>
           <Slider

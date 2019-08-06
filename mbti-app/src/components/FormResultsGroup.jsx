@@ -22,12 +22,15 @@ class FormResultsGroup extends React.Component {
     ))
   );
 
-  sumAxisTotal = (keysArray) => {
-    const { answers } = this.props;
+  sumAxisTotal = (char, keysArray) => {
+    const { answers, handleTotalsCalculation } = this.props;
     let total = 0;
     keysArray.map((key, i) => {
       total += answers[key];
+      return key;
     });
+    console.log(char);
+    handleTotalsCalculation(char, total);
     return total;
   };
 
@@ -63,7 +66,7 @@ class FormResultsGroup extends React.Component {
                           {axis.char} Total
                         </TableCell>
                         <TableCell className="AxisTotal">
-                          {this.sumAxisTotal(axis.keys)}
+                          {this.sumAxisTotal(axis.char, axis.keys)}
                         </TableCell>
                       </TableRow>
                     </TableBody>

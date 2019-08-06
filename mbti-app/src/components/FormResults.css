@@ -1,9 +1,16 @@
-/* .valor-mbti {
-	display: inline-block;
-	width: 30px;
-	color: #ed1c24;
-	font-size: 18px;
-} */
+.MBTI-header {
+  color: white !important;
+  font-size:16px !important;
+  background: #1f1fc0 !important;
+}
+.MBTI-result {
+  color: #FFFE90 !important;
+  background: #800201 !important;
+  font-size:60px !important;
+  font-family: 'constantiaregular', serif !important;
+  letter-spacing:20px !important;
+  text-align: center !important;
+}
 .results-paper {
   background: #E4E4E0 !important;
   border-radius: 18px !important;
