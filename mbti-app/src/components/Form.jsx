@@ -48,7 +48,7 @@ class Form extends React.Component {
 
   processForm = () => {
     const { answers, name, email, formErrors } = this.state;
-    if (name === '') {
+    if (email === '') {
       this.setState(() => ({ formErrors: true }));
     } else {
       // @todo send email
@@ -59,7 +59,7 @@ class Form extends React.Component {
 
   render() {
     const { answers, name, email, formErrors } = this.state;
-    const message = 'Por favor completá tu nombre junto con las respuestas.'
+    const message = 'Para recibir tus resultados, por favor completá tu email.'
 
     return (
       <div className="Form">

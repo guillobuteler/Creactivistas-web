@@ -61,10 +61,10 @@ class FormResultsGroup extends React.Component {
                         {this.renderAxisCells(axis.keys)}
                       </TableRow>
                       <TableRow>
-                        <TableCell component="th" scope="row">
-                          {axis.char} Total
+                        <TableCell component="th" className="AxisTotal" scope="row">
+                          <span>{axis.char}</span> total
                         </TableCell>
-                        <TableCell className="AxisTotal">
+                        <TableCell className="AxisTotal" colSpan="5">
                           {this.sumAxisTotal(axis.char, axis.keys)}
                         </TableCell>
                       </TableRow>

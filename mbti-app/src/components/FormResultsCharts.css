@@ -1,0 +1,23 @@
+.MuiContainer-root.ChartsContainer {
+    padding: 0;
+}
+
+.MuiContainer-root.HorizontalBarContainer {
+    width: 60%;
+}
+.MuiContainer-root.HorizontalBarContainer h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.MuiContainer-root.RadarContainer {
+    margin-top: 12px;
+    margin-bottom: 24px;
+    font-size: 24px;
+    position: relative;
+}
+.MuiContainer-root.RadarContainer canvas:last-child {
+    position: absolute;
+    top: 0;
+}

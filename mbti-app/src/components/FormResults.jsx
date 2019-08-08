@@ -15,7 +15,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
 import FormResultsGroup from './FormResultsGroup';
-import ResultsChart from './ResultsChart';
+import FormResultsCharts from './FormResultsCharts';
 import { scalesMap, totalsInit } from '../constants'
 import './FormResults.css';
 
@@ -62,7 +62,7 @@ class FormResults extends React.Component {
           <Grid container justify="center" item xs={12}>
             <Grid item xs={11}>
               <Paper className="results-paper" style={{marginTop: 35}}>
-                Estos son tus resultados {name}
+                Estos son tus resultados <span className="nombre">{name}</span>:
               </Paper>
             </Grid>
             <Grid item xs={12}></Grid>
@@ -103,14 +103,14 @@ class FormResults extends React.Component {
               </Button>
               <Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={showGraph}>
                 <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-                  El gráfico de tus resultados
+                  {/* {mbti} no actualiza */this.renderMBTI()}
                 </DialogTitle>
                 <DialogContent dividers>
-                  <ResultsChart totals={totals} mbti={mbti} />
+                  <FormResultsCharts totals={totals} mbti={mbti} />
                 </DialogContent>
                 <DialogActions>
                   <Button onClick={this.handleClose} color="primary">
-                    Imprimir
+                    Cerrar
                   </Button>
                 </DialogActions>
               </Dialog>
