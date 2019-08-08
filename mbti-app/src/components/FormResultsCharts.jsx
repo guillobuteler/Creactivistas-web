@@ -15,22 +15,26 @@ class FormResultsCharts extends React.Component {
         labels: [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
         datasets: [
           {
-            data: [25, 17.9, 0, 0, 0, 0, 0, 17.9],
+            label: 'y',
+            data: [25, 18, 0, 0, 0, 0, 0, 18],
             backgroundColor: [
               'rgba(222, 222, 40, 1)',
             ],
           },{
-            data: [0, 17.9, 25, 17.9, 0, 0, 0, 0],
+            label: 'r',
+            data: [0, 18, 25, 18, 0, 0, 0, 0],
             backgroundColor: [
               'rgba(222, 40, 40, 1)',
             ],
           },{
-            data: [0, 0, 0, 17.9, 25, 17.9, 0, 0 ],
+            label: 'g',
+            data: [0, 0, 0, 18, 25, 18, 0, 0 ],
             backgroundColor: [
               'rgba(36, 130, 36, 1)',
             ],
           },{
-            data: [0, 0, 0, 0, 0, 17.9, 25, 17.9],
+            label: 'b',
+            data: [0, 0, 0, 0, 0, 18, 25, 18],
             backgroundColor: [
               'rgba(40, 40, 222, 1)',
             ],

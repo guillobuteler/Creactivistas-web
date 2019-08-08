@@ -11,8 +11,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+// import IconButton from '@material-ui/core/IconButton';
+// import CloseIcon from '@material-ui/icons/Close';
 
 import FormResultsGroup from './FormResultsGroup';
 import FormResultsCharts from './FormResultsCharts';
@@ -55,14 +55,13 @@ class FormResults extends React.Component {
     const { showGraph, mbti, totals } = this.state;
     const { name, answers } = this.props.data;
 
-    console.log(totals);
     return (
       <div className="FormResults">
         <Grid container spacing={3}>
           <Grid container justify="center" item xs={12}>
             <Grid item xs={11}>
-              <Paper className="results-paper" style={{marginTop: 35}}>
-                Estos son tus resultados <span className="nombre">{name}</span>:
+              <Paper className="ResultsPaper" style={{marginTop: 35}}>
+                Estos son tus resultados <span>{name}</span>
               </Paper>
             </Grid>
             <Grid item xs={12}></Grid>
@@ -103,7 +102,7 @@ class FormResults extends React.Component {
               </Button>
               <Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={showGraph}>
                 <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-                  {/* {mbti} no actualiza */this.renderMBTI()}
+                  {/* {mbti} no actualiza correctamente alors */this.renderMBTI()}
                 </DialogTitle>
                 <DialogContent dividers>
                   <FormResultsCharts totals={totals} mbti={mbti} />
