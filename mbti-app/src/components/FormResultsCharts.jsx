@@ -9,7 +9,7 @@ import './FormResultsCharts.css';
 class FormResultsCharts extends React.Component {
   constructor(props) {
     super(props);
-    const { mbti, totals } = props;
+    const { totals } = props;
     this.state = {
       radarBackdropData: {
         labels: [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -65,7 +65,7 @@ class FormResultsCharts extends React.Component {
           labels: ['Aire (N)', 'Fuego (T)', 'Tierra (S)', 'Agua (F)'],
           datasets: [
             {
-              label: mbti,
+              label: 'radar',
               data: [totals.N, totals.T, totals.S, totals.F],
               backgroundColor: 'rgba(222, 222, 40, 0)',
               borderColor: [
@@ -145,7 +145,6 @@ class FormResultsCharts extends React.Component {
       horizontalBarData,
       horizontalBarOptions
     } = this.state;
-    const { mbti } = this.props;
     return (
       <div className="ResultsCharts">
         <Grid container spacing={3}>

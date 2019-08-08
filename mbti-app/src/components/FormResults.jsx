@@ -26,7 +26,6 @@ class FormResults extends React.Component {
     this.state = {
       showGraph: false,
       totals: totalsInit,
-      mbti: '',
     };
   }
   handleClickOpen = () => {
@@ -42,19 +41,18 @@ class FormResults extends React.Component {
       this.setState(() => ({ totals }));
     }
   }
-  renderMBTI = () => {
-    const { mbti, totals } = this.state;
-    let mbtiAux = (totals.I > totals.E) ? 'I' : 'E';
-    mbtiAux += (totals.N > totals.S) ? 'N' : 'S';
-    mbtiAux += (totals.T > totals.F) ? 'T' : 'F';
-    mbtiAux += (totals.P > totals.J) ? 'P' : 'J';
-    if (mbti === '') this.setState(() => ({ mbti: mbtiAux }));
-    return mbtiAux;
+  getMBTI = () => {
+    const { totals } = this.state;
+    let mbti = (totals.I > totals.E) ? 'I' : 'E';
+    mbti += (totals.N > totals.S) ? 'N' : 'S';
+    mbti += (totals.T > totals.F) ? 'T' : 'F';
+    mbti += (totals.P > totals.J) ? 'P' : 'J';
+    return mbti;
   }
   render() {
-    const { showGraph, mbti, totals } = this.state;
+    const { showGraph, totals } = this.state;
     const { name, answers } = this.props.data;
-
+    const mbti = this.getMBTI();
     return (
       <div className="FormResults">
         <Grid container spacing={3}>
@@ -89,7 +87,7 @@ class FormResults extends React.Component {
                   </TableHead>
                   <TableBody>
                     <TableRow>
-                      <TableCell className="MBTI-result">{this.renderMBTI()}</TableCell>
+                      <TableCell className="MBTI-result">{mbti}</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
@@ -102,10 +100,10 @@ class FormResults extends React.Component {
               </Button>
               <Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={showGraph}>
                 <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-                  {/* {mbti} no actualiza correctamente alors */this.renderMBTI()}
+                  {mbti}
                 </DialogTitle>
                 <DialogContent dividers>
-                  <FormResultsCharts totals={totals} mbti={mbti} />
+                  <FormResultsCharts totals={totals} />
                 </DialogContent>
                 <DialogActions>
                   <Button onClick={this.handleClose} color="primary">

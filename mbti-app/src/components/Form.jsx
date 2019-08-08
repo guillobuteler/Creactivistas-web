@@ -54,7 +54,7 @@ class Form extends React.Component {
       // @todo send email
       this.handleFormComplete(name, answers);
     }
-    console.log(answers, name, email, formErrors);
+    // console.log(answers, name, email, formErrors);
   }
 
   render() {
