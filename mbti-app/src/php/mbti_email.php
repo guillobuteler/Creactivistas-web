@@ -19,14 +19,14 @@
 		</tr>
 		<tr>
 			<td>
-				<?php if ($email_is_valid): ?>
-					<p>Este email fue enviado automáticamente a la dirección <?php echo $email; ?>.</p>
-				<?php else: ?>
-					<p>(El usuario no proveyó una dirección de email valida.)</p>
-				<?php endif; ?>
-				<p>Hola <?php echo $name; ?>,</p>
-				<p>Estos fueron tus resultados del test de perfil de personalidad estilo MBTI:</p>
-				<table border=1>
+				<!-- < ?php if ($email_is_valid): ?> -->
+					<p style="color: #000;">Este email fue enviado automáticamente.</p>
+				<!-- < ?php else: ?> -->
+					<!-- <p style="color: #000;">(El usuario no proveyó una dirección de email valida.)</p> -->
+				<!-- < ?php endif; ?> -->
+				<p style="color: #000;">Hola <?php echo $name; ?>,</p>
+				<p style="color: #000;">Estos fueron tus resultados del test de perfil de personalidad estilo MBTI:</p>
+				<table border=1 style="margin-left: auto; margin-right: auto;">
 
 					<tr><th colspan="7" style="background-color: #444; color: #FFF;">¿Dónde preferís enfocar tu atención?</th></tr>
 					<?php $totalE = $answers[0] + $answers[9] + $answers[17] + $answers[23] + $answers[26]; ?>
@@ -199,7 +199,7 @@
 					<tr><td colspan="7"><span style="display: block; height: 18px;">&nbsp;</span></td></tr>
 
 					<tr><th colspan="7" style="background-color: #DDD; color: #00A;">
-						<a style="color: #00A;" href="<?php echo 'http://www.actus.com.ar/mbti/chart?' .
+						<a style="color: #DDD;" href="<?php echo 'http://www.actus.com.ar/mbti/chart?' .
 							$answers['1a'] . '&' . $answers['1b'] .
 							$answers['2a'] . '&' . $answers['2b'] .
 							$answers['3a'] . '&' . $answers['3b'] .
@@ -225,7 +225,7 @@
 						</a>
 					</th></tr>
 				</table>
-				<p>
+				<p style="color: #000;">
 					Muchas gracias por confiar en nosotros, si te interesa recibir un feedback personalizado acerca de tu perfil de personalidad o solicitar el armado de tu gráfico de los 4 elementos por favor escribinos a <a href="mailto:contacto@actus.com.ar">contacto@actus.com.ar</a> para coordinar una entrevista.
 				</p>
 			</td>
