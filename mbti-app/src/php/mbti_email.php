@@ -186,7 +186,15 @@
 
 					<tr><th colspan="7" style="background-color: #777; color: #FFF;">Tu Tipo de Preferencias MBTI</th></tr>
 					<?php $mbti = (($totalI>$totalE)?'I':'E') . (($totalN>$totalS)?'N':'S') . (($totalT>$totalF)?'T':'F') . (($totalP>$totalJ)?'P':'J'); ?>
-					<tr><th colspan="7" style="background-color: #444; color: #FFF;"><font color=red size=+2><?php echo $mbti ; ?></font></th></tr>
+					<tr><th colspan="7"
+						style="background-color: #444;
+							padding: 12px;
+							color: #FFF;
+							font-size: 25px;
+							letter-spacing: 9px;"
+						>
+							<?php echo $mbti ; ?>
+					</th></tr>
 
 					<tr><td colspan="7"><span style="display: block; height: 18px;">&nbsp;</span></td></tr>
 
