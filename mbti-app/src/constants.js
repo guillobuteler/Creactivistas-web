@@ -81,7 +81,7 @@ export const questions = [
   ],
 ];
 
-export const answersInit = {
+export const answersInitTesting = {
   '1a': 1,
   '1b': 3,
   '2a': 1,
@@ -123,7 +123,7 @@ export const answersInit = {
   '20a': 2,
   '20b': 0,
 };
-export const answersInitBackup = {
+export const answersInit = {
   '1a': 0,
   '1b': 0,
   '2a': 0,

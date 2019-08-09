@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-// import ReactDOM from 'react-dom';
+import axios from 'axios';
+
 import Container from '@material-ui/core/Container';
 import Form from './components/Form';
 import FormResults from './components/FormResults';
@@ -9,13 +10,28 @@ import header_logo from './assets/header_zoom.jpg';
 
 
 function App() {
+  const sendEmail = (name, email, answers) => {
+    const data = {
+      name,
+      email,
+      answers,
+    }
+    axios.post(`http://www.actus.com.ar/mbti/php/handler.php`, data, {
+      transformRequest: [(data) => (JSON.stringify(data))],
+    })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      });
+  };
   const [formData, setFormData] = useState(null);
-  const handleFormComplete = (name, answers) => {
+  const handleFormComplete = (name, email, answers) => {
     setFormData({
       name,
       answers
     });
-  }
+    sendEmail(name, email, answers);
+  };
   return (
     <div className="App">
       <Container className="ZOOM-Container">

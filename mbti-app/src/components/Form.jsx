@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
@@ -18,7 +19,6 @@ import './Form.css';
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    // this.handleChange = this.handleChange.bind(this);
     this.handleChangeSlider = this.handleChangeSlider.bind(this);
     this.handleFormComplete = props.onComplete;
     this.state = {
@@ -47,14 +47,12 @@ class Form extends React.Component {
   }
 
   processForm = () => {
-    const { answers, name, email, formErrors } = this.state;
+    const { answers, name, email } = this.state;
     if (email === '') {
       this.setState(() => ({ formErrors: true }));
     } else {
-      // @todo send email
-      this.handleFormComplete(name, answers);
+      this.handleFormComplete(name, email, answers);
     }
-    // console.log(answers, name, email, formErrors);
   }
 
   render() {

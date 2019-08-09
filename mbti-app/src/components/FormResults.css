@@ -16,10 +16,10 @@
   border-radius: 18px !important;
   padding: 20px !important;
   margin-bottom: 10px !important;
-  font-size: 27px !important;
 }
 .ResultsPaper span {
-  color: #900 !important;
+  /* color: #900 !important; */
+  font-size: 27px !important;
 }
 .MuiDialog-paperWidthSm {
   width: 900px !important;
