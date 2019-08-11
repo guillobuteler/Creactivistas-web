@@ -181,14 +181,14 @@ export const scalesMap = [
     question: '¿Dónde preferís enfocar tu atención?',
     axisMap: [
       {
-        char: 'I',
-        title: 'Resultados de Introversion',
-        keys: ['1b', '5a', '9a', '12a', '14b'],
-      },
-      {
         char: 'E',
         title: 'Resultados de Extroversion',
         keys: ['1a', '5b', '9b', '12b', '14a'],
+      },
+      {
+        char: 'I',
+        title: 'Resultados de Introversion',
+        keys: ['1b', '5a', '9a', '12a', '14b'],
       },
     ]
   },

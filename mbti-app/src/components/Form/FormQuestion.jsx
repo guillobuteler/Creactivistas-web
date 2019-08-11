@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
 
-import { marks } from '../constants'
+import { marks } from '../../constants'
 import './FormQuestion.css';
 
 

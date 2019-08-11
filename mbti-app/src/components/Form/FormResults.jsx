@@ -15,8 +15,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 // import CloseIcon from '@material-ui/icons/Close';
 
 import FormResultsGroup from './FormResultsGroup';
-import FormResultsCharts from './FormResultsCharts';
-import { scalesMap, totalsInit } from '../constants'
+import ResultsCharts from '../Charts/ResultsCharts';
+import { scalesMap, totalsInit } from '../../constants'
 import './FormResults.css';
 
 
@@ -103,7 +103,7 @@ class FormResults extends React.Component {
                   {mbti}
                 </DialogTitle>
                 <DialogContent dividers>
-                  <FormResultsCharts totals={totals} />
+                  <ResultsCharts totals={totals} />
                 </DialogContent>
                 <DialogActions>
                   <Button onClick={this.handleClose} color="primary">

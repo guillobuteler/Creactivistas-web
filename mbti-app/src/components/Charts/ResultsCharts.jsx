@@ -4,9 +4,9 @@ import Container from '@material-ui/core/Container';
 // import Paper from '@material-ui/core/Paper';
 import { Radar, HorizontalBar } from 'react-chartjs-2';
 
-import './FormResultsCharts.css';
+import './ResultsCharts.css';
 
-class FormResultsCharts extends React.Component {
+class ResultsCharts extends React.Component {
   constructor(props) {
     super(props);
     const { totals } = props;
@@ -161,7 +161,7 @@ class FormResultsCharts extends React.Component {
                 </Container>
               </Container>
             </Grid>
-            <Grid item xs={12}></Grid>
+            <Grid item xs={12}>hola</Grid>
           </Grid>
         </Grid>
       </div>
@@ -169,4 +169,4 @@ class FormResultsCharts extends React.Component {
   }
 }
   
-export default FormResultsCharts;
+export default ResultsCharts;

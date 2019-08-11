@@ -12,7 +12,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 import FormQuestionGroup from './FormQuestionGroup';
-import { questions, answersInit } from '../constants'
+import { questions, answersInit } from '../../constants'
 import './Form.css';
 
 
