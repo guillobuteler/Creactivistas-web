@@ -161,7 +161,7 @@ class ResultsCharts extends React.Component {
                 </Container>
               </Container>
             </Grid>
-            <Grid item xs={12}>hola</Grid>
+            <Grid item xs={12}></Grid>
           </Grid>
         </Grid>
       </div>
