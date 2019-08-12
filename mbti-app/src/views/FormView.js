@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Form from '../components/Form/Form';
 import FormResults from '../components/Form/FormResults';
+import { domain } from '../constants';
 
 const FormView = () => {
   const sendEmail = (name, email, answers) => {
@@ -10,7 +11,7 @@ const FormView = () => {
       email,
       answers,
     }
-    axios.post(`http://www.actus.com.ar/mbti/php/handler.php`, data, {
+    axios.post(`http://${domain}/mbti/php/handler.php`, data, {
       transformRequest: [(data) => (JSON.stringify(data))],
     })
       .then(res => {

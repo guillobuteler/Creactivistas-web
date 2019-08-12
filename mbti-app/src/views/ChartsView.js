@@ -9,10 +9,10 @@ const ChartsView = (browser) => {
   totals.I = totalsArray[1];
   totals.N = totalsArray[2];
   totals.S = totalsArray[3];
-  totals.T = totalsArray[6];
-  totals.F = totalsArray[7];
-  totals.P = totalsArray[4];
-  totals.J = totalsArray[5];
+  totals.F = totalsArray[4];
+  totals.T = totalsArray[5];
+  totals.J = totalsArray[6];
+  totals.P = totalsArray[7];
 
   return <ResultsCharts totals={totals} />
 };

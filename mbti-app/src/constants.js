@@ -1,3 +1,5 @@
+export const domain = 'actus.com.ar'
+
 export const questions = [
   [
     { id: '1a', label: 'Tomar decisiones después de conocer qué piensan los demás' },
@@ -81,7 +83,7 @@ export const questions = [
   ],
 ];
 
-export const answersInitTesting = {
+export const answersInitTestData = {
   '1a': 1,
   '1b': 3,
   '2a': 1,

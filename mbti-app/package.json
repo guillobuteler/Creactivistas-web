@@ -1,7 +1,7 @@
 {
   "name": "mbti-app",
-  "version": "1.0.0b",
-  "homepage": "http://www.actus.com.ar/mbti",
+  "version": "1.1.0b",
+  "homepage": "http://actus.com.ar/mbti",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.3.0",
