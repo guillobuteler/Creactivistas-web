@@ -199,8 +199,8 @@
           <tr><td colspan="7"><span style="display: block; height: 18px;">&nbsp;</span></td></tr>
 
           <tr><th colspan="7" style="background-color: #DDD; color: #00A;">
-            <a style="color: #DDD;" href="<?php echo 'http://www.actus.com.ar/mbti/chart?' .
-              $totalI . ',' $totalE . ',' $totalN . ',' $totalS . ','
+            <a href="<?php echo 'http://www.actus.com.ar/mbti/charts/' .
+              $totalE . ',' $totalI . ',' $totalN . ',' $totalS . ','
               $totalT . ',' $totalF . ',' $totalP . ',' $totalJ;
             ?>">
               Ver gr&aacute;fico

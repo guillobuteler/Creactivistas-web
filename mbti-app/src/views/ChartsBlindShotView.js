@@ -22,7 +22,7 @@ const ChartsBlindShotView = (href) => {
       char: 'F', keys: ['3b', '7b', '11a', '16a', '20a'],
       char: 'P', keys: ['4a', '8a', '13b', '17b', '19a'],
       char: 'J', keys: ['4b', '8b', '13a', '17a', '19b'],
-      */
+    */
   totals.E = parseInt(doh[0])+parseInt(doh[5].slice(0,1))+parseInt(doh[9].slice(0,1))+parseInt(doh[12].slice(0,1))+parseInt(doh[13].slice(1));
   totals.I = parseInt(doh[1].slice(0,1))+parseInt(doh[4].slice(1))+parseInt(doh[8].slice(1))+parseInt(doh[11].slice(1))+parseInt(doh[14].slice(0,1));
   totals.N = parseInt(doh[1].slice(1))+parseInt(doh[6].slice(0,1))+parseInt(doh[9].slice(1))+parseInt(doh[14].slice(1))+parseInt(doh[18].slice(0,1));
