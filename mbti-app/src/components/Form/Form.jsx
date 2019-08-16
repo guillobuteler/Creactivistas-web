@@ -13,7 +13,7 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 import FormQuestionGroup from './FormQuestionGroup';
 import { questions, answersInit } from '../../constants'
-import './Form.css';
+import './Form.scss';
 
 
 class Form extends React.Component {
@@ -28,12 +28,13 @@ class Form extends React.Component {
       formErrors: false,
     };
   }
-
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   handleChange = fieldType => (event) => {
     const value = event.target.value;
     this.setState(() => (fieldType === 'name' ? { name: value } : { email: value }))
   }
-
   handleChangeSlider(id, value) {
     this.setState(state => {
       const answers = state.answers;
@@ -41,11 +42,9 @@ class Form extends React.Component {
       return { answers };
     });
   }
-
   handleSnackbarClose = () => {
     this.setState(() => ({ formErrors: false }));
   }
-
   processForm = () => {
     const { answers, name, email } = this.state;
     if (email === '') {
@@ -54,7 +53,6 @@ class Form extends React.Component {
       this.handleFormComplete(name, email, answers);
     }
   }
-
   render() {
     const { answers, name, email, formErrors } = this.state;
     const message = 'Para recibir tus resultados, por favor completá tu email.'

@@ -1,0 +1,52 @@
+.FormResults {
+  background: #ccc;
+  .Results_Paper {
+    background: #E4E4E0 !important;
+    border-radius: 18px !important;
+    padding: 20px !important;
+    margin-top: 35px !important;
+    margin-bottom: 10px !important;
+    &.Title {
+      font-size: 27px;
+      span {
+        // color: #600;
+        text-transform: capitalize;
+      }
+    }
+  }
+  .ResultsMBTI_Paper {
+    .MBTI-header {
+      color: white !important;
+      font-size:16px !important;
+      background: #777 !important;
+    }
+    .MBTI-result {
+      color: #FFF !important;
+      background: #444 !important;
+      font-size:60px !important;
+      font-family: 'constantiaregular', serif !important;
+      letter-spacing:20px !important;
+      text-align: center !important;
+    }
+  }
+}
+#Charts_Dialog {
+  .MuiDialog-paperWidthSm {
+    width: 900px !important;
+    max-width: 900px !important;
+    .Charts_Dialog-Title {
+      color: white;
+      background: #444;
+      padding: 9px 24px;
+      h2 {
+        font-size: 36px;
+        line-height: 1.2;
+        text-align: center;
+        font-family: 'constantiaregular', serif;
+      }
+    }
+    .MuiDialogActions-root {
+      padding-right: 16px;
+    }
+  }
+}

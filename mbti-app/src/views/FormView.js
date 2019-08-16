@@ -10,6 +10,7 @@ const FormView = () => {
       name,
       email,
       answers,
+      dev: process.env.NODE_ENV === 'development',
     }
     axios.post(`http://${domain}/mbti/php/handler.php`, data, {
       transformRequest: [(data) => (JSON.stringify(data))],

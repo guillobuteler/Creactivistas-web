@@ -58,6 +58,8 @@ if (isset($data['email'])){
 
   $name = $data['name'];
   $email = $data['email'];
+  $dev = $data['dev'];
+  echo var_dump($dev);
 
   /* 
     Dots and spaces are being replaced by underscores probably due
@@ -106,8 +108,14 @@ if (isset($data['email'])){
 
   $origen = 'Actus <marubuteler@gmail.com>';
   // $origen = 'contacto@actus.com.ar;
-  $actus_recipients = 'marubuteler@gmail.com, abuteler@enneagonstudios.com';
-  $asunto = 'ACTUS :: Resultados Perfil estilo MBTI';
+  if ($dev) {
+    $actus_recipients = 'abuteler@enneagonstudios.com';
+    $asunto = 'CACTUS :: Resultados Perfil estilo MBTI';
+  } else {
+    $actus_recipients = 'marubuteler@gmail.com, abuteler@enneagonstudios.com';
+    $asunto = 'ACTUS :: Resultados Perfil estilo MBTI';
+  }
+
 
   ob_start();						// start capturing output
   include('mbti_email.php');		// execute the file

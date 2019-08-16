@@ -17,7 +17,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import FormResultsGroup from './FormResultsGroup';
 import ResultsCharts from '../Charts/ResultsCharts';
 import { scalesMap, totalsInit } from '../../constants'
-import './FormResults.css';
+import './FormResults.scss';
 
 
 class FormResults extends React.Component {
@@ -27,6 +27,9 @@ class FormResults extends React.Component {
       showGraph: false,
       totals: totalsInit,
     };
+  }
+  componentDidMount() {
+    window.scrollTo(0, 0);
   }
   handleClickOpen = () => {
     this.setState(() => ({ showGraph: true }));
@@ -58,8 +61,8 @@ class FormResults extends React.Component {
         <Grid container spacing={3}>
           <Grid container justify="center" item xs={12}>
             <Grid item xs={11}>
-              <Paper className="ResultsPaper" style={{marginTop: 35}}>
-              <span>Estos son tus resultados {name}</span>
+              <Paper className="Results_Paper Title">
+                Estos son tus resultados <span>{name}</span>
               </Paper>
             </Grid>
             <Grid item xs={12}></Grid>
@@ -78,7 +81,7 @@ class FormResults extends React.Component {
             </Grid>
             <Grid item xs={12}></Grid>
             <Grid item xs={5}>
-              <Paper className="results-group" style={{marginTop: 18}}>
+              <Paper className="ResultsMBTI_Paper" style={{marginTop: 18}}>
                 <Table>
                   <TableHead>
                     <TableRow>
@@ -98,8 +101,8 @@ class FormResults extends React.Component {
               <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>
                 Ver Gráfico
               </Button>
-              <Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={showGraph}>
-                <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
+              <Dialog id="Charts_Dialog" onClose={this.handleClose} open={showGraph}>
+                <DialogTitle className="Charts_Dialog-Title"onClose={this.handleClose}>
                   {mbti}
                 </DialogTitle>
                 <DialogContent dividers>
@@ -114,7 +117,7 @@ class FormResults extends React.Component {
             </Grid>
             <Grid item xs={12}></Grid>
             <Grid item xs={11}>
-                <Paper className="ResultsPaper" style={{marginTop: 35}}>
+                <Paper className="Results_Paper Footer">
                   Muchas gracias por confiar en nosotros, si te interesa recibir un feedback personalizado acerca de tu perfil de personalidad o solicitar el armado de tu gráfico de los 4 elementos por favor escribinos a <a href="mailto:contacto@actus.com.ar">contacto@actus.com.ar</a> para coordinar una entrevista.
                 </Paper>
             </Grid>

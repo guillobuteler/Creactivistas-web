@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container';
 // import Paper from '@material-ui/core/Paper';
 import { Radar, HorizontalBar } from 'react-chartjs-2';
 
-import './ResultsCharts.css';
+import './ResultsCharts.scss';
 
 class ResultsCharts extends React.Component {
   constructor(props) {

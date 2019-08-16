@@ -7,7 +7,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import './FormResultsGroup.css';
+import './FormResultsGroup.scss';
 
 
 class FormResultsGroup extends React.Component {
@@ -37,7 +37,7 @@ class FormResultsGroup extends React.Component {
     const { scale } = this.props;
 
     return (
-      <Paper className="results-group" style={{marginTop: 18}}>
+      <Paper className="ResultsGroup_Paper" style={{marginTop: 18}}>
         <Table>
           <TableHead>
             <TableRow>

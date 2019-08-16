@@ -1,0 +1,70 @@
+body {
+	color:#222;
+	font-family: 'constantiaregular', serif !important;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 17px;
+	background: #666;
+	background:
+	linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+	linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+	linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+	linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+	linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+	linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+	background-color: #131313;
+	background-size: 20px 20px;
+	position: relative;
+	min-height: calc(100vh - 180px);
+	padding-bottom: 180px;
+	.App {
+		text-align: center;
+		// position: relative;
+		.ZOOM-Container {
+			/*layout*/
+			clear: both;
+			margin-top: 20px;
+			margin-bottom: 10px;
+			padding: 30px;
+			width: 1276px;
+			margin: auto;
+			overflow: auto;
+			height: auto;
+			/*style*/
+			background: transparent;
+			background-color: #F0F5FB;
+			-moz-border-radius: 10px;
+			border-radius: 10px;
+			-webkit-border-radius: 10px;
+			.ZOOM-Logo {
+				width: 1216px;
+			}
+			.ZOOM-Views {
+				background: white;
+			}
+		}
+	}
+}
+
+footer#EnneagonStudios {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 81px;
+	background: black;
+	color: white;
+	font-size: 18px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	span {
+		margin-top: -42px;
+		font-size: 16px;
+		letter-spacing: 1px;
+	}
+	img {
+		margin-left: 9px;
+		margin-right: 24px;
+		cursor: pointer;
+	}
+}

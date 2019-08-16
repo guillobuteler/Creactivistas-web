@@ -1,0 +1,53 @@
+.Form {
+  background: #ccc;
+  .instructions-paper {
+    background: #e4e4e0 !important;
+    border-radius: 18px !important;
+    padding: 20px !important;
+    margin-bottom: 10px !important;
+    text-align: left !important;
+    .valor-mbti {
+      display: inline-block;
+      width: 30px;
+      color: #ed1c24;
+      font-size: 18px;
+    }
+  }
+  .questions-container {
+    border: 1px solid #ed1c24;
+    border-radius: 3px;
+    padding: 18px;
+    .MuiContainer-root {
+      margin-top: 42px;
+    }
+    .questions-title {
+      text-align: left !important;
+      color: #ed1c24 !important;
+      font-weight: 700 !important;
+      font-size: 20px !important;
+      margin-top: 0px;
+    }
+    .email-field {
+      margin-top: 25px;
+      .MuiFormControl-marginNormal {
+        margin-top: 0px;
+      }
+    }
+  }
+  .SnackbarErrorContent {
+    background-color: #d32f2f !important;
+    .SnackbarMessage {
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+      .ErrorIcon {
+        /* font-size: 36px !important; */
+        opacity: 0.9;
+        margin-right: 11px;
+      }
+    }
+    .CloseIcon {
+      font-size: 20;
+    }
+  }
+}

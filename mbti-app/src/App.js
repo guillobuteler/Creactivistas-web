@@ -8,12 +8,13 @@ import ChartsBlindShotView from './views/ChartsBlindShotView';
 import ChartsView from './views/ChartsView';
 import NotFoundView from './views/NotFoundView';
 
-import './App.css';
+import './App.scss';
 import header_logo from './assets/header_zoom.jpg';
+import footer_logo from './assets/9S_footer.png';
 
 
 function App() {
-  const basePath = '/mbti';
+  const basePath = process.env.NODE_ENV === 'production' ? '/mbti' : '';
   return (
     <div className="App">
       <Container className="ZOOM-Container">
@@ -34,6 +35,12 @@ function App() {
           </section>
         </Router>
       </Container>
+      <footer id="EnneagonStudios">
+        <span>developed by</span>
+        <a href="http://www.enneagonstudios.com/" target="_blank" rel="noopener noreferrer">
+          <img src={footer_logo} alt="Enneagon Studios Logo" />
+        </a>
+      </footer>
     </div>
   );
 }
