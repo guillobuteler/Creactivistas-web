@@ -1,5 +1,3 @@
-export const domain = 'actus.com.ar'
-
 export const questions = [
   [
     { id: '1a', label: 'Tomar decisiones después de conocer qué piensan los demás' },

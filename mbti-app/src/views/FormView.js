@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Form from '../components/Form/Form';
 import FormResults from '../components/Form/FormResults';
-import { domain } from '../constants';
 
 const FormView = () => {
   const sendEmail = (name, email, answers) => {
+    const hostname = window.location.hostname;
     const data = {
       name,
       email,
       answers,
-      dev: process.env.NODE_ENV === 'development',
+      dev: process.env.NODE_ENV === 'development' || hostname === 'www.enneagonstudios.com',
     }
-    axios.post(`http://${domain}/mbti/php/handler.php`, data, {
+    axios.post(`http://${hostname}/mbti/php/handler.php`, data, {
       transformRequest: [(data) => (JSON.stringify(data))],
     })
       .then(res => {
