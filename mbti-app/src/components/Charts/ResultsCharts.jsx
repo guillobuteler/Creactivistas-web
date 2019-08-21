@@ -94,10 +94,10 @@ class ResultsCharts extends React.Component {
         },
       },
       horizontalBarData: {
-          labels: ['I', 'E', 'N', 'S', 'F', 'T', 'J', 'P'],
+          labels: ['I', 'E', 'N', 'S', 'F', 'T', 'P', 'J'],
           datasets: [{
               label: 'Valores MBTI',
-              data: [totals.I, totals.E, totals.N, totals.S, totals.F, totals.T, totals.J, totals.P],
+              data: [totals.I, totals.E, totals.N, totals.S, totals.F, totals.T, totals.P, totals.J ],
               backgroundColor: [
                   'rgba(155, 155, 155, 0.4)',
                   'rgba(155, 155, 155, 0.4)',

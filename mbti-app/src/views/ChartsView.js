@@ -5,14 +5,14 @@ import { totalsInit } from '../constants';
 const ChartsView = (browser) => {
   const totalsArray = browser.match.params.totals.split(',');
   const totals = totalsInit;
-  totals.E = totalsArray[0];
-  totals.I = totalsArray[1];
+  totals.I = totalsArray[0];
+  totals.E = totalsArray[1];
   totals.N = totalsArray[2];
   totals.S = totalsArray[3];
-  totals.F = totalsArray[4];
-  totals.T = totalsArray[5];
-  totals.J = totalsArray[6];
-  totals.P = totalsArray[7];
+  totals.T = totalsArray[4];
+  totals.F = totalsArray[5];
+  totals.P = totalsArray[6];
+  totals.J = totalsArray[7];
 
   return <ResultsCharts totals={totals} />
 };

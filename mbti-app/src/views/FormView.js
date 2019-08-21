@@ -16,8 +16,8 @@ const FormView = () => {
       transformRequest: [(data) => (JSON.stringify(data))],
     })
       .then(res => {
-        console.log(res);
-        console.log(res.data);
+        // console.log(res);
+        // console.log(res.data);
       });
   };
   const [ formData, setFormData ] = useState(null);

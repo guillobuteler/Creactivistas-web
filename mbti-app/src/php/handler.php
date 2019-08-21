@@ -134,6 +134,6 @@ if (isset($data['email'])){
     // $headers .= "To: $actus_recipients \r\n";
     // mail($actus_recipients, $asunto, $content, $headers);
   // }
-  echo 'I dud itz!';
+  // echo 'I dud itz!';
 }
 ?>

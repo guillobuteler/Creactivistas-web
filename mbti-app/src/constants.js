@@ -177,23 +177,23 @@ export const marks = [
 
 export const scalesMap = [
   {
-    title: 'La escala IE: I de Introversion',
+    title: 'La escala IE',
     question: '¿Dónde preferís enfocar tu atención?',
     axisMap: [
-      {
-        char: 'E',
-        title: 'Resultados de Extroversion',
-        keys: ['1a', '5b', '9b', '12b', '14a'],
-      },
       {
         char: 'I',
         title: 'Resultados de Introversion',
         keys: ['1b', '5a', '9a', '12a', '14b'],
       },
+      {
+        char: 'E',
+        title: 'Resultados de Extroversion',
+        keys: ['1a', '5b', '9b', '12b', '14a'],
+      },
     ]
   },
   {
-    title: 'La escala NS: S de Sensing',
+    title: 'La escala NS',
     question: '¿Cómo procesas información y te enteras de cosas?',
     axisMap: [
       {
@@ -209,7 +209,7 @@ export const scalesMap = [
     ]
   },
   {
-    title: 'La escala TF: F de Feeling',
+    title: 'La escala TF',
     question: '¿Cómo tomas decisiones?',
     axisMap: [
       {
@@ -225,7 +225,7 @@ export const scalesMap = [
     ]
   },
   {
-    title: 'La escala PJ: J de Judging',
+    title: 'La escala PJ',
     question: '¿Cómo te orientas en relación al mundo exterior?',
     axisMap: [
       {
