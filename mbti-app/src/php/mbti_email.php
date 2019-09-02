@@ -397,7 +397,7 @@
     <tr><td><span style="display: block; height: 72px;">&nbsp;</span></td></tr>
     <tr>
       <td style="background:#000; text-align: right; padding: 18px 6px 9px;">
-        <span style="color: white; font-size: 16px; letter-spacing: 1px; vertical-align: top;">desarrollado por</span>
+        <span style="color: white; font-size: 16px; letter-spacing: 1px;">desarrollado por</span>
         <a style="display: inline-block;" href="http://www.enneagonstudios.com/" target="_blank" rel="noopener noreferrer">
           <img style="margin-left: 9px; margin-right: 24px; cursor: pointer;"
             src="http://www.actus.com.ar/assets/img/email_9S_footer.png" alt="Enneagon Studios Logo"/>

@@ -36,7 +36,7 @@ function App() {
         </Router>
       </Container>
       <footer id="EnneagonStudios">
-        <span>developed by</span>
+        <span>desarrollado por</span>
         <a href="http://www.enneagonstudios.com/" target="_blank" rel="noopener noreferrer">
           <img src={footer_logo} alt="Enneagon Studios Logo" />
         </a>

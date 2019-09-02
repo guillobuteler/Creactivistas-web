@@ -20,7 +20,7 @@
 				<a href="index.php" id="logo">
 					<img src="assets/img/logo.jpg" alt="ACTUS - Gestión de talento" />
 				</a>
-				<a href="/mbti/mbti.php" id="zoom">
+				<a href="/mbti/" id="zoom">
 					<img src="assets/img/zoom.jpg" alt="Zoom" />
 				</a>
 				<div id="social">
