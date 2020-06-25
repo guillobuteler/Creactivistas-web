@@ -7,6 +7,8 @@ export default (namespaces = ['translation']) => ComposedComponent => {
     // on client we only get a serialized i18n instance
     // as we do not have to use the one on req we just use the one instance
     const finalI18n = i18n || i18nInstance
+    // finalI18n.language = 'es-AR'
+    // finalI18n.languages = ['es']
 
     return (
       <NamespacesConsumer i18n={finalI18n} ns={namespaces} {...rest} wait={process.browser}>

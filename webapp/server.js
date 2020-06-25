@@ -21,11 +21,13 @@ const express = require('express')
 
 i18n
   .use(Backend)
-  .use(i18nextMiddleware.LanguageDetector)
+  // .use(i18nextMiddleware.LanguageDetector)
   .init(
     {
-      fallbackLng: 'en',
-      preload: ['en', 'es', 'no'], // Preload all languages
+      lng: 'es',
+      lookupQuerystring: 'lng',
+      fallbackLng: 'es',
+      preload: ['es', 'en', 'no'], // Preload all languages
       ns: ['common', 'home'], // Need to preload all the namespaces
       backend: {
         loadPath: join(__dirname, '/locales/{{lng}}/{{ns}}.json'),
@@ -44,7 +46,7 @@ i18n
         server.use(i18nextMiddleware.handle(i18n)) // Enable middleware for i18next
         server.use('/locales', express.static(join(__dirname, '/locales'))) // Serve locales for client
         server.use(requestCountry.middleware({
-          privateIpCountry: 'en'
+          privateIpCountry: 'es'
         }))
 
         server.get('/sitemap.xml', (req, res) => {

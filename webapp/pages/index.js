@@ -16,7 +16,8 @@ const startTest = e => {
 }
 
 const Home = ({ countryCode, t }) => {
-  const defaultLanguage = langCodes.includes(countryCode) ? countryCode : 'en'
+  // const defaultLanguage = langCodes.includes(countryCode) ? countryCode : 'en'
+  const defaultLanguage = 'es'
   return (
     <div>
       <div style={{ paddingBottom: '20px', borderBottom: '1px solid rgb(234, 234, 234)' }}>

@@ -5,7 +5,8 @@ const LanguageDetector = require('i18next-browser-languagedetector')
 const i18n = i18next.default ? i18next.default : i18next
 
 const options = {
-  fallbackLng: 'en',
+  lng: 'es',
+  fallbackLng: 'es',
   load: 'languageOnly', // we only provide en, de -> no region specific locals like en-US, de-DE
 
   // have a common namespace used around the full app
