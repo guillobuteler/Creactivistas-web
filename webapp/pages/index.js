@@ -36,12 +36,14 @@ const Home = ({ countryCode, t }) => {
         <p>- {t('home:paragraphs:tip1')}</p>
         <p>- {t('home:paragraphs:tip2')}</p>
         <p>- {t('home:paragraphs:tip3')}</p>
-        <h2>{t('common:language')}</h2>
         <form onSubmit={startTest}>
-          <p>{t('home:paragraphs:select_language')}</p>
-          <Field name={t('common:language')}>
-            <Select name='languages' defaultValue={defaultLanguage} options={languageList} />
-          </Field>
+          <section style={{ display: 'none' }}>
+            <h2>{t('common:language')}</h2>
+            <p>{t('home:paragraphs:select_language')}</p>
+            <Field name={t('common:language')}>
+              <Select name='languages' defaultValue={defaultLanguage} options={languageList} />
+            </Field>
+          </section>
           <div style={{ textAlign: 'center', paddingTop: '20px' }}>
             <Button value={t('home:paragraphs:start_test')} type='submit' background='rgb(255, 0, 128)' border='1px solid rgb(255, 0, 128)' />
           </div>
