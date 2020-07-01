@@ -1,18 +1,18 @@
 {
-  "name": "bigfive-web",
-  "version": "2.0.1",
-  "description": "Website for five factor model of personality",
+  "name": "Zoom-webapp",
+  "version": "0.1.0",
+  "description": "Integración de web app de Zoom MBTI con test open source de Big5.",
   "private": true,
   "author": {
-    "name": "Jonas Enge",
-    "email": "jonas.enge@t-fk.no",
-    "url": "https://github.com/telemark"
+    "name": "Alejandro R Buteler",
+    "email": "abuteler@enneagonstudios.com",
+    "url": "https://github.com/abuteler"
   },
   "contributors": [
     {
-      "name": "Geir Gåsodden",
-      "email": "geir.gasodden@pythonia.no",
-      "url": "https://github.com/zrrrzzt"
+      "name": "Open source project",
+      "email": "jonas.enge@t-fk.no",
+      "url": "https://github.com/telemark"
     }
   ],
   "main": "server.js",

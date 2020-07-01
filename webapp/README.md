@@ -1,14 +1,25 @@
 [![Build Status](https://travis-ci.org/Alheimsins/bigfive-web.svg?branch=master)](https://travis-ci.org/Alheimsins/bigfive-web)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
-# bigfive-web
+# Zoom webapp
+Basada en el proyecto de codigo abierto del test de personalidad del modelo de 5 factores conocido como Big 5 (https://github.com/Alheimsins/bigfive-web) distribuido bajo la licencia MIT.
+
+
+## Instrucciones
+### Pre requisitos:
+1. Instalar [nodejs](https://nodejs.org) versión 10 o +, y [Docker](https://www.docker.com/).
+2. Clonar este repo.
+3. `npm install` o `yarn install`
+### Uso en dev:
+1. Correr `docker-compose build` en una terminal.
+2. Correr `docker-compose up`.
+3. Ir a `localhost:3001`
+
+## Referencias del bigfive-web
 
 Website for five factor model of personality based on work from [IPIP-NEO-PI](https://github.com/kholia/IPIP-NEO-PI).
-
 Tests and evaluation is gathered from [ipip.ori.org](http://ipip.ori.org).
-
 See it live @ [bigfive-test.com](https://bigfive-test.com)
-
 Written in [nodejs](https://nodejs.org) using the [next.js](https://github.com/zeit/next.js) and [micro](https://github.com/zeit/micro) framework
 
 ## Preview
