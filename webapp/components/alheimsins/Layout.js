@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Header from './Header'
-import Footer from './Footer'
+// import Footer from './Footer'
 import withI18next from '../../hoc/withI18next'
 
 const Layout = ({ user, children, t }) => (
@@ -8,18 +8,18 @@ const Layout = ({ user, children, t }) => (
     <Head>
       <title>{t('common:title')}</title>
       <meta name='viewport' content='initial-scale=0.8, maximum-scale=0.8, width=device-width' />
-      <meta property='og:title' content='Want to take a free Big Five personality test?' />
-      <meta property='og:description' content='Take a free, open-source Big Five personality test - translated to multiple languages. Get to know yourself better from a detailed profile of your personality traits or learn to know others by comparing yourself with your partner, colleagues, friends or family.' />
+      <meta property='og:title' content='Querés tomar un test de personalidad basado en el modelo de los 5 grandes?' />
+      <meta property='og:description' content='Tomá gratis un test de personalidad basado en el modelo de los 5 grandes. Conocé tus aptitudes mejor con un perfil detallado de tus razgos de personalidad.' />
       <meta property='og:image' content='/static/apple-icon-152x152.png' />
       <meta name='theme-color' content='#000000' />
       <meta name='twitter:card' content='summary' />
       <meta name='twitter:creator' content='@maccyber' />
-      <meta name='twitter:title' content='Want to take a free Big Five personality test?' />
+      <meta name='twitter:title' content='Querés tomar un test de personalidad basado en el modelo de los 5 grandes?' />
       <meta name='twitter:description' content='Get to know yourself better from a detailed profile of your personality traits or learn to know others by comparing yourself with your partner, colleagues, friends or family.' />
       <meta name='twitter:image' content='https://bigfive-test.com/static/apple-icon.png' />
-      <meta name='description' content='Take a free, open-source Big Five personality test - translated to multiple languages. Get to know yourself better from a detailed profile of your personality traits or learn to know others by comparing yourself with your partner, colleagues, friends or family.' />
-      <meta name='keywords' content='BigFive, personality traits, survey, compare' />
-      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: '{ "@context": "http://schema.org/", "@type": "WebSite", "name": "BigFive Test", "url": "https://bigfive-test.com" }' }} />
+      <meta name='description' content='Tomá gratis un test de personalidad basado en el modelo de los 5 grandes. Conocé tus aptitudes mejor con un perfil detallado de tus razgos de personalidad.' />
+      <meta name='keywords' content='BigFive, razgos de personalidad, test psicometrico' />
+      {/* <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: '{ "@context": "http://schema.org/", "@type": "WebSite", "name": "BigFive Test", "url": "https://bigfive-test.com" }' }} /> */}
       <link rel='icon' sizes='192x192' href='/static/android-icon-192x192.png' />
       <link rel='apple-touch-icon' href='/static/apple-icon-152x152.png' />
       <link rel='shortcut icon' href='/static/favicon.ico' />
@@ -29,7 +29,7 @@ const Layout = ({ user, children, t }) => (
     <div className='main'>
       {children}
     </div>
-    <Footer />
+    {/* <Footer /> */}
     <style jsx global>
       {`
         body {
@@ -77,7 +77,7 @@ const Layout = ({ user, children, t }) => (
           height: 100%;
         }
         .main a {
-          color: #bd10e0;
+          color: #0da0a0;
         }
       `}
     </style>

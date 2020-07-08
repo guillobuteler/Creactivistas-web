@@ -14,7 +14,7 @@ export default class extends Component {
   constructor (props) {
     super(props)
     this.state = {}
-    this.readMore = this.readMore.bind(this)
+    this.readMore = this.readMore && this.readMore.bind(this)
   }
 
   handleReadMore (e) {

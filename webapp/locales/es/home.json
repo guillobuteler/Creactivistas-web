@@ -1,7 +1,7 @@
 {
   "title": "Test de personalidad basado en el modelo de los cinco grandes",
   "paragraphs": {
-    "first": "Este es un test de personalidad sin costo alguno de código abierto para medir los cinco grandes rasgos de la personalidad.",
+    "first": "Este es un test de personalidad gratuito de código abierto para medir los cinco grandes rasgos de la personalidad.",
     "test_evaluation": "Pruebas y evaluaciones se toman de",
     "inventory_is_from": "Inventado por",
     "name_inventor": "Johnson's (2014) 120-item IPIP NEO-PI-R",
@@ -10,7 +10,7 @@
     "to_complete": "para completarlo",
     "after_submitted": "Una vez que haya enviado la prueba, recibirá un informe detallado de la personalidad en los siguientes dominios: ",
     "openess": "Apertura a la experiencia, conciencia, extraversión, afabilidad y neuroticismo.",
-    "see_an": "Ver una",
+    "see_an": "Ver un",
     "of_the_report": "de el reporte",
     "tip1": "Responde honestamente, incluso si no te gusta la respuesta",
     "tip2": "Descríbete a ti mismo como generalmente eres ahora, no como deseas ser en el futuro",

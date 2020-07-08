@@ -7,13 +7,21 @@ Basada en el proyecto de codigo abierto del test de personalidad del modelo de 5
 
 ## Instrucciones
 ### Pre requisitos:
-1. Instalar [nodejs](https://nodejs.org) versión 10 o +, y [Docker](https://www.docker.com/).
+1. Instalar [nodejs](https://nodejs.org) versión >= 10, y [Docker](https://www.docker.com/).
 2. Clonar este repo.
 3. `npm install` o `yarn install`
 ### Uso en dev:
 1. Correr `docker-compose build` en una terminal.
 2. Correr `docker-compose up`.
 3. Ir a `localhost:3001`
+
+### Uso de MongoDB en container
+[referencia](https://www.thepolyglotdeveloper.com/2019/01/getting-started-mongodb-docker-container-deployment/)
+1. `docker exec -it mongodb bash`
+2. `mongo`
+3. `show dbs`
+4. `use zoom`
+5. `db.createCollection('big5results')`
 
 ## Referencias del bigfive-web
 

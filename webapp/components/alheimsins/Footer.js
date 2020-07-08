@@ -11,11 +11,6 @@ const links = [
   {
     url: 'https://github.com/alheimsins',
     name: 'github'
-  },
-  {
-    url: '/about',
-    name: 'about',
-    target: '_self'
   }
 ]
 

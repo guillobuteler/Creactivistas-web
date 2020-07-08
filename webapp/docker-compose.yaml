@@ -1,7 +1,7 @@
 version: "3"
 services: 
   app:
-    container_name: zoom_nextjs_app
+    container_name: zoom_app
     restart: always
     build: .
     ports:
@@ -9,7 +9,7 @@ services:
     links:
       - mongo
   mongo:
-    container_name: zoom_mongodb
+    container_name: mongodb
     image: mongo
     ports:
       - 27018:27017

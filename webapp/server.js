@@ -18,6 +18,35 @@ const app = next({ dev })
 const handler = routes.getRequestHandler(app)
 const port = parseInt(process.env.PORT, 10) || 3000
 const express = require('express')
+// const nodemailer = require('nodemailer')
+// const emailTemplateBig5 = require('./emailtemplate-big5')
+
+// const mailServerConfig = {
+//   host: 'smtp.ethereal.email',
+//   port: 587,
+//   secure: false,
+//   auth: {
+//     user: 'yutfggtgifd7ixet@ethereal.email',
+//     pass: 'tX29P4QNadD7kAG7x5'
+//   }
+// }
+// const mailConfig = {
+//   from: 'Actus <marubuteler@gmail.com>',
+//   to: '',
+//   bcc: 'abuteler@enneagonstudios.com',
+//   subject: 'Actus | Resultados del test Big 5',
+//   text: 'Hola $__NAME__, este email fue enviado automáticamente. Para ver tus resultados en el test de perfil de personalidad basado en el modelo de los 5 grandes andá a http://actus.com.ar/zoom/big5/resultados/ y completá el formulario con el siguiente ID: $__ID__',
+//   html: emailTemplateBig5
+// }
+// const sendMail = async ({ mailserver, mail }) => {
+//   // create a nodemailer transporter using smtp
+//   let transporter = nodemailer.createTransport(mailserver);
+
+//   // send mail using transporter
+//   let info = await transporter.sendMail(mail);
+
+//   console.log(`Preview: ${nodemailer.getTestMessageUrl(info)}`);
+// }
 
 i18n
   .use(Backend)
@@ -76,10 +105,15 @@ i18n
 
         server.post('/api/save', (req, res) => {
           const payload = req.body
-          console.log(payload)
           collection.insert(payload, (error, data) => {
             if (error) throw error
             res.send(data)
+            console.log(data)
+            // actualizar mail con datos del test, NAME y ID
+            // mailConfig.text = mailConfig.text.replace('$__NAME__', data.clientName)
+            // mailConfig.text = mailConfig.text.replace('$__ID__', data._id)
+            // enviar link a resultados via mail
+            // sendMail(mailServerConfig, mailConfig)
           })
         })
 
