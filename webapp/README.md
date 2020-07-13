@@ -12,11 +12,12 @@ Basada en el proyecto de codigo abierto del test de personalidad del modelo de 5
 3. `npm install` o `yarn install`
 ### Uso en dev:
 1. Correr `docker-compose build` en una terminal.
-2. Correr `docker-compose up`.
-3. Ir a `localhost:3001`
+2. Correr `docker-compose up -d`. (d por dettached/headless)
+3. Ir a `localhost:3000`
 
 ### Uso de MongoDB en container
 [referencia](https://www.thepolyglotdeveloper.com/2019/01/getting-started-mongodb-docker-container-deployment/)
+(no hacen faltan estos pasos porque la base y la colección se crean automáticamente en el primer uso)
 1. `docker exec -it mongodb bash`
 2. `mongo`
 3. `show dbs`
