@@ -27,6 +27,14 @@ export default class extends Component {
     this.state = {
       progress: 0,
       position: 0,
+      clientInfo: {
+        name: '',
+        email: ''
+      },
+      clientInfoValidation: {
+        isComplete: false,
+        emailErr: false
+      },
       inventory: this.props.inventory,
       itemsPerPage: 5,
       results: [],
@@ -79,16 +87,29 @@ export default class extends Component {
   }
 
   async handleChange ({ target }) {
-    const { answers, items, inventory, itemsPerPage, previous, position } = this.state
-    const { domain, facet } = inventory.find(q => q.id === target.name)
-    answers[target.name] = { score: parseInt(target.value), domain, facet }
-    const progress = Math.round(Object.keys(answers).length / inventory.length * 100)
-    const next = itemsPerPage === 1 && progress !== 100 ? false : items.filter(item => !answers[item.id]).length === 0
-    this.setState({ answers, progress, next })
-    populateData({ answers, progress, next, previous, position, items })
-    if (itemsPerPage === 1 && progress !== 100) {
-      await sleep(700)
-      await this.handleSubmit()
+    const { clientInfo: { name, email } } = this.state
+    const targetValue = target.value
+    console.log(targetValue)
+    switch (target.name) {
+      case 'name':
+        this.setState({ clientInfo: { name: targetValue, email } })
+        break
+      case 'email':
+        this.setState({ clientInfo: { name, email: targetValue } })
+        break
+      default:
+        // original app code
+        const { answers, items, inventory, itemsPerPage, previous, position } = this.state // eslint-disable-line
+        const { domain, facet } = inventory.find(q => q.id === target.name) // eslint-disable-line
+        answers[target.name] = { score: parseInt(target.value), domain, facet }
+        const progress = Math.round(Object.keys(answers).length / inventory.length * 100) // eslint-disable-line
+        const next = itemsPerPage === 1 && progress !== 100 ? false : items.filter(item => !answers[item.id]).length === 0 // eslint-disable-line
+        this.setState({ answers, progress, next })
+        populateData({ answers, progress, next, previous, position, items })
+        if (itemsPerPage === 1 && progress !== 100) {
+          await sleep(700)
+          await this.handleSubmit()
+        }
     }
   }
 
@@ -98,45 +119,62 @@ export default class extends Component {
     this.setState({ items, position, next: true, previous })
   }
 
+  isValidEmail (email) {
+    return /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i.test(email)
+  }
+
   async handleSubmit () {
     window.scrollTo(0, 0)
-    const { items, finished, position } = getItems(this.state.position, this.state.itemsPerPage, this.state.inventory).next()
-    if (finished) {
-      clearItems()
-      const answers = this.state.answers
-      const choices = Object.keys(answers).reduce((prev, current) => {
-        const choice = answers[current]
-        prev.push({
-          domain: choice.domain,
-          facet: choice.facet,
-          score: choice.score
-        })
-        return prev
-      }, [])
-      const result = {
-        ...getInfo(),
-        lang: this.state.lang,
-        answers: choices,
-        timeElapsed: Math.round((Date.now() - this.state.now) / 1000),
-        dateStamp: Date.now()
+    const { clientInfo: { name, email }, clientInfoValidation: { isComplete } } = this.state
+    if (isComplete) {
+      // original app code + name + email
+      const { items, finished, position } = getItems(this.state.position, this.state.itemsPerPage, this.state.inventory).next()
+      if (finished) {
+        clearItems()
+        const answers = this.state.answers
+        const choices = Object.keys(answers).reduce((prev, current) => {
+          const choice = answers[current]
+          prev.push({
+            domain: choice.domain,
+            facet: choice.facet,
+            score: choice.score
+          })
+          return prev
+        }, [])
+        const result = {
+          ...getInfo(),
+          lang: this.state.lang,
+          clientName: name,
+          clientEmail: email,
+          answers: choices,
+          timeElapsed: Math.round((Date.now() - this.state.now) / 1000),
+          dateStamp: Date.now()
+        }
+        const { data } = await httpInstance.post('/api/save', result)
+        setItem('result', data._id)
+        Router.pushRoute('showResult', { id: data._id })
+      } else {
+        const next = items.filter(item => !this.state.answers[item.id]).length === 0
+        this.setState({ items, position, next, previous: true, restore: false })
+        populateData({ progress: this.state.progress, next, previous: true, answers: this.state.answers, position, items })
       }
-      const { data } = await httpInstance.post('/api/save', result)
-      setItem('result', data._id)
-      Router.pushRoute('showResult', { id: data._id })
     } else {
-      const next = items.filter(item => !this.state.answers[item.id]).length === 0
-      this.setState({ items, position, next, previous: true, restore: false })
-      populateData({ progress: this.state.progress, next, previous: true, answers: this.state.answers, position, items })
+      // validate email address
+      if (this.isValidEmail(email)) {
+        this.setState({ clientInfoValidation: { isComplete: true, emailErr: false } })
+      } else {
+        this.setState({ clientInfoValidation: { isComplete, emailErr: true } })
+      }
     }
   }
 
   render () {
-    const { items, progress, answers, next, previous, lang, now, restore } = this.state
+    const { items, progress, answers, next, previous, lang, now, restore, clientInfo: { name, email }, clientInfoValidation: { isComplete, emailErr } } = this.state
     const done = progress === 100 && next
     const { handleChange, handleSubmit, handleBack, switchLanguage } = this
     return (
       <div style={{ textAlign: 'left' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ display: 'none', justifyContent: 'space-between' }}>
           <LanguageBar switchLanguage={switchLanguage} selectedLanguage={lang} />
           <div style={{ textAlign: 'right', fontSize: '12px' }}>
             <Timer start={now} />
@@ -146,7 +184,21 @@ export default class extends Component {
         {
           restore && <p onClick={this.handleClearAnswers} style={{ color: '#FF0080', marginTop: '10px', cursor: 'pointer' }}><FaInfoCircle /> Your state is restored from LocalStorage. Click here to start over again.</p>
         }
-        {items.map(item =>
+        {isComplete || (
+          <div>
+            <div className='infocliente'>
+              <input type='text' name='name' value={name} onChange={handleChange} placeholder='Nombre *' className='text' />
+            </div>
+            <div className='infocliente'>
+              <input type='email' name='email' value={email} onChange={handleChange} placeholder='Email *' className={emailErr ? 'text err' : 'text'} />
+              <p style={emailErr ? { color: 'red', margin: '5px 0 0' } : { display: 'none' }}>* La direcci&oacute;n de email debe ser v&aacute;lida.</p>
+            </div>
+            <div className='navigation'>
+              <Button type='submit' value='Empezar' onClick={handleSubmit} background='#0da0a0' border='1px solid #0b8080' disabled={name.length === 0 || email.length === 0} />
+            </div>
+          </div>
+        )}
+        {isComplete && items.map(item =>
           <div key={item.id} className={lang === 'ur' ? 'item inverted-text' : 'item'}>
             <div className='question'>
               {item.text}
@@ -158,16 +210,29 @@ export default class extends Component {
             </RadioGroup>
           </div>
         )}
-        <div className='navigation'>
-          <div style={{ marginRight: '10px' }}>
-            <Button type='submit' value='Back' onClick={handleBack} disabled={!previous} />
+        {isComplete && (
+          <div className='navigation'>
+            <div style={{ marginRight: '10px' }}>
+              <Button type='submit' value='Paso previo' onClick={handleBack} disabled={!previous} />
+            </div>
+            <div>
+              <Button type='submit' value={done ? 'Ver resultados' : 'Siguiente'} onClick={handleSubmit} background={done ? '#FF0080' : 'black'} border={done ? '1px solid #FF0080' : '1px solid black'} disabled={!next} />
+            </div>
           </div>
-          <div>
-            <Button type='submit' value={done ? 'See results' : 'Next'} onClick={handleSubmit} background={done ? '#FF0080' : 'black'} border={done ? '1px solid #FF0080' : '1px solid black'} disabled={!next} />
-          </div>
-        </div>
+        )}
         <style jsx>
           {`
+            .infocliente {
+              margin-top: 27px;
+            }
+            .text {
+              padding: 9px 5px;
+              width: 450px;
+              font-size: 0.9em;
+            }
+            .err {
+              border: 2px solid red;
+            }
             .item {
               margin-top: 30px;
             }
@@ -176,8 +241,8 @@ export default class extends Component {
               display: inline-flex;
             }
             .question {
-              font-size: 28px;
-              margin-bottom: 2px;
+              font-size: 1.5em;
+              margin-bottom: 5px;
             }
             .inverted-text {
               -moz-transform: scale(-1, 1);

@@ -1,5 +1,5 @@
 {
-  "name": "Zoom-webapp",
+  "name": "zoom-webapp",
   "version": "0.1.0",
   "description": "Integración de web app de Zoom MBTI con test open source de Big5.",
   "private": true,
