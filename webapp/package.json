@@ -1,7 +1,7 @@
 {
   "name": "zoom-webapp",
-  "version": "0.1.0",
-  "description": "Integración de web app de Zoom MBTI con test open source de Big5.",
+  "version": "0.9.0",
+  "description": "Integración de app web de Zoom MBTI con test open source de Big5.",
   "private": true,
   "author": {
     "name": "Alejandro R Buteler",

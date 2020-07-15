@@ -38,7 +38,7 @@ const sendMail = async (mail) => {
     path: '/usr/sbin/sendmail'
   })
   // send mail using transporter
-  const info = await transporter.sendMail(mail)
+  const info = await transporter.sendMail(mail).catch(err => console.log(err))
 
   console.log(`Preview: ${nodemailer.getTestMessageUrl(info)}`)
 }
@@ -103,7 +103,6 @@ i18n
           collection.insert(payload, (error, data) => {
             if (error) throw error
             res.send(data)
-            console.log(data)
             // resetear config a default
             emailConfig = JSON.parse(JSON.stringify(emailConfigDefaults))
             // actualizar cuerpo del email con datos del test: direccion, nombre e ID

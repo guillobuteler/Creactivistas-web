@@ -89,7 +89,6 @@ export default class extends Component {
   async handleChange ({ target }) {
     const { clientInfo: { name, email } } = this.state
     const targetValue = target.value
-    console.log(targetValue)
     switch (target.name) {
       case 'name':
         this.setState({ clientInfo: { name: targetValue, email } })
