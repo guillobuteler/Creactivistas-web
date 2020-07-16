@@ -1,11 +1,11 @@
 import { Component } from 'react'
 import getConfig from 'next/config'
-import { Router } from '../routes'
-import { Code, Field, Button, InputText } from '../components/alheimsins'
+import { Router } from '../../routes'
+import { Code, Field, Button, InputText } from '../../components/alheimsins'
 import { MdDelete } from 'react-icons/md'
-import base64url from '../lib/base64url'
-import validMongoId from '../lib/valid-mongoid'
-import formatId from '../lib/format-id'
+import base64url from '../../lib/base64url'
+import validMongoId from '../../lib/valid-mongoid'
+import formatId from '../../lib/format-id'
 const { publicRuntimeConfig: { URL } } = getConfig()
 
 export default class extends Component {

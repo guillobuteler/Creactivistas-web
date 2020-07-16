@@ -1,11 +1,11 @@
 import { Component, Fragment } from 'react'
 import axios from 'axios'
 import getConfig from 'next/config'
-import Summary from '../components/SummaryCompare'
-import SocialShare from '../components/SocialShare'
-import { ShortcutH1 } from '../components/alheimsins'
-import repackResults from '../lib/repack-results'
-import base64url from '../lib/base64url'
+import Summary from '../../components/SummaryCompare'
+import SocialShare from '../../components/SocialShare'
+import { ShortcutH1 } from '../../components/alheimsins'
+import repackResults from '../../lib/repack-results'
+import base64url from '../../lib/base64url'
 const { publicRuntimeConfig: { URL } } = getConfig()
 
 const httpInstance = axios.create({

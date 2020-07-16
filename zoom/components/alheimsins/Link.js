@@ -8,10 +8,12 @@ const ActiveLink = ({ router, children, ...props }) => {
   let className = child.props.className || null
   const route = props.route.toLowerCase().substring(1)
   const pathname = router.pathname.toLowerCase()
-  if (router.pathname === props.route || (route.length > 1 && pathname.includes(route) && props.activeClassName)) {
+  const sublink = props.sublink
+  if (router.pathname === props.route || (route.length > 1 && pathname.includes(route) && props.activeClassName && !sublink)) {
     className = `${className !== null ? className : ''} ${props.activeClassName}`.trim()
   }
 
+  delete props.sublink
   delete props.activeClassName
 
   return <Link {...props}>{React.cloneElement(child, { className })}</Link>

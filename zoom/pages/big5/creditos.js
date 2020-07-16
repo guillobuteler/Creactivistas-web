@@ -1,5 +1,5 @@
-import { ShortcutH2 } from '../components/alheimsins'
-import Logo from '../components/alheimsins/Logo'
+import { ShortcutH2 } from '../../components/alheimsins'
+import Logo from '../../components/alheimsins/Logo'
 
 const users = [
   {

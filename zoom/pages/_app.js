@@ -1,4 +1,5 @@
-import { Layout } from '../components/alheimsins'
+// import { Layout } from '../components/alheimsins'
+import { ZoomLayout } from '../components/zoom'
 import App from 'next/app'
 import React from 'react'
 // import { Router } from '../routes'
@@ -9,7 +10,7 @@ import React from 'react'
 export default class MyApp extends App {
   static async getInitialProps ({ Component, router, ctx, ctx: { query, req } }) {
     let componentProps = {}
-    const path = req && req.url ? req.url : false
+    const path = req && req.url ? req.url : router.pathname
     const countryCode = req && req.requestCountryCode ? req.requestCountryCode.toLowerCase() : 'es'
     // const ip = ctx && ctx.req ? ctx.req.socket.remoteAddress : false
     if (Component.getInitialProps) {
@@ -22,9 +23,9 @@ export default class MyApp extends App {
   render () {
     const { Component, pageProps } = this.props
     return (
-      <Layout>
+      <ZoomLayout>
         <Component {...pageProps} />
-      </Layout>
+      </ZoomLayout>
     )
   }
 }

@@ -1,19 +1,19 @@
 import { Component } from 'react'
-import { Router } from '../routes'
-import LanguageBar from '../components/LanguageBar'
-import { Button, ProgressBar, RadioGroup, Radio, Timer } from '../components/alheimsins'
+import { Router } from '../../routes'
+import LanguageBar from '../../components/LanguageBar'
+import { Button, ProgressBar, RadioGroup, Radio, Timer } from '../../components/alheimsins'
 import getConfig from 'next/config'
 import axios from 'axios'
 import { FaInfoCircle } from 'react-icons/fa'
-import { populateData, restoreData, getProgress, clearItems, setItem } from '../lib/localStorageStore'
+import { populateData, restoreData, getProgress, clearItems, setItem } from '../../lib/localStorageStore'
 const { publicRuntimeConfig } = getConfig()
 const httpInstance = axios.create({
   baseURL: publicRuntimeConfig.URL,
   timeout: 8000
 })
 const { getItems: getInventory, getInfo } = require('@alheimsins/b5-johnson-120-ipip-neo-pi-r')
-const getItems = require('../lib/get-items')
-const sleep = require('../lib/sleep')
+const getItems = require('../../lib/get-items')
+const sleep = require('../../lib/sleep')
 
 export default class extends Component {
   static async getInitialProps ({ query, req }) {
@@ -60,7 +60,7 @@ export default class extends Component {
 
       if (lang !== 'en') {
         setItem('lang', lang)
-        Router.pushRoute(`/test/${lang}`)
+        Router.pushRoute(`/big5/test/${lang}`)
       }
     } else {
       const { items } = getItems(this.state.position, itemsPerPage, this.state.inventory).current()
@@ -68,7 +68,7 @@ export default class extends Component {
 
       if (lang !== 'en') {
         setItem('lang', lang)
-        Router.pushRoute(`/test/${lang}`)
+        Router.pushRoute(`/big5/test/${lang}`)
       }
     }
   }
@@ -83,7 +83,7 @@ export default class extends Component {
     const { items } = getItems(this.state.position, this.state.itemsPerPage, inventory).current()
     this.setState({ inventory, lang, items })
     setItem('lang', lang)
-    Router.pushRoute('test', { lang })
+    Router.pushRoute('b5_test', { lang })
   }
 
   async handleChange ({ target }) {
@@ -151,7 +151,7 @@ export default class extends Component {
         }
         const { data } = await httpInstance.post('/api/save', result)
         setItem('result', data._id)
-        Router.pushRoute('showResult', { id: data._id })
+        Router.pushRoute('b5_showResult', { id: data._id })
       } else {
         const next = items.filter(item => !this.state.answers[item.id]).length === 0
         this.setState({ items, position, next, previous: true, restore: false })

@@ -1,7 +1,7 @@
 {
- "name": "BigFive personality test",
- "short_name": "B5Test",
- "description": "Take a free, open-source BigFive personality test",
+ "name": "Zoom tests de personalidad",
+ "short_name": "ZoomTests",
+ "description": "Toma gratis un test de personalidad basado en el modelo BigFive o en el MBTI",
  "display": "fullscreen",
  "background_color": "#000000",
  "theme_color": "#000000",
