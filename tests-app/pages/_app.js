@@ -1,5 +1,5 @@
 // import { Layout } from '../components/alheimsins'
-import { ZoomLayout } from '../components/zoom'
+import { ActusLayout } from '../components/actus'
 import App from 'next/app'
 import React from 'react'
 // import { Router } from '../routes'
@@ -23,9 +23,9 @@ export default class MyApp extends App {
   render () {
     const { Component, pageProps } = this.props
     return (
-      <ZoomLayout>
+      <ActusLayout>
         <Component {...pageProps} />
-      </ZoomLayout>
+      </ActusLayout>
     )
   }
 }

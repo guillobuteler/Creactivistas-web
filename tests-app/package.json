@@ -1,7 +1,7 @@
 {
-  "name": "zoom-webapp",
+  "name": "actus-tests",
   "version": "0.9.0",
-  "description": "Integración de app web de Zoom MBTI con test open source de Big5.",
+  "description": "Aplicacion web de Actus, que contiene el test de personalidad Zoom basado en el MBTI, y el test open source Big 5, basado en el modelo de los 5 grandes.",
   "private": true,
   "author": {
     "name": "Alejandro R Buteler",
@@ -32,13 +32,10 @@
     "refresh": "rm -rf node_modules && rm package-lock.json && npm install",
     "deploy": "now && now alias"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Alheimsins/bigfive-web.git"
-  },
   "keywords": [
+    "mbti",
     "bigfive",
-    "personality"
+    "personalidad"
   ],
   "license": "MIT",
   "dependencies": {

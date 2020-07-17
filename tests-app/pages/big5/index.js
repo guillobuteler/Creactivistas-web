@@ -1,4 +1,4 @@
-import { Router, Link } from '../../routes'
+import { Router } from '../../routes'
 import { Select, Button, Field } from '../../components/alheimsins'
 import { FaExternalLinkAlt } from 'react-icons/fa'
 import ISO6391 from 'iso-639-1'
@@ -31,7 +31,6 @@ const Home = ({ countryCode, t }) => {
         </p>
         <p> {t('home:paragraphs:the_following')} <b>{t('home:paragraphs:10_minutes')}</b> {t('home:paragraphs:to_complete')}</p>
         <p>{t('home:paragraphs:after_submitted')} <i>{t('home:paragraphs:openess')}</i></p>
-        {/* <p>{t('home:paragraphs:see_an')} <Link route='/result/58a70606a835c400c8b38e84'><a> {t('common:example')}</a></Link> {t('home:paragraphs:of_the_report')}.</p> */}
         <h2>{t('common:tips')}</h2>
         <p>- {t('home:paragraphs:tip1')}</p>
         <p>- {t('home:paragraphs:tip2')}</p>
@@ -49,6 +48,13 @@ const Home = ({ countryCode, t }) => {
           </div>
         </form>
       </div>
+      <style jsx>
+        {`
+          h1 {
+            font-size: 1.6em;
+          }
+        `}
+      </style>
     </div>
   )
 }

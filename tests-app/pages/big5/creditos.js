@@ -94,7 +94,7 @@ const Users = ({ users }) => (
         }
         .name {
           display: inline-block;
-          font-size: 18px;
+          font-size: 16px;
           font-weight: 700;
         }
       `}
@@ -165,6 +165,7 @@ export default () => {
       <Users users={dev} />
       <ShortcutH2 name='translators' />
       <Users users={trans} />
+      <hr style={{ width: '50%', margin: '50px auto 25px' }} />
       <section>
         Su implementaci&oacute;n e integración al sitio de Actus - Zoom estuvo a cargo del estudio de diseño y desarrollo web
         <a href='http://www.enneagonstudios.com' style={{ color: '#6979a7', fontSize: '1.2em', fontWeight: 600 }} title='Visitar sitio web' target='_blank' rel='noopener noreferrer'>

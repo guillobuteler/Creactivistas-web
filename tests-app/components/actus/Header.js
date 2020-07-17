@@ -6,11 +6,11 @@ export default ({ path, user, info }) => {
   const big5 = router.pathname.indexOf('/big5') > -1
   return (
     <header>
-      <div className='logo-container'><img src='/static/zoom_header.jpg' alt='ZOOM' className='ZOOM-logo' /></div>
+      <div className='logo-container'><img src='/static/actus_logo.jpg' alt='Actus' className='Actus-logo' /></div>
       <div className='nav-container'>
         <div className='links-container'>
-          <Link route='/' activeClassName='active'><a>Zoom</a></Link>
-          <Link route='/mbti' activeClassName='active'><a>MBTI</a></Link>
+          <Link route='/' activeClassName='active'><a>Inicio</a></Link>
+          <Link route='/zoom' activeClassName='active'><a>Zoom</a></Link>
           <Link route='/big5' activeClassName='active'><a>Big 5</a></Link>
         </div>
         <div className='nav-right'>
@@ -20,10 +20,10 @@ export default ({ path, user, info }) => {
         </div>
         {info && <div className='nav-info'>{info}</div>}
       </div>
-      { big5 && (
+      {big5 && (
         <div className='nav-container'>
           <div className='links-container'>
-            <Link route='/big5' activeClassName='active' sublink={true}><a>INICIO</a></Link>
+            <Link route='/big5' activeClassName='active' sublink><a>INTRO</a></Link>
             <Link route='/big5/test' activeClassName='active'><a>TEST</a></Link>
             <Link route='/big5/resultados' activeClassName='active'><a>RESULTADOS</a></Link>
             {/* <Link route='/big5/compare' activeClassName='active'><a>COMPARE</a></Link> */}
@@ -49,9 +49,13 @@ export default ({ path, user, info }) => {
           }
           .logo-container {
             display: flex;
-          }
-          .ZOOM-logo {
+            justify-content: center;
             width: 1080px;
+            height: 90px;
+          }
+          .Actus-logo {
+            width: 128px;
+            height: 48px;
           }
           .nav-info {
             position: absolute;

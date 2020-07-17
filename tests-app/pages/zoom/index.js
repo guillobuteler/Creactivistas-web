@@ -1,5 +1,5 @@
 export default () => {
   return (
-    <div>hola mundo</div>
+    <div>hola zoom</div>
   )
 }

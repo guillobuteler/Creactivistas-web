@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import Header from './Header'
-// import Footer from './Footer'
+import Footer from './Footer'
 import withI18next from '../../hoc/withI18next'
 
-const ZoomLayout = ({ path, user, children, t }) => (
+const ActusLayout = ({ path, user, children, t }) => (
   <div className='container'>
     <Head>
       <title>{t('common:title')}</title>
@@ -29,7 +29,7 @@ const ZoomLayout = ({ path, user, children, t }) => (
     <div className='main'>
       {children}
     </div>
-    {/* <Footer /> */}
+    <Footer />
     <style jsx global>
       {`
         body {
@@ -102,4 +102,4 @@ const ZoomLayout = ({ path, user, children, t }) => (
   </div>
 )
 
-export default withI18next(['common'])(ZoomLayout)
+export default withI18next(['common'])(ActusLayout)

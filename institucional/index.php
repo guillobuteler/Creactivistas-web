@@ -20,9 +20,9 @@
 				<a href="index.php" id="logo">
 					<img src="assets/img/logo.jpg" alt="ACTUS - Gestión de talento" />
 				</a>
-				<a href="/zoom/" id="zoom">
+				<!-- <a href="/zoom/" id="zoom">
 					<img src="assets/img/zoom.jpg" alt="Zoom" />
-				</a>
+				</a> -->
 				<div id="social">
 					<ul>
 						<li><a href="http://www.facebook.com" onclick="window.open( this.href,'_blank'); return false;">Facebook</a></li>
@@ -36,6 +36,7 @@
 						<li><a href="index.php">paradigma</a></li><li>
 						<a href="index.php?seccion=propuesta">propuesta</a></li><li>
 						<a href="index.php?seccion=equipo">equipo</a></li><li>
+						<a href="/tests/">tests</a></li><li>
 						<a href="index.php?seccion=contacto">contacto</a></li>
 					</ul>
 				</div>
