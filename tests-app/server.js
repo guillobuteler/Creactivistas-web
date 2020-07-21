@@ -4,44 +4,36 @@ if (dev) {
 }
 const next = require('next')
 const routes = require('./routes')
-const mongo = require('mongojs')
+
+const MongoClient = require('mongodb').MongoClient
+const ObjectID = require('mongodb').ObjectID
+
 const helmet = require('helmet')
 const requestCountry = require('request-country')
 const config = require('./config')
-const validMongoId = require('./lib/valid-mongoid')
 const { join } = require('path')
 const i18nextMiddleware = require('i18next-express-middleware')
 const Backend = require('i18next-node-fs-backend')
 const i18n = require('./i18n')
+const validMongoId = require('./lib/valid-mongoid')
 
 const app = next({ dev })
 const handler = routes.getRequestHandler(app)
 const port = parseInt(process.env.PORT, 10) || 3000
 const express = require('express')
-const nodemailer = require('nodemailer')
 const emailTemplateBig5 = require('./emailtemplate-big5')
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
-const emailConfigDefaults = {
-  from: 'Actus <marubuteler@gmail.com>',
+const emailDefaults = {
   to: '',
+  from: 'Actus <marubuteler@gmail.com>',
   bcc: 'marubuteler@gmail.com, abuteler@enneagonstudios.com',
   subject: 'Actus | Resultados del test Big 5',
-  text: 'Hola $__NAME__, este email fue enviado automáticamente. Para ver tus resultados en el test de perfil de personalidad basado en el modelo de los 5 grandes andá a http://actus.com.ar/zoom/big5/resultados/ y completá el formulario con el siguiente ID: $__ID__',
+  text: 'Hola $__NAME__, este email fue enviado automáticamente. Para ver tus resultados en el test de perfil de personalidad basado en el modelo de los 5 grandes andá a http://actus.com.ar/tests/big5/resultados/ y completá el formulario con el siguiente ID: $__ID__',
   html: emailTemplateBig5
 }
-let emailConfig = {}
-const sendMail = async (mail) => {
-  // create a nodemailer transporter using host's sendmail
-  const transporter = nodemailer.createTransport({
-    sendmail: true,
-    newline: 'unix',
-    path: '/usr/sbin/sendmail'
-  })
-  // send mail using transporter
-  const info = await transporter.sendMail(mail).catch(err => console.log(err))
-
-  console.log(`Preview: ${nodemailer.getTestMessageUrl(info)}`)
-}
+let email = {}
 
 i18n
   .use(Backend)
@@ -61,10 +53,9 @@ i18n
     () => {
       // Loaded translations we can bootstrap our routes
       app.prepare().then(() => {
-        const server = express()
-        const db = mongo(config.DB_CONNECTION)
-        const collection = db.collection(config.DB_COLLECTION)
+        const client = new MongoClient(config.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
 
+        const server = express()
         server.use(helmet())
         server.use(express.json())
         server.use(i18nextMiddleware.handle(i18n)) // Enable middleware for i18next
@@ -90,30 +81,47 @@ i18n
         server.get('/api/get/:id', (req, res) => {
           const id = req.params && req.params.id ? req.params.id : false
           if (!id || !validMongoId(id)) throw new Error('Not a valid id')
-          collection.findOne({ _id: mongo.ObjectId(id) }, (error, data) => {
-            if (error) throw error
-            res.send(data)
+          client.connect(err => {
+            console.log(err)
+            if (err) throw new Error(err)
+            const collection = client.db(config.DB_NAME).collection(config.DB_COLLECTION)
+            collection.findOne({ _id: ObjectID(id) }, (error, data) => {
+              if (error) throw error
+              console.log(data)
+              res.send(data)
+            })
           })
+          client.close()
         })
 
         server.post('/locales/add/:lng/:ns', i18nextMiddleware.missingKeyHandler(i18n))
 
         server.post('/api/save', (req, res) => {
           const payload = req.body
-          collection.insert(payload, (error, data) => {
-            if (error) throw error
-            res.send(data)
-            // resetear config a default
-            emailConfig = JSON.parse(JSON.stringify(emailConfigDefaults))
-            // actualizar cuerpo del email con datos del test: direccion, nombre e ID
-            emailConfig.to = data.clientEmail
-            emailConfig.text = emailConfig.text.replace('$__NAME__', data.clientName)
-            emailConfig.text = emailConfig.text.replace('$__ID__', data._id)
-            emailConfig.html = emailConfig.html.replace('$__NAME__', data.clientName)
-            emailConfig.html = emailConfig.html.replace('$__ID__', data._id)
-            // enviar email
-            sendMail(emailConfig)
+          client.connect(err => {
+            console.log(err)
+            if (err) throw new Error(err)
+            const collection = client.db(config.DB_NAME).collection(config.DB_COLLECTION)
+            collection.insertOne(payload, (error, data) => {
+              if (error) throw error
+              res.send(data)
+              // resetear config a default
+              email = JSON.parse(JSON.stringify(emailDefaults))
+              // actualizar cuerpo del email con datos del test: direccion, nombre e ID
+              email.to = payload.clientEmail
+              email.text = email.text.replace('$__NAME__', payload.clientName)
+              email.text = email.text.replace(/\$__ID__/g, payload._id) // regexp global porque hay 2
+              email.html = email.html.replace('$__NAME__', payload.clientName)
+              email.html = email.html.replace(/\$__ID__/g, payload._id)
+              // enviar email
+              sgMail.send(email).catch(err => {
+                console.error(err)
+                console.log(email)
+                if (err.response) console.error(err.response.body)
+              })
+            })
           })
+          client.close()
         })
 
         server.use(handler)

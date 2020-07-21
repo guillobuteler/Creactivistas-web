@@ -58,3 +58,4 @@ out
 # envs
 .env*
 sendgrid.env
+sendgrid.env

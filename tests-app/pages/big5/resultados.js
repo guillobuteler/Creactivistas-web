@@ -24,7 +24,7 @@ export default class extends Component {
   handleInputSubmit (e) {
     e.preventDefault()
     const id = formatId(this.state.id)
-    Router.pushRoute('showResult', { id })
+    Router.pushRoute('b5_showResult', { id })
   }
 
   handleInputChange ({ target }) {
