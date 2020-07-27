@@ -14,7 +14,7 @@ export default class extends Component {
   constructor (props) {
     super(props)
     this.state = {}
-    this.readMore = this.readMore && this.readMore.bind(this)
+    this.handleReadMore = this.handleReadMore && this.handleReadMore.bind(this)
   }
 
   handleReadMore (e) {
@@ -34,8 +34,8 @@ export default class extends Component {
         <p>
           {
             this.state[data.domain]
-              ? <><span dangerouslySetInnerHTML={{ __html: data.description }} /><br /><br /><span name={data.domain} onClick={this.handleReadMore.bind(this)} style={{ cursor: 'pointer' }}><a>read less</a></span></>
-              : <><span dangerouslySetInnerHTML={{ __html: data.description.substring(0, 100) }} /><span name={data.domain} onClick={this.handleReadMore.bind(this)} style={{ cursor: 'pointer' }}>... <a>read more</a> ({data.description.split(' ').length} words)</span></>
+              ? <><span dangerouslySetInnerHTML={{ __html: data.description }} /><br /><br /><span name={data.domain} onClick={this.handleReadMore} style={{ cursor: 'pointer' }}><a>Leer menos</a></span></>
+              : <><span dangerouslySetInnerHTML={{ __html: data.description.substring(0, 100) }} /><span name={data.domain} onClick={this.handleReadMore} style={{ cursor: 'pointer' }}>... <a>Leer m&aacute;</a> ({data.description.split(' ').length} words)</span></>
           }
         </p>
         {data && data.facets && <Summary data={data.facets} vAxis={{ minValue: 0, maxValue: 20 }} title={data.title} chartWidth={chartWidth} />}

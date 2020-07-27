@@ -106,10 +106,10 @@ i18n
               email.to = payload.clientEmail
               email.text = email.text.replace('$__NAME__', payload.clientName)
               email.text = email.text.replace('$__DOMAIN__', config.URL)
-              email.html = email.html.replace('$__ID__', payload._id)
+              email.text = email.text.replace('$__ID__', payload._id)
               email.html = email.html.replace('$__NAME__', payload.clientName)
-              email.html = email.text.replace(/\$__DOMAIN__/g, config.URL) // regexp global porque hay 2
-              email.text = email.text.replace(/\$__ID__/g, payload._id) // regexp global porque hay 2
+              email.html = email.html.replace(/\$__DOMAIN__/g, config.URL) // regexp global porque hay 2
+              email.html = email.html.replace(/\$__ID__/g, payload._id) // regexp global porque hay 2
               // enviar email
               sgMail.send(email).catch(err => {
                 console.error(err)
