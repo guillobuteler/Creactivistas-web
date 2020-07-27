@@ -71,14 +71,14 @@ export default class extends Component {
   }
 
   getWidth () {
-    const chartWidth = window.innerWidth * 0.85
+    const chartWidth = window.innerWidth * 0.6
     this.setState({ chartWidth })
   }
 
   render () {
     const { results, chartWidth } = this.state
     const { id } = this.props.query
-    const currentUrl = URL + '/result/' + id
+    const currentUrl = URL + '/big5/resultados/' + id
     return (
       <>
         <h2>Result</h2>

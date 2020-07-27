@@ -1,5 +1,5 @@
 // import { Layout } from '../components/alheimsins'
-import { ActusLayout } from '../components/actus'
+import { ActusLayout } from '../components/creactivistas'
 import App from 'next/app'
 import React from 'react'
 // import { Router } from '../routes'

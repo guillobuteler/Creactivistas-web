@@ -38,9 +38,9 @@ module.exports = `
                 <a href="http://actus.com.ar/tests/big5/result/$__ID__">Ver resultados</a>
               </p>
               <p style="color:#555">
-                Muchas gracias por confiar en nosotros, si te interesa recibir un feedback personalizado acerca de tu perfil de personalidad o solicitar el armado de tu gráfico de los 4 elementos por favor escribinos a <a href="mailto:marubuteler@gmail.com">marubuteler@gmail.com</a> para coordinar una entrevista.
+                Muchas gracias por confiar en nosotros, si te interesa recibir m&aacute; informaci&oacute;n escrib&iacute; a <a href="mailto:marubuteler@gmail.com">marubuteler@gmail.com</a>.
               </p>
-              <p style="font-style: italic;font-size: 14px;">Este email fue enviado automáticamente.</p>
+              <p style="font-style: italic;font-size: 14px;">Este email fue enviado autom&aacute;ticamente.</p>
             </th>
           </tr>
         </table>
