@@ -9,12 +9,13 @@ module.exports = `
       font-family: Tahoma, Verdana, sans-serif;
       margin-top: 30px;
       margin-bottom: 50px;
+      width: 800px;
       max-width: 800px;
       background: #ccc;
       border-spacing: 0;
       color: #666666;">
     <tr>
-      <td><img src="http://www.actus.com.ar/assets/img/email_zoom_header.jpg" width="800" /></td>
+      <td><img src="$__DOMAIN__/static/creactivistas_logo_459x207.jpg" alt="Creactivistas" width="459" /></td>
     </tr>
     <tr>
       <td>
@@ -35,7 +36,7 @@ module.exports = `
                 El ID de tus resultados en el test de perfil de personalidad basado en el modelo de los 5 grandes es: <strong>$__ID__</strong>
               </p>
               <p style="text-align: center;">
-                <a href="http://actus.com.ar/tests/big5/result/$__ID__">Ver resultados</a>
+                <a href="$__DOMAIN__/tests/big5/result/$__ID__">Ver resultados</a>
               </p>
               <p style="color:#555">
                 Muchas gracias por confiar en nosotros, si te interesa recibir m&aacute; informaci&oacute;n escrib&iacute; a <a href="mailto:marubuteler@gmail.com">marubuteler@gmail.com</a>.

@@ -31,7 +31,7 @@ const prepareData = data =>
 const ColumnChart = ({ title, data, vAxis, chartWidth }) => (
   <Chart
     chartType='ColumnChart'
-    style={{ width: '90vw' }}
+    // style={{ width: '90vw' }}
     data={[
       [{ type: 'string' }, { type: 'number' }, { role: 'style' }],
       ...prepareData(data)
@@ -47,7 +47,7 @@ const ColumnChart = ({ title, data, vAxis, chartWidth }) => (
 const PieChart = ({ title, data, vAxis, chartWidth }) => (
   <Chart
     chartType='PieChart'
-    style={{ width: '90vw' }}
+    // style={{ width: '90vw' }}
     data={[
       [{ type: 'string' }, { type: 'number' }, { role: 'style' }],
       ...prepareData(data)

@@ -6,7 +6,7 @@ import { Code } from '../../components/alheimsins'
 import getConfig from 'next/config'
 import Summary from '../../components/Summary'
 import Domain from '../../components/Domain'
-import SocialShare from '../../components/SocialShare'
+// import SocialShare from '../../components/SocialShare'
 import validMongoId from '../../lib/valid-mongoid'
 import formatId from '../../lib/format-id'
 const { publicRuntimeConfig: { URL } } = getConfig()
@@ -53,42 +53,43 @@ export default class extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      chartWidth: 600
+      chartWidth: '985px'
     }
     this.getWidth = this.getWidth.bind(this)
   }
 
   componentDidMount () {
-    window.addEventListener('resize', this.getWidth)
+    // window.addEventListener('resize', this.getWidth)
     if (this.props.results) {
       this.setState({ results: this.props.results })
     }
-    this.getWidth()
+    // this.getWidth()
   }
 
   componentWillUnmount () {
-    window.removeEventListener('resize', this.getWidth)
+    // window.removeEventListener('resize', this.getWidth)
   }
 
   getWidth () {
-    const chartWidth = window.innerWidth * 0.6
-    this.setState({ chartWidth })
+    // console.log(window.innerWidth)
+    // const chartWidth = window.innerWidth * 0.53
+    // this.setState({ chartWidth })
   }
 
   render () {
     const { results, chartWidth } = this.state
     const { id } = this.props.query
-    const currentUrl = URL + '/big5/resultados/' + id
+    // const currentUrl = URL + '/big5/resultados/' + id
     return (
       <>
-        <h2>Result</h2>
+        <h2>Resultados</h2>
         {
           results &&
             <>
-              <SocialShare url={currentUrl} />
-              {id && <>Save the following ID to see the results later or compare yourself to others - <Code>{id}</Code></>}
+              {/* <SocialShare url={currentUrl} /> */}
+              {id && <>Con el siguiente ID podes volver a ver los resultados en el futuro: <Code>{id}</Code></>}
               <Resume data={results} chartWidth={chartWidth} />
-              <SocialShare url={currentUrl} />
+              {/* <SocialShare url={currentUrl} /> */}
             </>
         }
       </>

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "name": "bigfive-web",
-  "alias": "bigfive-test.com",
+  "name": "creactivistas-tests-web",
+  "alias": "marubuteler.com",
   "type": "npm",
   "dotenv": "production.env",
   "engines": {

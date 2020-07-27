@@ -27,10 +27,10 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 const emailDefaults = {
   to: '',
-  from: 'Actus <marubuteler@gmail.com>',
+  from: 'Creactivistas <marubuteler@gmail.com>',
   bcc: 'marubuteler@gmail.com, abuteler@enneagonstudios.com',
-  subject: 'Actus | Resultados del test Big 5',
-  text: 'Hola $__NAME__, este email fue enviado automáticamente. Para ver tus resultados en el test de perfil de personalidad basado en el modelo de los 5 grandes andá a http://actus.com.ar/tests/big5/resultados/ y completá el formulario con el siguiente ID: $__ID__',
+  subject: 'Creactivistas | Resultados del test Big 5',
+  text: 'Hola $__NAME__, este email fue enviado automáticamente. Para ver tus resultados en el test de perfil de personalidad basado en el modelo de los 5 grandes andá a $__DOMAIN__/tests/big5/resultados/ y completá el formulario con el siguiente ID: $__ID__',
   html: emailTemplateBig5
 }
 let email = {}
@@ -89,7 +89,6 @@ i18n
             if (!id || !validMongoId(id)) throw new Error('Not a valid id')
             collection.findOne({ _id: ObjectID(id) }, (error, data) => {
               if (error) throw error
-              console.log(data)
               res.send(data)
             })
           })
@@ -106,9 +105,11 @@ i18n
               // actualizar cuerpo del email con datos del test: direccion, nombre e ID
               email.to = payload.clientEmail
               email.text = email.text.replace('$__NAME__', payload.clientName)
-              email.text = email.text.replace(/\$__ID__/g, payload._id) // regexp global porque hay 2
+              email.text = email.text.replace('$__DOMAIN__', config.URL)
+              email.html = email.html.replace('$__ID__', payload._id)
               email.html = email.html.replace('$__NAME__', payload.clientName)
-              email.html = email.html.replace(/\$__ID__/g, payload._id)
+              email.html = email.text.replace(/\$__DOMAIN__/g, config.URL) // regexp global porque hay 2
+              email.text = email.text.replace(/\$__ID__/g, payload._id) // regexp global porque hay 2
               // enviar email
               sgMail.send(email).catch(err => {
                 console.error(err)
