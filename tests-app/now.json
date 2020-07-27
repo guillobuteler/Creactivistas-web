@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "creactivistas-tests-web",
-  "alias": "marubuteler.com",
+  "alias": "creactivistas.vercel.app",
   "type": "npm",
   "dotenv": "production.env",
   "engines": {
