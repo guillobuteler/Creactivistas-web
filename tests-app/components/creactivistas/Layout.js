@@ -1,12 +1,11 @@
 import Head from 'next/head'
 import Header from './Header'
 import Footer from './Footer'
-import withI18next from '../../hoc/withI18next'
 
-const ActusLayout = ({ path, user, children, t }) => (
+export default ({ children }) => (
   <div className='container'>
     <Head>
-      <title>{t('common:title')}</title>
+      <title>Creactivistas: Tests de personalidad</title>
       <meta name='viewport' content='initial-scale=0.8, maximum-scale=0.8, width=device-width' />
       <meta property='og:title' content='Querés tomar un test de personalidad basado en el modelo de los 5 grandes o el MBTI?' />
       <meta property='og:description' content='Tomá gratis un test de personalidad basado en el modelo de los 5 grandes o el MBTI. Conocé tus aptitudes mejor con un perfil detallado de tus razgos de personalidad.' />
@@ -19,13 +18,12 @@ const ActusLayout = ({ path, user, children, t }) => (
       <meta name='twitter:image' content='http://www.actus.com.ar/zoom/static/apple-icon.png' />
       <meta name='description' content='Tomá gratis un test de personalidad basado en el modelo de los 5 grandes o el MBTI. Conocé tus aptitudes mejor con un perfil detallado de tus razgos de personalidad.' />
       <meta name='keywords' content='Zoom, Actus, BigFive, Big5, MBTI, razgos de personalidad, tests de personalidad, test de personalidad, tests psicometricos, test psicometrico' />
-      {/* <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: '{ "@context": "http://schema.org/", "@type": "WebSite", "name": "BigFive Test", "url": "https://bigfive-test.com" }' }} /> */}
       <link rel='icon' sizes='192x192' href='/static/android-icon-192x192.png' />
       <link rel='apple-touch-icon' href='/static/apple-icon-152x152.png' />
       <link rel='shortcut icon' href='/static/favicon.ico' />
       <link rel='manifest' href='/static/manifest.json' />
     </Head>
-    <Header user={user} />
+    <Header />
     <div className='main'>
       {children}
     </div>
@@ -101,5 +99,3 @@ const ActusLayout = ({ path, user, children, t }) => (
     </style>
   </div>
 )
-
-export default withI18next(['common'])(ActusLayout)

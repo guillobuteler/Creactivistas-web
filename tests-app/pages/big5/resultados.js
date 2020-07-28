@@ -47,7 +47,7 @@ class Resultados extends Component {
         <p>
           Si ya tomaste el test y recibiste por email tu ID, pod&eacute;s ver los resultados ingresando
           el ID en el formulario de abajo. <br />
-          Ejemplo: <Code>58a70606a835c400c8b38e84</Code>.
+          {/* Ejemplo: <Code>58a70606a835c400c8b38e84</Code>. */}
         </p>
         {
           localStorageId &&

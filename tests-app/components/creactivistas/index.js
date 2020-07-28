@@ -1,1 +1,1 @@
-export { default as ActusLayout } from './Layout'
+export { default as CreactivistasLayout } from './Layout'

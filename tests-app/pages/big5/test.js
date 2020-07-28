@@ -150,8 +150,9 @@ export default class extends Component {
           dateStamp: Date.now()
         }
         const { data } = await httpInstance.post('/api/save', result)
-        setItem('result', data._id)
-        Router.pushRoute('b5_showResult', { id: data._id })
+        const id = data._id
+        setItem('result', id)
+        Router.pushRoute('b5_showResult', { id })
       } else {
         const next = items.filter(item => !this.state.answers[item.id]).length === 0
         this.setState({ items, position, next, previous: true, restore: false })

@@ -1,11 +1,7 @@
-// import { Layout } from '../components/alheimsins'
-import { ActusLayout } from '../components/creactivistas'
+import { CreactivistasLayout } from '../components/creactivistas'
 import App from 'next/app'
 import React from 'react'
 // import { Router } from '../routes'
-// import * as gtag from '../lib/gtag'
-
-// Router.onRouteChangeComplete = url => gtag.pageview(url)
 
 export default class MyApp extends App {
   static async getInitialProps ({ Component, router, ctx, ctx: { query, req } }) {
@@ -23,9 +19,9 @@ export default class MyApp extends App {
   render () {
     const { Component, pageProps } = this.props
     return (
-      <ActusLayout>
+      <CreactivistasLayout>
         <Component {...pageProps} />
-      </ActusLayout>
+      </CreactivistasLayout>
     )
   }
 }
