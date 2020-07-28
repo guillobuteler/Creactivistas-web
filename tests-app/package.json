@@ -1,7 +1,7 @@
 {
-  "name": "actus-tests",
-  "version": "0.9.0",
-  "description": "Aplicacion web de Actus, que contiene el test de personalidad Zoom basado en el MBTI, y el test open source Big 5, basado en el modelo de los 5 grandes.",
+  "name": "creactivistas-tests",
+  "version": "0.9.9",
+  "description": "Aplicacion web de Creactivistas, que contiene el test de personalidad Zoom basado en el MBTI, y el test open source Big 5, basado en el modelo de los 5 grandes.",
   "private": true,
   "author": {
     "name": "Alejandro R Buteler",
