@@ -6,7 +6,7 @@ export default ({ path, user, info }) => {
   const big5 = router.pathname.indexOf('/big5') > -1
   return (
     <header>
-      <div className='logo-container'><img src='/static/creactivistas_logo_459x207.jpg' alt='Creactivistas' className='Creactivistas-logo' /></div>
+      <div className='logo-container'><img src='/static/creactivistas_isologo_220x121px.png' alt='Creactivistas' className='Creactivistas-logo' /></div>
       <div className='nav-container'>
         <div className='links-container'>
           <Link route='/' activeClassName='active'><a>Inicio</a></Link>
@@ -51,11 +51,11 @@ export default ({ path, user, info }) => {
             display: flex;
             justify-content: center;
             width: 1080px;
-            height: 225px;
+            height: 130px;
           }
           .Creactivistas-logo {
-            width: 459px;
-            height: 207px;
+            width: 220px;
+            height: 121px;
           }
           .nav-info {
             position: absolute;
