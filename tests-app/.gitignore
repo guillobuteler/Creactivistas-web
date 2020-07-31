@@ -54,8 +54,4 @@ out
 
 # env
 .env
-
-# envs
-.env*
-sendgrid.env
 sendgrid.env
