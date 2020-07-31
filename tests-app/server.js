@@ -70,19 +70,20 @@ app.prepare().then(() => {
 
     server.post('/api/save', (req, res) => {
       const payload = req.body
-      big5DBCollection.insertOne(payload, (error, data) => {
+      big5DBCollection.insertOne(payload, (error, commandResult) => {
         if (error) throw error
-        res.send(data)
+        const data = commandResult.ops[0]
+        res.send(data) // return processed payload with insertion ID
         // resetear config a default
         email = JSON.parse(JSON.stringify(emailDefaults))
         // actualizar cuerpo del email con datos del test: direccion, nombre e ID
-        email.to = payload.clientEmail
-        email.text = email.text.replace('$__NAME__', payload.clientName)
+        email.to = data.clientEmail
+        email.text = email.text.replace('$__NAME__', data.clientName)
         email.text = email.text.replace('$__DOMAIN__', config.URL)
-        email.text = email.text.replace('$__ID__', payload._id)
-        email.html = email.html.replace('$__NAME__', payload.clientName)
+        email.text = email.text.replace('$__ID__', data._id)
+        email.html = email.html.replace('$__NAME__', data.clientName)
         email.html = email.html.replace(/\$__DOMAIN__/g, config.URL) // regexp global porque hay 2
-        email.html = email.html.replace(/\$__ID__/g, payload._id) // regexp global porque hay 2
+        email.html = email.html.replace(/\$__ID__/g, data._id) // regexp global porque hay 2
         // enviar email
         sgMail.send(email).catch(err => {
           console.error(err)
