@@ -15,7 +15,7 @@ module.exports = `
       border-spacing: 0;
       color: #666666;">
     <tr>
-      <td><img src="$__DOMAIN__/static/creactivistas_logo_459x207.jpg" alt="Creactivistas" width="459" /></td>
+      <td style="background-color: white; text-align: center;"><img src="$__DOMAIN__/static/creactivistas_isologo_220x121px.png" alt="Creactivistas" width="220" height="121" /></td>
     </tr>
     <tr>
       <td>
@@ -39,7 +39,7 @@ module.exports = `
                 <a href="$__DOMAIN__/tests/big5/result/$__ID__">Ver resultados</a>
               </p>
               <p style="color:#555">
-                Muchas gracias por confiar en nosotros, si te interesa recibir m&aacute; informaci&oacute;n escrib&iacute; a <a href="mailto:marubuteler@gmail.com">marubuteler@gmail.com</a>.
+                Muchas gracias por confiar en nosotros, si te interesa recibir m&aacute;s informaci&oacute;n escrib&iacute; a <a href="mailto:marubuteler@gmail.com">marubuteler@gmail.com</a>.
               </p>
               <p style="font-style: italic;font-size: 14px;">Este email fue enviado autom&aacute;ticamente.</p>
             </th>
