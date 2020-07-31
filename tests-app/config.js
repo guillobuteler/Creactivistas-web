@@ -1,8 +1,10 @@
 module.exports = {
   JWT_SECRET: process.env.JWT_SECRET || 'Gibberish, jibberish, jibber-jabber and gobbledygook',
   // DB_CONNECTION: process.env.DB_CONNECTION || 'mongodb:27017/zoom', // docker-compose container
-  DB_CONNECTION: process.env.DB_CONNECTION || 'mongodb+srv://abuteler:OOiYYk0RrX880xPX@cluster0.2p1xm.gcp.mongodb.net/actus?retryWrites=true&w=majority',
-  DB_NAME: process.env.DB_NAME || 'actus',
-  DB_COLLECTION: process.env.DB_COLLECTION || 'big5devtesting',
+  DB_CONNECTION: process.env.DB_CONNECTION || 'mongodb+srv://abuteler:<password>@cluster0.2p1xm.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority',
+  DB_PASSWORD: process.env.DB_PASSWORD || 'foobarpassword',
+  DB_NAME: process.env.DB_NAME || 'creactivistas',
+  DB_COLLECTION_BIG5: process.env.DB_COLLECTION_BIG5 || 'big5devtesting',
+  DB_COLLECTION_ZOOM: process.env.DB_COLLECTION_ZOOM || 'zoomdevtesting',
   URL: process.env.URL || 'http://localhost:3000'
 }

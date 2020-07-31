@@ -32,12 +32,13 @@ const emailDefaults = {
 let email = {}
 
 app.prepare().then(() => {
-  const client = new MongoClient(config.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
+  const uri = config.DB_CONNECTION.replace('<password>', config.DB_PASSWORD).replace('<dbname>', config.DB_NAME)
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   client.connect(err => {
     if (err) throw new Error(err)
     // Set db for use in APIs
     const db = client.db(config.DB_NAME)
-    const collection = db.collection(config.DB_COLLECTION)
+    const big5DBCollection = db.collection(config.DB_COLLECTION_BIG5)
 
     // Configure app server and APIs
     const server = express()
@@ -61,7 +62,7 @@ app.prepare().then(() => {
     server.get('/api/get/:id', (req, res) => {
       const id = req.params && req.params.id ? req.params.id : false
       if (!id || !validMongoId(id)) throw new Error('Not a valid id')
-      collection.findOne({ _id: ObjectID(id) }, (error, data) => {
+      big5DBCollection.findOne({ _id: ObjectID(id) }, (error, data) => {
         if (error) throw error
         res.send(data)
       })
@@ -69,7 +70,7 @@ app.prepare().then(() => {
 
     server.post('/api/save', (req, res) => {
       const payload = req.body
-      collection.insertOne(payload, (error, data) => {
+      big5DBCollection.insertOne(payload, (error, data) => {
         if (error) throw error
         res.send(data)
         // resetear config a default
