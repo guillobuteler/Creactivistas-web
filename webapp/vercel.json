@@ -1,0 +1,12 @@
+{
+  "name": "creactivistas-webapp",
+  "version": 2,
+  "alias": "creactivistas.vercel.app",
+  "routes": [
+    { "src": "/api/big5.js", "methods": ["GET", "POST"] }
+  ],
+  "cleanUrls": true,
+  "engines": {
+    "node": "12.x"
+  }
+}
