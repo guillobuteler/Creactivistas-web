@@ -30,49 +30,48 @@ let email = {}
 module.exports = (req, res) => {
   try {
     const payload = req.body
+    const { method, query: { id } } = req
+    const uri = config.DB_CONNECTION.replace('<password>', config.DB_PASSWORD).replace('<dbname>', config.DB_NAME)
+    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+    client.connect(err => {
+      if (err) throw new Error(err)
+      // Set db for use in APIs
+      const db = client.db(config.DB_NAME)
+      const big5DBCollection = db.collection(config.DB_COLLECTION_BIG5)
+      switch (method) {
+        case 'GET':
+          if (!id || !validMongoId(id)) throw new Error('Not a valid id')
+          big5DBCollection.findOne({ _id: ObjectID(id) }, (error, data) => {
+            if (error) throw error
+            res.send(data)
+          })
+          break
+        case 'POST':
+          big5DBCollection.insertOne(payload, (error, commandResult) => {
+            if (error) throw error
+            const data = commandResult.ops[0]
+            res.send(data) // return processed payload with insertion ID
+            // resetear config a default
+            email = JSON.parse(JSON.stringify(emailDefaults))
+            // actualizar cuerpo del email con datos del test: direccion, nombre e ID
+            email.to = data.clientEmail
+            email.text = email.text.replace('$__NAME__', data.clientName)
+            email.text = email.text.replace('$__DOMAIN__', config.URL)
+            email.text = email.text.replace('$__ID__', data._id)
+            email.html = email.html.replace('$__NAME__', data.clientName)
+            email.html = email.html.replace(/\$__DOMAIN__/g, config.URL) // regexp global porque hay 2
+            email.html = email.html.replace(/\$__ID__/g, data._id) // regexp global porque hay 2
+            // enviar email
+            sgMail.send(email).catch(err => {
+              console.error(err)
+              console.log(email)
+              if (err.response) console.error(err.response.body)
+            })
+          })
+          break
+      }
+    })
   } catch (error) {
     return res.status(400).json({ error: 'Malformed JSON body in request.' })
   }
-  const { method, query } = req
-  const uri = config.DB_CONNECTION.replace('<password>', config.DB_PASSWORD).replace('<dbname>', config.DB_NAME)
-  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  client.connect(err => {
-    if (err) throw new Error(err)
-    // Set db for use in APIs
-    const db = client.db(config.DB_NAME)
-    const big5DBCollection = db.collection(config.DB_COLLECTION_BIG5)
-    switch (method) {
-      case 'GET':
-        const id = query && query.id ? query.id : false
-        if (!id || !validMongoId(id)) throw new Error('Not a valid id')
-        big5DBCollection.findOne({ _id: ObjectID(id) }, (error, data) => {
-          if (error) throw error
-          res.send(data)
-        })
-        break
-      case 'POST':
-        big5DBCollection.insertOne(payload, (error, commandResult) => {
-          if (error) throw error
-          const data = commandResult.ops[0]
-          res.send(data) // return processed payload with insertion ID
-          // resetear config a default
-          email = JSON.parse(JSON.stringify(emailDefaults))
-          // actualizar cuerpo del email con datos del test: direccion, nombre e ID
-          email.to = data.clientEmail
-          email.text = email.text.replace('$__NAME__', data.clientName)
-          email.text = email.text.replace('$__DOMAIN__', config.URL)
-          email.text = email.text.replace('$__ID__', data._id)
-          email.html = email.html.replace('$__NAME__', data.clientName)
-          email.html = email.html.replace(/\$__DOMAIN__/g, config.URL) // regexp global porque hay 2
-          email.html = email.html.replace(/\$__ID__/g, data._id) // regexp global porque hay 2
-          // enviar email
-          sgMail.send(email).catch(err => {
-            console.error(err)
-            console.log(email)
-            if (err.response) console.error(err.response.body)
-          })
-        })
-        break
-    }
-  })
 }

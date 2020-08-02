@@ -1,7 +1,7 @@
 const routes = module.exports = require('next-routes')()
 
 routes
-  .add('index', '/')
+  .add('index', '/', '/index')
   .add('zoom_index', '/zoom', '/zoom/index')
   .add('b5_index', '/big5', '/big5/index')
   .add('b5_test', '/big5/test/:lang?', '/big5/test')

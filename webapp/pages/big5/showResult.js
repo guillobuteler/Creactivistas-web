@@ -19,9 +19,13 @@ const httpInstance = axios.create({
 const getResultFromId = async id => {
   const formattedId = formatId(id)
   if (!validMongoId(formattedId)) throw new Error('Invalid id')
-  const { data } = await httpInstance.get(`/api/get/${formattedId}`)
-  const scores = calculateScore(data)
-  return getResult({ scores, lang: data.lang || 'en' })
+  const { data } = await httpInstance.get(`/api/big5?id=${formattedId}`)
+  try {
+    const scores = calculateScore(data)
+    return getResult({ scores, lang: data.lang || 'en' })
+  } catch {
+    console.error('El ID provisto no corresponde a ningun resultado en nuestra base de datos.')
+  }
 }
 
 const Resume = ({ data, chartWidth }) => (

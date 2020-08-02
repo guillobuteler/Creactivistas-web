@@ -59,8 +59,8 @@ app.prepare().then(() => {
       res.redirect('/')
     })
 
-    server.get('/api/get/:id', (req, res) => {
-      const id = req.params && req.params.id ? req.params.id : false
+    server.get('/api/big5?:id', (req, res) => {
+      const id = req.query && req.query.id ? req.query.id : false
       if (!id || !validMongoId(id)) throw new Error('Not a valid id')
       big5DBCollection.findOne({ _id: ObjectID(id) }, (error, data) => {
         if (error) throw error
@@ -68,7 +68,7 @@ app.prepare().then(() => {
       })
     })
 
-    server.post('/api/save', (req, res) => {
+    server.post('/api/big5', (req, res) => {
       const payload = req.body
       big5DBCollection.insertOne(payload, (error, commandResult) => {
         if (error) throw error

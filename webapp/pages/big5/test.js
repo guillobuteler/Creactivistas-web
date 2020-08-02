@@ -149,7 +149,7 @@ export default class extends Component {
           timeElapsed: Math.round((Date.now() - this.state.now) / 1000),
           dateStamp: Date.now()
         }
-        const { data } = await httpInstance.post('/api/save', result)
+        const { data } = await httpInstance.post('/api/big5', result)
         const id = data._id
         setItem('result', id)
         Router.pushRoute('b5_showResult', { id })
