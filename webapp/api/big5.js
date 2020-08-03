@@ -30,10 +30,7 @@ let email = {}
 module.exports = (req, res) => {
   console.log('holiwis')
   try {
-    const payload = req.body
-    const { method, query: { id } } = req
-    console.log(id)
-    console.log(payload.clientEmail)
+    const { method, query, body } = req
     const uri = config.DB_CONNECTION.replace('<password>', config.DB_PASSWORD).replace('<dbname>', config.DB_NAME)
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     client.connect(err => {
@@ -43,6 +40,8 @@ module.exports = (req, res) => {
       const big5DBCollection = db.collection(config.DB_COLLECTION_BIG5)
       switch (method) {
         case 'GET':
+          const id = query && query.id
+          console.log(id)
           if (!id || !validMongoId(id)) throw new Error('Not a valid id')
           big5DBCollection.findOne({ _id: ObjectID(id) }, (error, data) => {
             if (error) throw error
@@ -50,6 +49,8 @@ module.exports = (req, res) => {
           })
           break
         case 'POST':
+          const payload = body
+          console.log(payload.clientEmail)
           big5DBCollection.insertOne(payload, (error, commandResult) => {
             if (error) throw error
             const data = commandResult.ops[0]
