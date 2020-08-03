@@ -28,10 +28,14 @@ const emailDefaults = {
 let email = {}
 
 module.exports = (req, res) => {
+  console.log('holiwis')
   try {
     const payload = req.body
     const { method, query: { id } } = req
+    console.log(id)
+    console.log(payload)
     const uri = config.DB_CONNECTION.replace('<password>', config.DB_PASSWORD).replace('<dbname>', config.DB_NAME)
+    console.log(uri)
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     client.connect(err => {
       if (err) throw new Error(err)
