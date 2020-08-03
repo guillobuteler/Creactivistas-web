@@ -7,7 +7,7 @@ import { getItem, clearItems } from '../../lib/localStorageStore'
 import { MdDelete } from 'react-icons/md'
 import { withRouter } from 'next/router'
 
-class Resultados extends Component {
+class FormResultados extends Component {
   constructor (props) {
     super(props)
     this.state = {}
@@ -72,4 +72,4 @@ class Resultados extends Component {
   }
 }
 
-export default withRouter(Resultados)
+export default withRouter(FormResultados)

@@ -2,13 +2,15 @@ import { Component } from 'react'
 import calculateScore from 'b5-calculate-score'
 import getResult from '@alheimsins/b5-result-text'
 import axios from 'axios'
-import { Code } from '../../components/alheimsins'
+import { withRouter } from 'next/router'
 import getConfig from 'next/config'
+import { Code } from '../../components/alheimsins'
 import Summary from '../../components/Summary'
 import Domain from '../../components/Domain'
-// import SocialShare from '../../components/SocialShare'
 import validMongoId from '../../lib/valid-mongoid'
 import formatId from '../../lib/format-id'
+// import SocialShare from '../../components/SocialShare'
+
 const { publicRuntimeConfig: { URL } } = getConfig()
 
 const httpInstance = axios.create({
@@ -45,9 +47,10 @@ const Resume = ({ data, chartWidth }) => (
   </div>
 )
 
-export default class extends Component {
-  static async getInitialProps ({ query }) {
-    if (query.id) {
+class Resultados extends Component {
+  static async getInitialProps ({ query, router }) {
+    const id = (query && query.id) ? query.id : router.query && router.query.id;
+    if (id) {
       const results = await getResultFromId(query.id)
       return { results }
     }
@@ -59,30 +62,18 @@ export default class extends Component {
     this.state = {
       chartWidth: '985px'
     }
-    this.getWidth = this.getWidth.bind(this)
   }
 
   componentDidMount () {
-    // window.addEventListener('resize', this.getWidth)
     if (this.props.results) {
       this.setState({ results: this.props.results })
     }
-    // this.getWidth()
-  }
-
-  componentWillUnmount () {
-    // window.removeEventListener('resize', this.getWidth)
-  }
-
-  getWidth () {
-    // console.log(window.innerWidth)
-    // const chartWidth = window.innerWidth * 0.53
-    // this.setState({ chartWidth })
   }
 
   render () {
     const { results, chartWidth } = this.state
-    const { id } = this.props.query
+    const { query, router } = this.props
+    const id = (query && query.id) ? query.id : router.query && router.query.id
     // const currentUrl = URL + '/big5/resultados/' + id
     return (
       <>
@@ -100,3 +91,5 @@ export default class extends Component {
     )
   }
 }
+
+export default withRouter(Resultados)

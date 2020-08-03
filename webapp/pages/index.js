@@ -1,4 +1,4 @@
-export default () => {
+function SiteIndex () {
   return (
     <div>
       <h3>Tests de personalidad</h3>
@@ -24,3 +24,10 @@ export default () => {
     </div>
   )
 }
+export async function getStaticProps(context) {
+  return {
+    props: {}
+  }
+}
+
+export default SiteIndex
