@@ -1,7 +1,7 @@
 const dev = process.env.NODE_ENV !== 'production'
-if (dev) {
-  require('dotenv').config()
-}
+// if (dev) {
+require('dotenv').config()
+// }
 const next = require('next')
 const routes = require('./routes')
 
@@ -97,7 +97,7 @@ app.prepare().then(() => {
 
     server.listen(port, (err) => {
       if (err) throw err
-      console.log(`> Ready on http://localhost:${port}`)
+      console.log(`> Ready on ${config.URL}:${port}`)
     })
   })
 })
