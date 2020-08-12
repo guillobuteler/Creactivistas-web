@@ -6,5 +6,6 @@ module.exports = {
   DB_NAME: process.env.DB_NAME || 'creactivistas',
   DB_COLLECTION_BIG5: process.env.DB_COLLECTION_BIG5 || 'big5devtesting',
   DB_COLLECTION_ZOOM: process.env.DB_COLLECTION_ZOOM || 'zoomdevtesting',
-  URL: process.env.URL || 'http://localhost:3000'
+  URL: process.env.URL || 'http://localhost',
+  PORT: process.env.PORT || '3000'
 }

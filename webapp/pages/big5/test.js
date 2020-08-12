@@ -6,9 +6,9 @@ import getConfig from 'next/config'
 import axios from 'axios'
 import { FaInfoCircle } from 'react-icons/fa'
 import { populateData, restoreData, getProgress, clearItems, setItem } from '../../lib/localStorageStore'
-const { publicRuntimeConfig } = getConfig()
+const { publicRuntimeConfig: { URL, PORT } } = getConfig()
 const httpInstance = axios.create({
-  baseURL: publicRuntimeConfig.URL,
+  baseURL: `${URL}:${PORT}`,
   timeout: 8000
 })
 const { getItems: getInventory, getInfo } = require('@alheimsins/b5-johnson-120-ipip-neo-pi-r')

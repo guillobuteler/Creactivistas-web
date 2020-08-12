@@ -11,10 +11,10 @@ import validMongoId from '../../lib/valid-mongoid'
 import formatId from '../../lib/format-id'
 // import SocialShare from '../../components/SocialShare'
 
-const { publicRuntimeConfig: { URL } } = getConfig()
+const { publicRuntimeConfig: { URL, PORT } } = getConfig()
 
 const httpInstance = axios.create({
-  baseURL: URL,
+  baseURL: `${URL}:${PORT}`,
   timeout: 8000
 })
 

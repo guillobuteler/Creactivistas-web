@@ -1,10 +1,11 @@
 const withOffline = require('next-offline')
-const { URL } = require('./config')
+const { URL, PORT } = require('./config')
 
 module.exports = {
   useFileSystemPublicRoutes: false,
   publicRuntimeConfig: {
-    URL
+    URL,
+    PORT
   },
   ...withOffline()
 }
