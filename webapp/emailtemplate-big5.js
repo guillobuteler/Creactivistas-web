@@ -15,7 +15,7 @@ module.exports = `
       border-spacing: 0;
       color: #666666;">
     <tr>
-      <td style="background-color: white; text-align: center;"><img src="$__DOMAIN__/static/creactivistas_isologo_220x121px.png" alt="Creactivistas" width="220" height="121" /></td>
+      <td style="background-color: white; text-align: center; border: 1px solid lightgray;"><img src="$__DOMAIN__/static/creactivistas_isologo_220x121px.png" alt="Creactivistas" width="220" height="121" /></td>
     </tr>
     <tr>
       <td>
@@ -36,7 +36,7 @@ module.exports = `
                 El ID de tus resultados en el test de perfil de personalidad basado en el modelo de los 5 grandes es: <strong>$__ID__</strong>
               </p>
               <p style="text-align: center;">
-                <a href="$__DOMAIN__/tests/big5/result/$__ID__">Ver resultados</a>
+                <a href="$__DOMAIN__/big5/resultados/$__ID__">Ver resultados</a>
               </p>
               <p style="color:#555">
                 Muchas gracias por confiar en nosotros, si te interesa recibir m&aacute;s informaci&oacute;n escrib&iacute; a <a href="mailto:marubuteler@gmail.com">marubuteler@gmail.com</a>.
@@ -49,8 +49,8 @@ module.exports = `
     </tr>
     <tr><td><span style="display: block; height: 72px;">&nbsp;</span></td></tr>
     <tr>
-      <td style="background: #000; display: flex; justify-content: flex-end; align-self: center; padding: 18px 6px 9px;">
-        <span style="color: white; font-size: 15px; letter-spacing: 1px;">desarrollado por</span>
+      <td style="background: #000; padding: 18px 6px 9px; text-align: end;">
+        <span style="color: white; font-size: 15px; letter-spacing: 1px; vertical-align: top;">desarrollado por</span>
         <a style="display: inline-block;" href="http://www.enneagonstudios.com/" target="_blank" rel="noopener noreferrer">
           <img style="margin-left: 9px; margin-right: 24px; cursor: pointer;" src="http://www.actus.com.ar/assets/img/email_9S_footer.png" alt="Enneagon Studios Logo" />
         </a>
