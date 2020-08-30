@@ -14,7 +14,8 @@ import formatId from '../../lib/format-id'
 const { publicRuntimeConfig: { URL, PORT } } = getConfig()
 
 const httpInstance = axios.create({
-  baseURL: `${URL}:${PORT}`,
+  // baseURL: `${URL}:${PORT}`,
+  baseURL: URL,
   timeout: 8000
 })
 

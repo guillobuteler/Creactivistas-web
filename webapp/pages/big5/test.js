@@ -8,7 +8,8 @@ import { FaInfoCircle } from 'react-icons/fa'
 import { populateData, restoreData, getProgress, clearItems, setItem } from '../../lib/localStorageStore'
 const { publicRuntimeConfig: { URL, PORT } } = getConfig()
 const httpInstance = axios.create({
-  baseURL: `${URL}:${PORT}`,
+  // baseURL: `${URL}:${PORT}`,
+  baseURL: URL,
   timeout: 8000
 })
 const { getItems: getInventory, getInfo } = require('@alheimsins/b5-johnson-120-ipip-neo-pi-r')
