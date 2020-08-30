@@ -48,10 +48,10 @@ const Resume = ({ data, chartWidth }) => (
 )
 
 class Resultados extends Component {
-  static async getInitialProps ({ query, router }) {
-    const id = (query && query.id) ? query.id : router.query && router.query.id;
+  static async getInitialProps (context) {
+    const id = context && context.query && context.query.id
     if (id) {
-      const results = await getResultFromId(query.id)
+      const results = await getResultFromId(id)
       return { results }
     }
     return {}
@@ -59,6 +59,7 @@ class Resultados extends Component {
 
   constructor (props) {
     super(props)
+    console.log(props)
     this.state = {
       chartWidth: '985px'
     }
@@ -72,8 +73,8 @@ class Resultados extends Component {
 
   render () {
     const { results, chartWidth } = this.state
-    const { query, router } = this.props
-    const id = (query && query.id) ? query.id : router.query && router.query.id
+    const { router } = this.props
+    const id = router && router.query && router.query.id
     // const currentUrl = URL + '/big5/resultados/' + id
     return (
       <>

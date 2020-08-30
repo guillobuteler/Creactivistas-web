@@ -15,7 +15,7 @@
       "url": "https://github.com/telemark"
     }
   ],
-  "main": "server.js",
+  "main": "app.js",
   "engines": {
     "node": ">=12.16.1"
   },
@@ -24,10 +24,10 @@
     "coverage": "nyc ava",
     "coveralls": "nyc ava && nyc report --reporter=lcov && cat coverage/lcov.info | coveralls",
     "standard-fix": "standard --fix",
-    "dev": "node server.js",
+    "dev": "node app.js",
     "build": "next build",
     "export": "next export",
-    "start": "NODE_ENV=production node server.js",
+    "start": "NODE_ENV=production node app.js",
     "cleanup": "rm -rf .next",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm install",
     "deploy": "now && now alias"

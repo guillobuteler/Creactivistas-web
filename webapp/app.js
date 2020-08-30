@@ -33,6 +33,7 @@ let email = {}
 
 app.prepare().then(() => {
   const uri = config.DB_CONNECTION.replace('<password>', config.DB_PASSWORD).replace('<dbname>', config.DB_NAME)
+  console.log(uri)
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   client.connect(err => {
     if (err) throw new Error(err)
@@ -55,8 +56,8 @@ app.prepare().then(() => {
       return app.serveStatic(req, res, filePath)
     })
 
-    server.get('/api/login', (req, res) => {
-      res.redirect('/')
+    server.get('/api/ping', (req, res) => {
+      res.send('pong')
     })
 
     server.get('/api/big5?:id', (req, res) => {
