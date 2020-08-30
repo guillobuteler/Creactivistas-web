@@ -59,7 +59,6 @@ class Resultados extends Component {
 
   constructor (props) {
     super(props)
-    console.log(props)
     this.state = {
       chartWidth: '985px'
     }
