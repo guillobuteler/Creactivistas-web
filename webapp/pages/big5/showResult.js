@@ -11,10 +11,9 @@ import validMongoId from '../../lib/valid-mongoid'
 import formatId from '../../lib/format-id'
 // import SocialShare from '../../components/SocialShare'
 
-const { publicRuntimeConfig: { URL, PORT } } = getConfig()
+const { publicRuntimeConfig: { URL } } = getConfig()
 
 const httpInstance = axios.create({
-  // baseURL: `${URL}:${PORT}`,
   baseURL: URL,
   timeout: 8000
 })
@@ -87,6 +86,13 @@ class Resultados extends Component {
               {id && <>Con el siguiente ID podes volver a ver los resultados en el futuro: <Code>{id}</Code></>}
               <Resume data={results} chartWidth={chartWidth} />
               {/* <SocialShare url={currentUrl} /> */}
+            </>
+        }
+        {
+          !results &&
+            <>
+              El ID introducido no se corresponde con ning&uacute;n resultado en nuestra base de datos.
+              Si cree que este es un error, por favor contáctese con alguien de la organizaci&oacute;n.
             </>
         }
       </>

@@ -55,7 +55,6 @@ module.exports = async (req, res) => {
     switch (method) {
       case 'GET':
         const id = query && query.id
-        console.log(id)
         if (!id || !validMongoId(id)) throw new Error('Not a valid id')
         await collection.findOne({ _id: ObjectID(id) }, (error, data) => {
           if (error) throw error
@@ -64,7 +63,6 @@ module.exports = async (req, res) => {
         break
       case 'POST':
         const payload = body
-        console.log(payload.clientEmail)
         await collection.insertOne(payload, (error, commandResult) => {
           if (error) throw error
           const data = commandResult.ops[0]

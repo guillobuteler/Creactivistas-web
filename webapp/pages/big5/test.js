@@ -6,9 +6,8 @@ import getConfig from 'next/config'
 import axios from 'axios'
 import { FaInfoCircle } from 'react-icons/fa'
 import { populateData, restoreData, getProgress, clearItems, setItem } from '../../lib/localStorageStore'
-const { publicRuntimeConfig: { URL, PORT } } = getConfig()
+const { publicRuntimeConfig: { URL } } = getConfig()
 const httpInstance = axios.create({
-  // baseURL: `${URL}:${PORT}`,
   baseURL: URL,
   timeout: 8000
 })
