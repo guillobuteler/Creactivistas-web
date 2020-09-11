@@ -10,7 +10,7 @@ export default ({ path, user, info }) => {
       <div className='nav-container'>
         <div className='links-container'>
           <Link route='/' activeClassName='active'><a>Inicio</a></Link>
-          <Link route='/zoom' activeClassName='active'><a>Zoom</a></Link>
+          <Link route='/actus' activeClassName='active'><a>Actus</a></Link>
           <Link route='/big5' activeClassName='active'><a>Big 5</a></Link>
         </div>
         <div className='nav-right'>
