@@ -50,6 +50,7 @@ const hidratarEmail = (email, to, name, domain, id, testname) => {
   email.html = email.html.replace('$__NAME__', name)
   email.html = email.html.replace(/\$__DOMAIN__/g, domain) // regexp global porque hay 2
   email.html = email.html.replace(/\$__ID__/g, id) // regexp global porque hay 2
+  return email
 }
 let email = {}
 
