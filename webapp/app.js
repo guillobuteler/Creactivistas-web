@@ -54,9 +54,11 @@ const hidratarEmail = (email, to, name, domain, id, testname) => {
 }
 let email = {}
 
+console.log(`> Initializing on ${config.URL}:${port}...`)
 app.prepare().then(() => {
-  const uri = config.DB_CONNECTION.replace('<password>', config.DB_PASSWORD).replace('<dbname>', config.DB_NAME)
-  console.log(uri)
+  const { DB_CONNECTION, DB_USER, DB_PASSWORD, DB_NAME } = config;
+  const uri = DB_CONNECTION.replace('<user>', DB_USER).replace('<password>', DB_PASSWORD).replace('<dbname>', DB_NAME)
+  console.log('MongoDB uri: ', uri)
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   client.connect(err => {
     if (err) throw new Error(err)

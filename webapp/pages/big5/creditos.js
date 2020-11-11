@@ -111,10 +111,12 @@ export default () => {
         {`
           p {
             margin-top: 0px;
+            text-align: left;
+            font-size: .9em;
           }
           div {
             border: 1px solid lightgray;
-            padding: 12px;
+            padding: 24px;
             width: 750px;
             margin: auto;
             background: #fcfcfc;
@@ -150,6 +152,8 @@ export default () => {
           }
           section {
             margin-top: 54px;
+            width: 760px;
+            margin: auto;
             line-height: 1.5em;
           }
         `}
@@ -160,18 +164,16 @@ export default () => {
           {Logo({ color: 'black' })}ALHEIMSINS
         </a>
         [ <a href='https://github.com/alheimsins' target='_blank' rel='noopener noreferrer'>GITHUB</a> ]
+
+        <ShortcutH2 name='developers' />
+        <Users users={dev} />
+        <ShortcutH2 name='translators' />
+        <Users users={trans} />
       </div>
-      <ShortcutH2 name='developers' />
-      <Users users={dev} />
-      <ShortcutH2 name='translators' />
-      <Users users={trans} />
       <hr style={{ width: '50%', margin: '50px auto 25px' }} />
       <section>
-        Su implementaci&oacute;n e integración al sitio de Actus - Zoom estuvo a cargo del estudio de diseño y desarrollo web
-        <a href='http://www.enneagonstudios.com' style={{ color: '#6979a7', fontSize: '1.2em', fontWeight: 600 }} title='Visitar sitio web' target='_blank' rel='noopener noreferrer'>
-          EnneagonStudios.com
-        </a><br />
-        Para consultas envi&aacute; un email a <a href='mailto:contacto@enneagonstudios.com' style={{ fontSize: '1em', color: '#0da0a0 !important' }} rel='noopener noreferrer' target='_blank'>contacto@enneagonstudios.com</a>.
+        Su implementaci&oacute;n en el sitio de Creactivistas estuvo a cargo del estudio de diseño y desarrollo web <br />
+        <a href='http://www.enneagonstudios.com' style={{ color: '#6979a7', fontSize: '1.2em', fontWeight: 600 }} title='Visitar sitio web' target='_blank' rel='noopener noreferrer'>EnneagonStudios.com</a> <a href='mailto:contacto@enneagonstudios.com' style={{ fontSize: '.9em', color: '#0da0a0 !important' }} rel='noopener noreferrer' target='_blank'>(contacto@enneagonstudios.com)</a>
       </section>
     </>
   )
