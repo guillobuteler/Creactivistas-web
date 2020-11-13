@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { Radar, HorizontalBar } from 'react-chartjs-2';
-
+import { calcularMBTI } from '../../../../lib/actus/functions'
 
 export default class extends Component {
   constructor(props) {
@@ -133,14 +133,6 @@ export default class extends Component {
       totals
     };
   }
-  getMBTI = () => {
-    const { totals } = this.state;
-    let mbti = (totals.I > totals.E) ? 'I' : 'E';
-    mbti += (totals.N > totals.S) ? 'N' : 'S';
-    mbti += (totals.T > totals.F) ? 'T' : 'F';
-    mbti += (totals.P > totals.J) ? 'P' : 'J';
-    return mbti;
-  }
   render() {
     const {
       radarBackdropData,
@@ -151,7 +143,7 @@ export default class extends Component {
       horizontalBarOptions,
       totals
     } = this.state;
-    let mbti = this.getMBTI(totals);
+    let mbti = calcularMBTI(totals);
     return (
       <div className="ChartsResultados">
         <h1 style={{

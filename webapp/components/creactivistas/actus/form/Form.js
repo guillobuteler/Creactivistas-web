@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -10,10 +10,9 @@ import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 import FormQuestionGroup from './FormQuestionGroup';
-import { questions, answersInit } from '../constants'
+import { questions, answersInit } from '../../../../lib/actus/constants'
 
-
-class Form extends React.Component {
+class Form extends Component {
   constructor(props) {
     super(props);
     this.handleChangeSlider = this.handleChangeSlider.bind(this);

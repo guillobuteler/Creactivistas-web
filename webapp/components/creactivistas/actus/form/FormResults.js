@@ -9,7 +9,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 
 import FormResultsGroup from './FormResultsGroup';
-import { scalesMap, totalsInit } from '../constants'
+import { scalesMap, totalsInit } from '../../../../lib/actus/constants'
+import { calcularMBTI } from '../../../../lib/actus/functions'
 
 
 class FormResults extends Component {
@@ -25,8 +26,6 @@ class FormResults extends Component {
   handleClickVerGrafico = () => {
     const { totals } = this.state;
     let query = `${totals.I},${totals.E},${totals.N},${totals.S},${totals.T},${totals.F},${totals.P},${totals.J}`
-    console.log(totals)
-    console.log(query)
     Router.push(`/actus/resultados/${query}`)
   }
   handleTotalsCalculation = (char, value) => {
@@ -36,18 +35,10 @@ class FormResults extends Component {
       this.setState(() => ({ totals }));
     }
   }
-  getMBTI = () => {
-    const { totals } = this.state;
-    let mbti = (totals.I > totals.E) ? 'I' : 'E';
-    mbti += (totals.N > totals.S) ? 'N' : 'S';
-    mbti += (totals.T > totals.F) ? 'T' : 'F';
-    mbti += (totals.P > totals.J) ? 'P' : 'J';
-    return mbti;
-  }
   render() {
     const { totals } = this.state;
     const { clientName, answers } = this.props.data;
-    const mbti = this.getMBTI();
+    const mbti = calcularMBTI(totals);
     return (
       <div className="FormResults">
         <Paper style={{
@@ -125,7 +116,7 @@ class FormResults extends Component {
         <style jsx>
           {`
             a {
-              color: #00d090w;
+              color: #00d090;
               text-decoration: underline;
             }
           `}
