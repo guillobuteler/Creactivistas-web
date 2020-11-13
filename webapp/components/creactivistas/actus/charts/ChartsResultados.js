@@ -1,6 +1,4 @@
 import { Component } from 'react'
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
 import { Radar, HorizontalBar } from 'react-chartjs-2';
 
 
@@ -132,7 +130,16 @@ export default class extends Component {
           }],
         },
       },
+      totals
     };
+  }
+  getMBTI = () => {
+    const { totals } = this.state;
+    let mbti = (totals.I > totals.E) ? 'I' : 'E';
+    mbti += (totals.N > totals.S) ? 'N' : 'S';
+    mbti += (totals.T > totals.F) ? 'T' : 'F';
+    mbti += (totals.P > totals.J) ? 'P' : 'J';
+    return mbti;
   }
   render() {
     const {
@@ -141,52 +148,63 @@ export default class extends Component {
       radarData,
       radarOptions,
       horizontalBarData,
-      horizontalBarOptions
+      horizontalBarOptions,
+      totals
     } = this.state;
+    let mbti = this.getMBTI(totals);
     return (
       <div className="ChartsResultados">
-        <Grid container spacing={3}>
-          <Grid container justify="center" item xs={12}>
-            <Grid item xs={12}>
-              <Container className="ChartsContainer">
-                <Container className="RadarContainer">
-                  <Radar data={radarBackdropData} options={radarBackdropOptions} />
-                  <Radar data={radarData} options={radarOptions} />
-                </Container>
-                <Container className="HorizontalBarContainer">
-                  <h3>Valores individuales por eje MBTI</h3>
-                  <HorizontalBar data={horizontalBarData} options={horizontalBarOptions} />
-                </Container>
-              </Container>
-            </Grid>
-            <Grid item xs={12}></Grid>
-          </Grid>
-        </Grid>
-        <style jsx>
+        <h1 style={{
+          fontSize: '2.5rem',
+          fontFamily: 'constantiaregular,serif',
+          letterSpacing: 9
+        }}>{mbti}</h1>
+        <div>
+          <div id="RadarContainer" style={{
+            marginTop: 12,
+            marginBottom: 24,
+            fontSize: '2rem',
+            position: 'relative'
+          }}>
+            <Radar data={radarBackdropData} options={radarBackdropOptions} />
+            <Radar data={radarData} options={radarOptions} />
+          </div>
+          <div style={{width:'60%', margin: '24px auto 24px auto'}}>
+            <h3 style={{
+              fontSize: '1.1rem',
+              marginBottom: 10,
+              textAlign: 'center'
+            }}>Valores individuales por eje MBTI</h3>
+            <HorizontalBar data={horizontalBarData} options={horizontalBarOptions} />
+          </div>
+          <div style={{
+            border: '1px solid #cdd3d6',
+            borderRadius: 3,
+            backgroundColor: '#edf3f6',
+            width: '75%',
+            margin: '35px auto 42px auto',
+            padding: '18px 20px',
+            textAlign: 'left'
+          }}>
+            Muchas gracias por confiar en nosotros, si te interesa recibir un feedback personalizado acerca de tu perfil de personalidad o solicitar el armado de tu gráfico de los 4 elementos por favor escribinos a <a href="mailto:contacto@actus.com.ar">contacto@actus.com.ar</a> para coordinar una entrevista.
+          </div>
+        </div>
+        <style jsx global>
           {`
-            .ChartsContainer {
-              padding: 0;
-            }
-            .HorizontalBarContainer {
-              width: 60%;
-            }
-            .HorizontalBarContainer h3 {
-              font-size: 16px;
-              margin-bottom: 10px;
-              text-align: center;
-            }
-            .RadarContainer {
-              margin-top: 12px;
-              margin-bottom: 24px;
-              font-size: 24px;
-              position: relative;
-            }
-            .RadarContainer canvas:last-child {
+            #RadarContainer canvas:last-child {
               position: absolute;
               top: 0;
             }
           `}
         </style>
+        <style jsx>
+            {`
+              a {
+                color: #00d090w;
+                text-decoration: underline;
+              }
+            `}
+          </style>
       </div>
     );
   }

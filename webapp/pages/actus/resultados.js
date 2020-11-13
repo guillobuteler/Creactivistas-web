@@ -19,7 +19,7 @@ export default class extends Component {
       data: props.data,
     }
   }
-
+  
   render() {
     // const router = useRouter()
     // console.log(router)

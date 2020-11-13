@@ -7,24 +7,19 @@ export default class extends Component {
     super(props)
     this.state = {
       formComplete: false,
-      clientInfo: {
-        name: '',
-        email: ''
-      },
-      clientInfoValidation: {
-        isComplete: false,
-        isEmailValid: false
-      },
-      resultados: []
+      data: {
+        clientName: '',
+        answers: []
+      }
     }
   }
 
-  handleFormComplete = () => {
-    
+  handleFormComplete = (clientName, clientEmail, answers) => {
+    this.setState(() => ({ formComplete: true, data: { clientName, answers} }));
   }
 
   render () {
-    const { formComplete, resultados } = this.state
-    return !formComplete ? <Form onComplete={this.handleFormComplete} /> : <FormResults data={resultados} />
+    const { formComplete, data } = this.state
+    return !formComplete ? <Form onComplete={this.handleFormComplete} /> : <FormResults data={data} />
   }
 }

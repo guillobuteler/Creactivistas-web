@@ -1,8 +1,6 @@
 import React from 'react';
 
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ErrorIcon from '@material-ui/icons/Error';
@@ -22,9 +20,12 @@ class Form extends React.Component {
     this.handleFormComplete = props.onComplete;
     this.state = {
       answers: answersInit,
-      name: '',
-      email: '',
-      formErrors: false,
+      clientName: '',
+      clientEmail: '',
+      formValidation: {
+        emailValidationErr: false,
+        showSnackbar: false,
+      },
     };
   }
   componentDidMount() {
@@ -32,7 +33,7 @@ class Form extends React.Component {
   }
   handleChange = fieldType => (event) => {
     const value = event.target.value;
-    this.setState(() => (fieldType === 'name' ? { name: value } : { email: value }))
+    this.setState(() => (fieldType === 'clientName' ? { clientName: value } : { clientEmail: value }))
   }
   handleChangeSlider(id, value) {
     this.setState(state => {
@@ -42,19 +43,26 @@ class Form extends React.Component {
     });
   }
   handleSnackbarClose = () => {
-    this.setState(() => ({ formErrors: false }));
+    this.setState(() => ({ formValidation: { showSnackbar: false } }));
   }
   processForm = () => {
-    const { answers, name, email } = this.state;
-    if (email === '') {
-      this.setState(() => ({ formErrors: true }));
+    const { answers, clientName, clientEmail } = this.state;
+    if (clientName === '' || clientEmail === '') {
+      this.setState(() => ({ formValidation: { showSnackbar: true } }));
     } else {
-      this.handleFormComplete(name, email, answers);
+      if (!this.isValidEmail(clientEmail)) {
+        this.setState(() => ({ formValidation: { emailValidationErr: true } }));
+      } else {
+        this.handleFormComplete(clientName, clientEmail, answers);
+      }
     }
   }
+  isValidEmail (email) {
+    return /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i.test(email)
+  }
   render() {
-    const { answers, name, email, formErrors } = this.state;
-    const message = 'Para recibir tus resultados, por favor completá tu email.'
+    const { answers, clientName, clientEmail, formValidation: { emailValidationErr, showSnackbar } } = this.state;
+    const message = 'Para recibir tus resultados, completá tu nombre y email.'
 
     return (
       <div className="Form">
@@ -63,7 +71,7 @@ class Form extends React.Component {
             vertical: 'top',
             horizontal: 'center',
           }}
-          open={formErrors}
+          open={showSnackbar}
           autoHideDuration={7000}
           onClose={this.handleSnackbarClose}
         >
@@ -89,11 +97,11 @@ class Form extends React.Component {
         </Snackbar>
         <div>
           <Paper style={{
-            backgroundColor: '#e9e9e9',
+            backgroundColor: '#edf3f6',
             marginTop: 35,
             marginBottom: 10,
-            borderRadius: 18,
-            padding: 20,
+            borderRadius: 3,
+            padding: '18px 20px',
             textAlign: 'left'
           }}>
             Este es un test de personalidad gratuito que se deriva del Myers Briggs Type Indicator (MBTI) y busca describir, con pocas variables, las preferencias de una persona.<br />
@@ -103,21 +111,21 @@ class Form extends React.Component {
             Enjoy.
           </Paper>
           <Paper style={{
-            backgroundColor: '#e9e9e9',
+            backgroundColor: '#edf3f6',
             width: '61%',
             margin: '15px auto 10px auto',
-            borderRadius: 18,
-            padding: 20,
+            borderRadius: 3,
+            padding: '12px 20px',
             textAlign: 'left'
           }}>
             Para cada par de frases completá los casilleros del 0 al 5 según la siguiente escala:
           </Paper>
           <Paper style={{
-            backgroundColor: '#e9e9e9',
+            backgroundColor: '#edf3f6',
             width: '33%',
             margin: '15px auto 10px auto',
-            borderRadius: 18,
-            padding: 20,
+            borderRadius: 3,
+            padding: '16px 20px',
             textAlign: 'left'
           }}>
             <span className="valor-mbti">0</span> = no lo prefiero casi nunca<br />
@@ -132,7 +140,8 @@ class Form extends React.Component {
             border: '1px solid #ed1c24',
             borderRadius: 3,
             padding: 18,
-            marginTop:30
+            marginTop: 42,
+            marginBottom: 42
           }}>
             <h3 style={{ 
             textAlign: 'left',
@@ -151,32 +160,48 @@ class Form extends React.Component {
                 />
               ))
             }
-            <Container>
-              <TextField
-                id="name"
-                label="Name"
-                value={name}
-                onChange={this.handleChange('name')}
-              />
-            </Container>
-            <Container className="email-field">
-              <p>Si ingresa su email el sistema le enviará los resultados.</p>
-              <TextField
-                id="email"
-                label="Email"
-                value={email}
-                onChange={this.handleChange('email')}
-              />
-            </Container>
-            <Container>
-              <Button
-                color="secondary"
-                variant="contained"
-                onClick={this.processForm}
-              >
-                Procesar
-              </Button>
-            </Container>
+            <div style={{ 
+              marginTop: 62,
+              marginBottom: 42
+            }}>
+              <p>Por favor ingres&aacute; tu nombre y direcci&oacute;n de correo para poder recibir los resultados v&iacute;a email.</p>
+              <div style={{ 
+                marginBottom: 12
+              }}>
+                <TextField
+                  id="clientName"
+                  label="Nombre"
+                  value={clientName}
+                  onChange={this.handleChange('clientName')}
+                  required
+                />
+              </div>
+              <div style={{ 
+                marginBottom: 24
+              }}>
+                <TextField
+                  id="clientEmail"
+                  label="Email"
+                  value={clientEmail}
+                  onChange={this.handleChange('clientEmail')}
+                  style={{ 
+                    marginTop: 0
+                  }}
+                  required
+                  error={emailValidationErr}
+                />
+                <p style={emailValidationErr ? { color: 'red', margin: '5px 0 0' } : { display: 'none' }}>La direcci&oacute;n de correo debe ser v&aacute;lida.</p>
+              </div>
+              <div>
+                <Button
+                  color="secondary"
+                  variant="contained"
+                  onClick={this.processForm}
+                >
+                  Procesar
+                </Button>
+              </div>
+            </div>
           </Paper>
         </div>
         <style jsx>
@@ -186,23 +211,6 @@ class Form extends React.Component {
               width: 30px;
               color: #ed1c24;
               font-size: 18px;
-            }
-            
-            .Form .questions-container .MuiContainer-root {
-              margin-top: 42px;
-            }
-            .Form .questions-container .questions-title {
-              text-align: left !important;
-              color: #ed1c24 !important;
-              font-weight: 700 !important;
-              font-size: 20px !important;
-              margin-top: 0px;
-            }
-            .Form .questions-container .email-field {
-              margin-top: 25px;
-            }
-            .Form .questions-container .email-field .MuiFormControl-marginNormal {
-              margin-top: 0px;
             }
           `}
         </style>

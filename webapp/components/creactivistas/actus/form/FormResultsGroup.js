@@ -34,14 +34,30 @@ class FormResultsGroup extends React.Component {
     const { scale } = this.props;
 
     return (
-      <Paper className="ResultsGroup_Paper" style={{marginTop: 18}}>
+      <Paper className="ResultsGroup_Paper" style={{
+        border: '1px solid #adb3b6',
+        marginTop: 35,
+        marginBottom: 10,
+        borderRadius: 3,
+        textAlign: 'left',
+        width: '60%',
+        margin: '20px auto 20px auto'
+      }}>
         <Table>
           <TableHead>
             <TableRow>
-                <TableCell className="GroupQuestion">{scale.question}</TableCell>
+                <TableCell style={{
+                  color: 'white',
+                  fontSize: '1rem',
+                  background: '#404040'
+                }}>{scale.question}</TableCell>
             </TableRow>
             <TableRow>
-                <TableCell className="GroupTitle">{scale.title}</TableCell>
+            <TableCell style={{
+              color: 'white',
+              fontSize: '1rem',
+              background: '#777'
+            }}>{scale.title}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -58,10 +74,18 @@ class FormResultsGroup extends React.Component {
                         {this.renderAxisCells(axis.keys)}
                       </TableRow>
                       <TableRow>
-                        <TableCell component="th" className="AxisTotal" scope="row">
-                          <span>{axis.char}</span> total
+                        <TableCell component="th" scope="row" style={{
+                          textAlign: 'center',
+                          fontWeight: 700,
+                          background: '#eee'
+                        }}>
+                          <span style={{fontSize: '1.1rem', marginRight: 9}}>{axis.char}</span> total
                         </TableCell>
-                        <TableCell className="AxisTotal" colSpan="5">
+                        <TableCell colSpan="5" style={{
+                          textAlign: 'center',
+                          fontWeight: 700,
+                          background: '#eee'
+                        }}>
                           {this.sumAxisTotal(axis.char, axis.keys)}
                         </TableCell>
                       </TableRow>
@@ -75,21 +99,6 @@ class FormResultsGroup extends React.Component {
         </Table>
         <style jsx>
           {`
-            .ResultsGroup_Paper .GroupQuestion {
-              color: white;
-              font-size: 16px;
-              background: #444;
-            }
-            .ResultsGroup_Paper .GroupTitle {
-              color: white;
-              font-size: 16px;
-              background: #777;
-            }
-            .ResultsGroup_Paper .AxisTotal {
-              text-align: center;
-              font-weight: 700;
-              background: #eee;
-            }
             .ResultsGroup_Paper .AxisTotal span {
               font-size: 18px;
               margin-right: 9px;
