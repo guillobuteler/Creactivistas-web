@@ -1,16 +1,13 @@
 import { Component } from 'react'
-import ChartsResultados from '../../components/creactivistas/actus/charts/ChartsResultados';
-import { totalsInit } from '../../lib/actus/constants';
+import ChartsResultados from '../../components/creactivistas/actus/charts/ChartsResultados'
+import { totalsInit } from '../../lib/actus/constants'
 
 export default class extends Component {
   static async getInitialProps ({ query }) {
     const totals = totalsInit
     const data = query.data && query.data.split(',') || []
-    // console.log(query)
-
     return { totals, data }
   }
-
   constructor (props) {
     super(props)
     this.state = {
@@ -18,7 +15,6 @@ export default class extends Component {
       data: props.data,
     }
   }
-  
   render() {
     const { totals, data } = this.state
     if (data[0]) totals.I = parseInt(data[0])
@@ -31,4 +27,4 @@ export default class extends Component {
     if (data[7]) totals.J = parseInt(data[7])
     return <ChartsResultados totals={totals} />
   }
-};
+}

@@ -19,7 +19,6 @@ const port = parseInt(process.env.PORT, 10) || 3000
 const express = require('express')
 const emailTemplateActus = require('./emailtemplate-actus')
 const emailTemplateBig5 = require('./emailtemplate-big5')
-const emailTemplateBig5Admin = require('./emailtemplate-big5-admin')
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 const { hidratarTemplateActus } = require('./lib/actus/server')
@@ -62,6 +61,7 @@ app.prepare().then(() => {
     if (err) throw new Error(err)
     // Set db for use in APIs
     const db = client.db(config.DB_NAME)
+    const actusDBCollection = db.collection(config.DB_COLLECTION_ACTUS)
     const big5DBCollection = db.collection(config.DB_COLLECTION_BIG5)
 
     // Configure app server and APIs
@@ -85,11 +85,11 @@ app.prepare().then(() => {
 
     server.post('/api/actus', (req, res) => {
       const payload = req.body
-      big5DBCollection.insertOne(payload, (error, commandResult) => {
+      actusDBCollection.insertOne(payload, (error, commandResult) => {
         if (error) throw error
         const data = commandResult.ops[0]
         res.send(data) // return processed payload with DB insertion ID
-
+/*
         // Mandar mails a cliente y admins
         const { nombreCliente, emailCliente, resultados, mbti, _id } = data
         // - resetear objeto email con un clon del objeto default
@@ -114,6 +114,7 @@ app.prepare().then(() => {
           console.log(email)
           if (err.response) console.error(err.response.body)
         })
+        */
       })
     })
 

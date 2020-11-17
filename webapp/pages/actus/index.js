@@ -21,9 +21,9 @@ export default class extends Component {
         answers: []
       }
     }
+    this.handleFormComplete = this.handleFormComplete.bind(this)
   }
   async handleFormComplete (nombreCliente, emailCliente, answers) {
-    this.setState(() => ({ formComplete: true, data: { nombreCliente, answers} }));
     const resultados = procesarRespuestas(answers)
     const { I, E, N, S, T, F, P, J } = resultados
     const totales = { I: I.total, E: E.total, N: N.total, S: S.total, T: T.total, F: F.total, P: P.total, J: J.total }
@@ -35,10 +35,10 @@ export default class extends Component {
       mbti
     }
     const response = await httpInstance.post('/api/actus', payload)
-    console.log(response)
+    this.setState(() => ({ formComplete: true, data: { nombreCliente, answers} }))
   }
   render () {
     const { formComplete, data } = this.state
-    return !formComplete ? <Form onComplete={this.handleFormComplete} /> : <FormResults data={data} />
+    return (!formComplete ? <Form onComplete={this.handleFormComplete} /> : <FormResults data={data} />)
   }
 }

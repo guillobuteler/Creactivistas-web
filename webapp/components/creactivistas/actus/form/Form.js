@@ -19,8 +19,8 @@ class Form extends Component {
     this.handleFormComplete = props.onComplete;
     this.state = {
       answers: answersInit,
-      clientName: '',
-      clientEmail: '',
+      nombreCliente: '',
+      emailCliente: '',
       formValidation: {
         emailValidationErr: false,
         showSnackbar: false,
@@ -32,7 +32,7 @@ class Form extends Component {
   }
   handleChange = fieldType => (event) => {
     const value = event.target.value;
-    this.setState(() => (fieldType === 'clientName' ? { clientName: value } : { clientEmail: value }))
+    this.setState(() => (fieldType === 'nombreCliente' ? { nombreCliente: value } : { emailCliente: value }))
   }
   handleChangeSlider(id, value) {
     this.setState(state => {
@@ -45,14 +45,14 @@ class Form extends Component {
     this.setState(() => ({ formValidation: { showSnackbar: false } }));
   }
   processForm = () => {
-    const { answers, clientName, clientEmail } = this.state;
-    if (clientName === '' || clientEmail === '') {
+    const { answers, nombreCliente, emailCliente } = this.state;
+    if (nombreCliente === '' || emailCliente === '') {
       this.setState(() => ({ formValidation: { showSnackbar: true } }));
     } else {
-      if (!this.isValidEmail(clientEmail)) {
+      if (!this.isValidEmail(emailCliente)) {
         this.setState(() => ({ formValidation: { emailValidationErr: true } }));
       } else {
-        this.handleFormComplete(clientName, clientEmail, answers);
+        this.handleFormComplete(nombreCliente, emailCliente, answers);
       }
     }
   }
@@ -60,7 +60,7 @@ class Form extends Component {
     return /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i.test(email)
   }
   render() {
-    const { answers, clientName, clientEmail, formValidation: { emailValidationErr, showSnackbar } } = this.state;
+    const { answers, nombreCliente, emailCliente, formValidation: { emailValidationErr, showSnackbar } } = this.state;
     const message = 'Para recibir tus resultados, completá tu nombre y email.'
 
     return (
@@ -168,10 +168,10 @@ class Form extends Component {
                 marginBottom: 12
               }}>
                 <TextField
-                  id="clientName"
+                  id="nombreCliente"
                   label="Nombre"
-                  value={clientName}
-                  onChange={this.handleChange('clientName')}
+                  value={nombreCliente}
+                  onChange={this.handleChange('nombreCliente')}
                   required
                 />
               </div>
@@ -179,10 +179,10 @@ class Form extends Component {
                 marginBottom: 24
               }}>
                 <TextField
-                  id="clientEmail"
+                  id="emailCliente"
                   label="Email"
-                  value={clientEmail}
-                  onChange={this.handleChange('clientEmail')}
+                  value={emailCliente}
+                  onChange={this.handleChange('emailCliente')}
                   style={{ 
                     marginTop: 0
                   }}

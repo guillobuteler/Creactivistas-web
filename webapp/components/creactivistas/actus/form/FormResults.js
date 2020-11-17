@@ -37,7 +37,7 @@ class FormResults extends Component {
   }
   render() {
     const { totals } = this.state;
-    const { clientName, answers } = this.props.data;
+    const { nombreCliente, answers } = this.props.data;
     const mbti = calcularMBTI(totals);
     return (
       <div className="FormResults">
@@ -51,7 +51,7 @@ class FormResults extends Component {
           textAlign: 'left',
           fontSize:'1.2rem'
         }}>
-          Estos son tus resultados <span style={{fontWeight:700, textTransform: 'capitalize'}}>{clientName}</span>
+          Estos son tus resultados <span style={{fontWeight:700, textTransform: 'capitalize'}}>{nombreCliente}</span>
         </Paper>
         {
           mapaEscalas.map((scale, index) => (
