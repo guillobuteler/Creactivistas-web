@@ -3,7 +3,7 @@ import { Component } from 'react'
 import getConfig from 'next/config'
 import Form from '../../components/creactivistas/actus/form/Form'
 import FormResults from '../../components/creactivistas/actus/form/FormResults'
-import { procesarRespuestas } from '../../lib/actus/functions'
+import { calcularMBTI, procesarRespuestas } from '../../lib/actus/functions'
 
 const { publicRuntimeConfig: { URL, PORT } } = getConfig()
 const httpInstance = axios.create({
@@ -24,10 +24,15 @@ export default class extends Component {
   }
   async handleFormComplete (clientName, clientEmail, answers) {
     this.setState(() => ({ formComplete: true, data: { clientName, answers} }));
+    const resultados = procesarRespuestas(answers)
+    const { I, E, N, S, T, F, P, J } = resultados
+    const totales = { I: I.total, E: E.total, N: N.total, S: S.total, T: T.total, F: F.total, P: P.total, J: J.total }
+    const mbti = calcularMBTI(totales)
     const payload = {
       clientName,
       clientEmail,
-      resultados: procesarRespuestas(answers)
+      resultados,
+      mbti
     }
     const response = await httpInstance.post('/api/actus', payload)
     console.log(response)

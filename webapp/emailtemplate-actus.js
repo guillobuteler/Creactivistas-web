@@ -90,7 +90,7 @@ module.exports = `
                             <td style="font-weight: 400; color: #000; font-size: 14px; padding: 14px 23px;">$__PARCIAL_E_5b__</td>
                             <td style="font-weight: 400; color: #000; font-size: 14px; padding: 14px 23px;">$__PARCIAL_E_9b__</td>
                             <td style="font-weight: 400; color: #000; font-size: 14px; padding: 14px 23px;">$__PARCIAL_E_12b__</td>
-                            <td style="font-weight: 400; color: #000; font-size: 14px; padding: 14px 23px;">$__PARCIAL_E_14b__</td>
+                            <td style="font-weight: 400; color: #000; font-size: 14px; padding: 14px 23px;">$__PARCIAL_E_14a__</td>
                           </tr>
                           <tr>
                             <th style="color: #000; font-size: 14px; background: #eee;"><span style="font-size: 18px; margin-right: 9px;">E</span> Total</th>

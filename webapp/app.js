@@ -97,13 +97,13 @@ app.prepare().then(() => {
         res.send(data) // return processed payload with DB insertion ID
 
         // Mandar mails a cliente y admins
-        const { clientName, clientEmail, resultados, _id } = data
+        const { clientName, clientEmail, resultados, mbti, _id } = data
 
         // resetear objeto email con un clon del objeto default
         email = JSON.parse(JSON.stringify(emailDefaults))
         email.html = emailTemplateActus
         email = hidratarEmailBase(email, 'marubuteler@gmail.com', clientName, config.URL, 'Actus')
-        email.html = hidratarTemplateActus(email.html, resultados)
+        email.html = hidratarTemplateActus(email.html, resultados, mbti)
         /*
         // enviar email cliente
         sgMail.send(email).catch(err => {
