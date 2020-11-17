@@ -17,20 +17,20 @@ export default class extends Component {
     this.state = {
       formComplete: false,
       data: {
-        clientName: '',
+        nombreCliente: '',
         answers: []
       }
     }
   }
-  async handleFormComplete (clientName, clientEmail, answers) {
-    this.setState(() => ({ formComplete: true, data: { clientName, answers} }));
+  async handleFormComplete (nombreCliente, emailCliente, answers) {
+    this.setState(() => ({ formComplete: true, data: { nombreCliente, answers} }));
     const resultados = procesarRespuestas(answers)
     const { I, E, N, S, T, F, P, J } = resultados
     const totales = { I: I.total, E: E.total, N: N.total, S: S.total, T: T.total, F: F.total, P: P.total, J: J.total }
     const mbti = calcularMBTI(totales)
     const payload = {
-      clientName,
-      clientEmail,
+      nombreCliente,
+      emailCliente,
       resultados,
       mbti
     }

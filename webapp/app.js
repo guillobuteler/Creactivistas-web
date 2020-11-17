@@ -30,24 +30,18 @@ const emailDefaults = {
   subject: 'Creactivistas | Resultados del test $__TESTNAME__',
   text: 'Hola $__NAME__, este email fue enviado automáticamente luego que completaste el test $__TESTNAME__. Si recibiste este correo es probable que tu casilla de correos no soporte HTML. Por favor ponete en contacto si queres recibir tus resultados sin volver a completar el test.'
 }
-const emailDefaultsAdmin = {
-  to: 'marubuteler@gmail.com',
-  from: 'Creactivistas <marubuteler@gmail.com>',
-  subject: 'Creactivistas Admin | $__TESTNAME__: Resultados de $__NAME__',
-  text: 'Hola Maru, este email fue enviado automáticamente luego de que $__NAME__ completó el test $__TESTNAME__. Si recibiste este correo es probable que su casilla de correos no soportara HTML. Ponete en contacto con Ale si necesitas recuperar los resultados desde la DB.'
-}
-const hidratarEmailBase = (email, to, name, domain, testname) => {
+const hidratarEmailBase = (email, destinatario, nombreCliente, domain, testname) => {
   // reemplaza los placeholders del contenido default de los emails con la data posta
   // destinatario
-  email.to = to
+  email.to = destinatario
   // subject
   email.subject = email.subject.replace('$__TESTNAME__', testname)
-  email.subject = email.subject.replace('$__NAME__', name)
+  email.subject = email.subject.replace('$__NAME__', nombreCliente)
   // texto en caso de que no soporte HTML
-  email.text = email.text.replace('$__NAME__', name)
+  email.text = email.text.replace('$__NAME__', nombreCliente)
   email.text = email.text.replace('$__TESTNAME__', testname)
   // html template
-  email.html = email.html.replace('$__NAME__', name)
+  email.html = email.html.replace('$__NAME__', nombreCliente)
   email.html = email.html.replace(/\$__DOMAIN__/g, domain) // regexp global porque hay 2
   return email
 }
@@ -97,33 +91,29 @@ app.prepare().then(() => {
         res.send(data) // return processed payload with DB insertion ID
 
         // Mandar mails a cliente y admins
-        const { clientName, clientEmail, resultados, mbti, _id } = data
-
-        // resetear objeto email con un clon del objeto default
+        const { nombreCliente, emailCliente, resultados, mbti, _id } = data
+        // - resetear objeto email con un clon del objeto default
         email = JSON.parse(JSON.stringify(emailDefaults))
         email.html = emailTemplateActus
-        email = hidratarEmailBase(email, 'marubuteler@gmail.com', clientName, config.URL, 'Actus')
+        email = hidratarEmailBase(email, emailCliente, nombreCliente, config.URL, 'Actus')
         email.html = hidratarTemplateActus(email.html, resultados, mbti)
-        /*
-        // enviar email cliente
+        // - enviar email a cliente
         sgMail.send(email).catch(err => {
           console.error(err)
           console.log(email)
           if (err.response) console.error(err.response.body)
         })
-
-        // clone defaults admin
-        email = JSON.parse(JSON.stringify(emailDefaultsAdmin))
-        email.html = emailTemplateBig5Admin
-        email = hidratarEmailBase(email, 'marubuteler@gmail.com', clientName, config.URL, 'Actus')
+        // - admin overrides
+        email.to = 'marubuteler@gmail.com'
+        email.subject = `Creactivistas Admin | Actus: Resultados de ${nombreCliente}`,
+        email.text = `Hola Maru, este email fue enviado automáticamente luego de que ${nombreCliente} completó el test Actus. Si recibiste este correo es probable que su casilla de correos no soportara HTML. Ponete en contacto con el admin si necesitás recuperar los resultados desde la DB.`
         email.bcc = ['abuteler@enneagonstudios.com']
-        // enviar email admins
+        // - enviar email admin
         sgMail.send(email).catch(err => {
           console.error(err)
           console.log(email)
           if (err.response) console.error(err.response.body)
         })
-        */
       })
     })
 
@@ -145,26 +135,23 @@ app.prepare().then(() => {
 
         // Mandar mails a cliente y admins
         const { clientEmail, clientName, _id } = data
-
-        // clone defaults clientes
+        // - resetear objeto email con un clon del objeto default
         email = JSON.parse(JSON.stringify(emailDefaults))
         email.html = emailTemplateBig5
         email = hidratarEmailBase(email, clientEmail, clientName, config.URL, 'Big 5')
         email = hidratarEmailBig5(email, _id)
-        // enviar email cliente
+        // - enviar email a cliente
         sgMail.send(email).catch(err => {
           console.error(err)
           console.log(email)
           if (err.response) console.error(err.response.body)
         })
-
-        // clone defaults admin
-        email = JSON.parse(JSON.stringify(emailDefaultsAdmin))
-        email.html = emailTemplateBig5Admin
-        email = hidratarEmailBase(email, 'marubuteler@gmail.com', clientName, config.URL, 'Big 5')
-        email = hidratarEmailBig5(email, _id)
+        // - admin overrides
+        email.to = 'marubuteler@gmail.com'
+        email.subject = `Creactivistas Admin | Big 5: Resultados de ${clientName}`,
+        email.text = `Hola Maru, este email fue enviado automáticamente luego de que ${clientName} completó el test Big 5. Si recibiste este correo es probable que su casilla de correos no soportara HTML. Ponete en contacto con el admin si necesitás recuperar los resultados desde la DB.`
         email.bcc = ['abuteler@enneagonstudios.com']
-        // enviar email admins
+        // - enviar email admins
         sgMail.send(email).catch(err => {
           console.error(err)
           console.log(email)
