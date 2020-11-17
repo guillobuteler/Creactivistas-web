@@ -175,7 +175,7 @@ export const marks = [
   { value: 5, label: '5' },
 ];
 
-export const scalesMap = [
+export const mapaEscalas = [
   {
     title: 'La escala IE',
     question: '¿Dónde preferís enfocar tu atención?',

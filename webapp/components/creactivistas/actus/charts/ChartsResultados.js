@@ -143,7 +143,7 @@ export default class extends Component {
       horizontalBarOptions,
       totals
     } = this.state;
-    let mbti = calcularMBTI(totals);
+    const mbti = calcularMBTI(totals);
     return (
       <div className="ChartsResultados">
         <h1 style={{

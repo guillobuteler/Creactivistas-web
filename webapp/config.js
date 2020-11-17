@@ -5,8 +5,8 @@ module.exports = {
   DB_USER: process.env.DB_USER || 'foobaruser',
   DB_PASSWORD: process.env.DB_PASSWORD || 'foobarpassword',
   DB_NAME: process.env.DB_NAME || 'creactivistas',
-  DB_COLLECTION_BIG5: process.env.DB_COLLECTION_BIG5 || 'big5devtesting',
-  DB_COLLECTION_ACTUS: process.env.DB_COLLECTION_ACTUS || 'actusdevtesting',
+  DB_COLLECTION_ACTUS: process.env.DB_COLLECTION_ACTUS || 'actusdev',
+  DB_COLLECTION_BIG5: process.env.DB_COLLECTION_BIG5 || 'big5dev',
   URL: process.env.URL || 'http://localhost',
   PORT: process.env.PORT || '3000'
 }

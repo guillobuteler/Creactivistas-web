@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 
 import FormResultsGroup from './FormResultsGroup';
-import { scalesMap, totalsInit } from '../../../../lib/actus/constants'
+import { mapaEscalas, totalsInit } from '../../../../lib/actus/constants'
 import { calcularMBTI } from '../../../../lib/actus/functions'
 
 
@@ -54,7 +54,7 @@ class FormResults extends Component {
           Estos son tus resultados <span style={{fontWeight:700, textTransform: 'capitalize'}}>{clientName}</span>
         </Paper>
         {
-          scalesMap.map((scale, index) => (
+          mapaEscalas.map((scale, index) => (
             <FormResultsGroup
               key={index}
               // mapName={index}

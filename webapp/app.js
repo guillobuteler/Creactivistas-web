@@ -17,24 +17,26 @@ const app = next({ dev })
 const handler = routes.getRequestHandler(app)
 const port = parseInt(process.env.PORT, 10) || 3000
 const express = require('express')
+const emailTemplateActus = require('./emailtemplate-actus')
 const emailTemplateBig5 = require('./emailtemplate-big5')
 const emailTemplateBig5Admin = require('./emailtemplate-big5-admin')
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+const { hidratarTemplateActus } = require('./lib/actus/server')
 
 const emailDefaults = {
   to: '',
   from: 'Creactivistas <marubuteler@gmail.com>',
   subject: 'Creactivistas | Resultados del test $__TESTNAME__',
-  text: 'Hola $__NAME__, este email fue enviado automáticamente. Para ver tus resultados en el test $__TESTNAME__ andá a $__DOMAIN__/tests/big5/resultados/ y completá el formulario con el siguiente ID: $__ID__'
+  text: 'Hola $__NAME__, este email fue enviado automáticamente luego que completaste el test $__TESTNAME__. Si recibiste este correo es probable que tu casilla de correos no soporte HTML. Por favor ponete en contacto si queres recibir tus resultados sin volver a completar el test.'
 }
 const emailDefaultsAdmin = {
   to: 'marubuteler@gmail.com',
   from: 'Creactivistas <marubuteler@gmail.com>',
   subject: 'Creactivistas Admin | $__TESTNAME__: Resultados de $__NAME__',
-  text: 'Hola Maru, este email fue enviado automáticamente. Para ver los resultados de $__NAME__ en el test $__TESTNAME__ andá a $__DOMAIN__/tests/big5/resultados/ y completá el formulario con el siguiente ID: $__ID__'
+  text: 'Hola Maru, este email fue enviado automáticamente luego de que $__NAME__ completó el test $__TESTNAME__. Si recibiste este correo es probable que su casilla de correos no soportara HTML. Ponete en contacto con Ale si necesitas recuperar los resultados desde la DB.'
 }
-const hidratarEmail = (email, to, name, domain, id, testname) => {
+const hidratarEmailBase = (email, to, name, domain, testname) => {
   // reemplaza los placeholders del contenido default de los emails con la data posta
   // destinatario
   email.to = to
@@ -44,11 +46,13 @@ const hidratarEmail = (email, to, name, domain, id, testname) => {
   // texto en caso de que no soporte HTML
   email.text = email.text.replace('$__NAME__', name)
   email.text = email.text.replace('$__TESTNAME__', testname)
-  email.text = email.text.replace('$__DOMAIN__', domain)
-  email.text = email.text.replace('$__ID__', id)
   // html template
   email.html = email.html.replace('$__NAME__', name)
   email.html = email.html.replace(/\$__DOMAIN__/g, domain) // regexp global porque hay 2
+  return email
+}
+const hidratarEmailBig5 = (email, id) => {
+  // html template
   email.html = email.html.replace(/\$__ID__/g, id) // regexp global porque hay 2
   return email
 }
@@ -85,6 +89,44 @@ app.prepare().then(() => {
       res.send('pong')
     })
 
+    server.post('/api/actus', (req, res) => {
+      const payload = req.body
+      big5DBCollection.insertOne(payload, (error, commandResult) => {
+        if (error) throw error
+        const data = commandResult.ops[0]
+        res.send(data) // return processed payload with DB insertion ID
+
+        // Mandar mails a cliente y admins
+        const { clientName, clientEmail, resultados, _id } = data
+
+        // resetear objeto email con un clon del objeto default
+        email = JSON.parse(JSON.stringify(emailDefaults))
+        email.html = emailTemplateActus
+        email = hidratarEmailBase(email, 'marubuteler@gmail.com', clientName, config.URL, 'Actus')
+        email.html = hidratarTemplateActus(email.html, resultados)
+        /*
+        // enviar email cliente
+        sgMail.send(email).catch(err => {
+          console.error(err)
+          console.log(email)
+          if (err.response) console.error(err.response.body)
+        })
+
+        // clone defaults admin
+        email = JSON.parse(JSON.stringify(emailDefaultsAdmin))
+        email.html = emailTemplateBig5Admin
+        email = hidratarEmailBase(email, 'marubuteler@gmail.com', clientName, config.URL, 'Actus')
+        email.bcc = ['abuteler@enneagonstudios.com']
+        // enviar email admins
+        sgMail.send(email).catch(err => {
+          console.error(err)
+          console.log(email)
+          if (err.response) console.error(err.response.body)
+        })
+        */
+      })
+    })
+
     server.get('/api/big5?:id', (req, res) => {
       const id = req.query && req.query.id ? req.query.id : false
       if (!id || !validMongoId(id)) throw new Error('Not a valid id')
@@ -107,7 +149,8 @@ app.prepare().then(() => {
         // clone defaults clientes
         email = JSON.parse(JSON.stringify(emailDefaults))
         email.html = emailTemplateBig5
-        email = hidratarEmail(email, clientEmail, clientName, config.URL, _id, 'Big 5')
+        email = hidratarEmailBase(email, clientEmail, clientName, config.URL, 'Big 5')
+        email = hidratarEmailBig5(email, _id)
         // enviar email cliente
         sgMail.send(email).catch(err => {
           console.error(err)
@@ -118,7 +161,8 @@ app.prepare().then(() => {
         // clone defaults admin
         email = JSON.parse(JSON.stringify(emailDefaultsAdmin))
         email.html = emailTemplateBig5Admin
-        email = hidratarEmail(email, 'marubuteler@gmail.com', clientName, config.URL, _id, 'Big 5')
+        email = hidratarEmailBase(email, 'marubuteler@gmail.com', clientName, config.URL, 'Big 5')
+        email = hidratarEmailBig5(email, _id)
         email.bcc = ['abuteler@enneagonstudios.com']
         // enviar email admins
         sgMail.send(email).catch(err => {

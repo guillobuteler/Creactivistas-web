@@ -26,11 +26,11 @@ module.exports = `
               padding: 14px 27px;
               font-weight: 400;
               text-align: left;
-              border-radius: 18px;
+              border-radius: 9px;
               font-size: 16px;"
             >
               <p style="color:#000">
-                Hola $__NAME__,<br />
+                Hola $__NAME__,
               </p>
               <p style="color:#000">
                 El ID de tus resultados en el test de perfil de personalidad basado en el modelo de los 5 grandes es: <strong>$__ID__</strong>
