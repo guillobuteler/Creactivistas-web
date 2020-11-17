@@ -89,7 +89,7 @@ app.prepare().then(() => {
         if (error) throw error
         const data = commandResult.ops[0]
         res.send(data) // return processed payload with DB insertion ID
-/*
+
         // Mandar mails a cliente y admins
         const { nombreCliente, emailCliente, resultados, mbti, _id } = data
         // - resetear objeto email con un clon del objeto default
@@ -114,7 +114,6 @@ app.prepare().then(() => {
           console.log(email)
           if (err.response) console.error(err.response.body)
         })
-        */
       })
     })
 
