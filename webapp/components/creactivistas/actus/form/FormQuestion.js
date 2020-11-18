@@ -2,9 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
 
-import { marks } from '../../constants'
-import './FormQuestion.scss';
-
+import { marks } from '../../../../lib/actus/constants'
 
 class FormQuestion extends React.Component {
   constructor(props) {
@@ -49,6 +47,14 @@ class FormQuestion extends React.Component {
             onChangeCommitted={this.handleChangeParent}
           />
         </Grid>
+        <style jsx>
+          {`
+            .question-label {
+              text-align: left;
+              margin: 0px;
+            }
+          `}
+        </style>
       </Grid>
     );
   }

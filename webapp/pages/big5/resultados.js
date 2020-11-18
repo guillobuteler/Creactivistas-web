@@ -45,8 +45,8 @@ class FormResultados extends Component {
       <>
         <h2>Resultados</h2>
         <p>
-          Si ya tomaste el test y recibiste por email tu ID, pod&eacute;s ver los resultados ingresando
-          el ID en el formulario de abajo. <br />
+          Si ya tomaste el test y recibiste tu ID por email, pod&eacute;s ver los resultados ingresando
+          el ID en el formulario de abajo, o siguiendo el link provisto en el email. <br />
           {/* Ejemplo: <Code>58a70606a835c400c8b38e84</Code>. */}
         </p>
         {
@@ -64,7 +64,7 @@ class FormResultados extends Component {
               <InputTextUncontrolled name='submittedId' onChange={handleInputChange} placeholder='Ingresá aquí tu ID' autoFocus />
             </Field>
             {error && <p style={{ fontSize: '10px', color: '#ff0033' }}>{error}</p>}
-            <Button value='Get results' type='submit' disabled={disabledButton} />
+            <Button value='Ver Resultados' type='submit' disabled={disabledButton} />
           </form>
         </div>
       </>

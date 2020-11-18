@@ -3,6 +3,7 @@ const routes = module.exports = require('next-routes')()
 routes
   .add('index', '/')
   .add('actus_index', '/actus', '/actus/index')
+  .add('actus_resultados', '/actus/resultados/:data?', '/actus/resultados')
   .add('b5_index', '/big5', '/big5/index')
   .add('b5_test', '/big5/test/:lang?', '/big5/test')
   .add('b5_resultados', '/big5/resultados', '/big5/resultados')

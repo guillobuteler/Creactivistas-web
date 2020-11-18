@@ -1,12 +1,8 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-// import Paper from '@material-ui/core/Paper';
+import { Component } from 'react'
 import { Radar, HorizontalBar } from 'react-chartjs-2';
+import { calcularMBTI } from '../../../../lib/actus/functions'
 
-import './ResultsCharts.scss';
-
-class ResultsCharts extends React.Component {
+export default class extends Component {
   constructor(props) {
     super(props);
     const { totals } = props;
@@ -134,6 +130,7 @@ class ResultsCharts extends React.Component {
           }],
         },
       },
+      totals
     };
   }
   render() {
@@ -143,30 +140,64 @@ class ResultsCharts extends React.Component {
       radarData,
       radarOptions,
       horizontalBarData,
-      horizontalBarOptions
+      horizontalBarOptions,
+      totals
     } = this.state;
+    const mbti = calcularMBTI(totals);
     return (
-      <div className="ResultsCharts">
-        <Grid container spacing={3}>
-          <Grid container justify="center" item xs={12}>
-            <Grid item xs={12}>
-              <Container className="ChartsContainer">
-                <Container className="RadarContainer">
-                  <Radar data={radarBackdropData} options={radarBackdropOptions} />
-                  <Radar data={radarData} options={radarOptions} />
-                </Container>
-                <Container className="HorizontalBarContainer">
-                  <h3>Valores individuales por eje MBTI</h3>
-                  <HorizontalBar data={horizontalBarData} options={horizontalBarOptions} />
-                </Container>
-              </Container>
-            </Grid>
-            <Grid item xs={12}></Grid>
-          </Grid>
-        </Grid>
+      <div className="ChartsResultados">
+        <h1 style={{
+          fontSize: '2.5rem',
+          fontFamily: 'constantiaregular,serif',
+          letterSpacing: 9
+        }}>{mbti}</h1>
+        <div>
+          <div id="RadarContainer" style={{
+            marginTop: 12,
+            marginBottom: 24,
+            fontSize: '2rem',
+            position: 'relative'
+          }}>
+            <Radar data={radarBackdropData} options={radarBackdropOptions} />
+            <Radar data={radarData} options={radarOptions} />
+          </div>
+          <div style={{width:'60%', margin: '24px auto 24px auto'}}>
+            <h3 style={{
+              fontSize: '1.1rem',
+              marginBottom: 10,
+              textAlign: 'center'
+            }}>Valores individuales por eje MBTI</h3>
+            <HorizontalBar data={horizontalBarData} options={horizontalBarOptions} />
+          </div>
+          <div style={{
+            border: '1px solid #cdd3d6',
+            borderRadius: 3,
+            backgroundColor: '#edf3f6',
+            width: '75%',
+            margin: '35px auto 42px auto',
+            padding: '18px 20px',
+            textAlign: 'left'
+          }}>
+            Muchas gracias por confiar en nosotros, si te interesa recibir un feedback personalizado acerca de tu perfil de personalidad o solicitar el armado de tu gráfico de los 4 elementos por favor escribinos a <a href="mailto:contacto@actus.com.ar">contacto@actus.com.ar</a> para coordinar una entrevista.
+          </div>
+        </div>
+        <style jsx global>
+          {`
+            #RadarContainer canvas:last-child {
+              position: absolute;
+              top: 0;
+            }
+          `}
+        </style>
+        <style jsx>
+            {`
+              a {
+                color: #00d090w;
+                text-decoration: underline;
+              }
+            `}
+          </style>
       </div>
     );
   }
 }
-  
-export default ResultsCharts;
