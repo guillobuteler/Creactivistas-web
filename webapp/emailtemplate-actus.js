@@ -77,7 +77,7 @@ module.exports = `
                           </tr>
                           <tr>
                             <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">I</span> Total</th>
-                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_I__</th>
+                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee; text-align: center;">$__TOTAL_I__</th>
                           </tr>
                         </tbody>
                       </table>
@@ -95,7 +95,7 @@ module.exports = `
                           </tr>
                           <tr>
                             <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">E</span> Total</th>
-                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_E__</th>
+                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee; text-align: center;">$__TOTAL_E__</th>
                           </tr>
                         </tbody>
                       </table>
@@ -145,7 +145,7 @@ module.exports = `
                           </tr>
                           <tr>
                             <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">N</span> Total</th>
-                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_N__</th>
+                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee; text-align: center;">$__TOTAL_N__</th>
                           </tr>
                         </tbody>
                       </table>
@@ -163,7 +163,7 @@ module.exports = `
                           </tr>
                           <tr>
                             <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">S</span> Total</th>
-                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_S__</th>
+                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee; text-align: center;">$__TOTAL_S__</th>
                           </tr>
                         </tbody>
                       </table>
@@ -213,7 +213,7 @@ module.exports = `
                           </tr>
                           <tr>
                             <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">T</span> Total</th>
-                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_T__</th>
+                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee; text-align: center;">$__TOTAL_T__</th>
                           </tr>
                         </tbody>
                       </table>
@@ -231,7 +231,7 @@ module.exports = `
                           </tr>
                           <tr>
                             <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">F</span> Total</th>
-                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_F__</th>
+                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee; text-align: center;">$__TOTAL_F__</th>
                           </tr>
                         </tbody>
                       </table>
@@ -281,7 +281,7 @@ module.exports = `
                           </tr>
                           <tr>
                             <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">P</span> Total</th>
-                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_P__</th>
+                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee; text-align: center;">$__TOTAL_P__</th>
                           </tr>
                         </tbody>
                       </table>
@@ -299,7 +299,7 @@ module.exports = `
                           </tr>
                           <tr>
                             <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">J</span> Total</th>
-                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_J__</th>
+                            <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee; text-align: center;">$__TOTAL_J__</th>
                           </tr>
                         </tbody>
                       </table>
@@ -334,7 +334,7 @@ module.exports = `
                     >
                       $__MBTI__
                   </th></tr>
-                  <tr><th colspan="7" style="background-color: #DDD; color: #00A; padding: 14px 16px;">
+                  <tr><th colspan="7" style="background-color: #DDD; color: #00A; padding: 14px 16px; text-align: center;">
                     <a href="$__DOMAIN__/$__LINK__">Ver gr&aacute;ficos</a>
                   </th></tr>
                 </table>
