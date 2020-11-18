@@ -32,15 +32,16 @@ module.exports = `
               <p style="color:#000">
                 Hola $__NAME__,
               </p>
-              <p style="color:#000">
+              <p style="color:#000; text-indent: 20px;">
                 Estos fueron tus resultados en el test de perfil de personalidad Actus (basado en MBTI):
               </p>
 
-              <div>
+              <div style="margin-top: 25px;">
                 <table style="margin-left: auto;
                   margin-right: auto;
                   background: white;
-                  border-spacing: 1px;"
+                  border: 1px solid black;
+                  border-spacing: 0px;"
                 >
                   <tr><th colspan="7" style="background-color: #444;
                     width: 474px;
@@ -75,7 +76,7 @@ module.exports = `
                             <td style="font-weight: 400; color: #000; font-size: 14px; padding: 14px 23px;">$__PARCIAL_I_14b__</td>
                           </tr>
                           <tr>
-                            <th style="color: #000; font-size: 14px; background: #eee;"><span style="font-size: 18px; margin-right: 9px;">I</span> Total</th>
+                            <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">I</span> Total</th>
                             <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_I__</th>
                           </tr>
                         </tbody>
@@ -93,7 +94,7 @@ module.exports = `
                             <td style="font-weight: 400; color: #000; font-size: 14px; padding: 14px 23px;">$__PARCIAL_E_14a__</td>
                           </tr>
                           <tr>
-                            <th style="color: #000; font-size: 14px; background: #eee;"><span style="font-size: 18px; margin-right: 9px;">E</span> Total</th>
+                            <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">E</span> Total</th>
                             <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_E__</th>
                           </tr>
                         </tbody>
@@ -103,11 +104,12 @@ module.exports = `
                 </table>
               </div>
 
-              <div>
+              <div style="margin-top: 25px;">
                 <table style="margin-left: auto;
-                    margin-right: auto;
-                    background: white;
-                    border-spacing: 1px;"
+                  margin-right: auto;
+                  background: white;
+                  border: 1px solid black;
+                  border-spacing: 0px;"
                 >
                   <tr><th colspan="7" style="background-color: #444;
                     width: 474px;
@@ -117,11 +119,11 @@ module.exports = `
                     color: #FFF;">¿Cómo procesas información y te enteras de cosas?</th></tr>
                   <tr>
                     <th colspan="7" style="background-color: #777;
-                        width: 474px;
-                        padding: 14px 16px;
-                        font-weight: 400;
-                        font-size: 16px;
-                        color: #FFF;"
+                      width: 474px;
+                      padding: 14px 16px;
+                      font-weight: 400;
+                      font-size: 16px;
+                      color: #FFF;"
                     >
                       La escala NS
                     </th>
@@ -142,7 +144,7 @@ module.exports = `
                             <td style="font-weight: 400; color: #000; font-size: 14px; padding: 14px 23px;">$__PARCIAL_N_18b__</td>
                           </tr>
                           <tr>
-                            <th style="color: #000; font-size: 14px; background: #eee;"><span style="font-size: 18px; margin-right: 9px;">N</span> Total</th>
+                            <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">N</span> Total</th>
                             <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_N__</th>
                           </tr>
                         </tbody>
@@ -160,7 +162,7 @@ module.exports = `
                             <td style="font-weight: 400; color: #000; font-size: 14px; padding: 14px 23px;">$__PARCIAL_S_18a__</td>
                           </tr>
                           <tr>
-                            <th style="color: #000; font-size: 14px; background: #eee;"><span style="font-size: 18px; margin-right: 9px;">S</span> Total</th>
+                            <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">S</span> Total</th>
                             <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_S__</th>
                           </tr>
                         </tbody>
@@ -170,11 +172,12 @@ module.exports = `
                 </table>
               </div>
 
-              <div>
+              <div style="margin-top: 25px;">
                 <table style="margin-left: auto;
-                    margin-right: auto;
-                    background: white;
-                    border-spacing: 1px;"
+                  margin-right: auto;
+                  background: white;
+                  border: 1px solid black;
+                  border-spacing: 0px;"
                 >
                   <tr><th colspan="7" style="background-color: #444;
                     width: 474px;
@@ -209,7 +212,7 @@ module.exports = `
                             <td style="font-weight: 400; color: #000; font-size: 14px; padding: 14px 23px;">$__PARCIAL_T_20b__</td>
                           </tr>
                           <tr>
-                            <th style="color: #000; font-size: 14px; background: #eee;"><span style="font-size: 18px; margin-right: 9px;">T</span> Total</th>
+                            <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">T</span> Total</th>
                             <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_T__</th>
                           </tr>
                         </tbody>
@@ -227,7 +230,7 @@ module.exports = `
                             <td style="font-weight: 400; color: #000; font-size: 14px; padding: 14px 23px;">$__PARCIAL_F_20a__</td>
                           </tr>
                           <tr>
-                            <th style="color: #000; font-size: 14px; background: #eee;"><span style="font-size: 18px; margin-right: 9px;">F</span> Total</th>
+                            <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">F</span> Total</th>
                             <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_F__</th>
                           </tr>
                         </tbody>
@@ -237,11 +240,12 @@ module.exports = `
                 </table>
               </div>
 
-              <div>
+              <div style="margin-top: 25px;">
                 <table style="margin-left: auto;
-                    margin-right: auto;
-                    background: white;
-                    border-spacing: 1px;"
+                  margin-right: auto;
+                  background: white;
+                  border: 1px solid black;
+                  border-spacing: 0px;"
                 >
                   <tr><th colspan="7" style="background-color: #444;
                     width: 474px;
@@ -276,7 +280,7 @@ module.exports = `
                             <td style="font-weight: 400; color: #000; font-size: 14px; padding: 14px 23px;">$__PARCIAL_P_19a__</td>
                           </tr>
                           <tr>
-                            <th style="color: #000; font-size: 14px; background: #eee;"><span style="font-size: 18px; margin-right: 9px;">P</span> Total</th>
+                            <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">P</span> Total</th>
                             <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_P__</th>
                           </tr>
                         </tbody>
@@ -294,7 +298,7 @@ module.exports = `
                             <td style="font-weight: 400; color: #000; font-size: 14px; padding: 14px 23px;">$__PARCIAL_J_19b__</td>
                           </tr>
                           <tr>
-                            <th style="color: #000; font-size: 14px; background: #eee;"><span style="font-size: 18px; margin-right: 9px;">J</span> Total</th>
+                            <th style="color: #000; font-size: 14px; background: #eee; text-indent: 25px;"><span style="font-size: 18px; margin-right: 9px;">J</span> Total</th>
                             <th colspan="5" style="font-size: 14px; font-weight: 700; color: #000; background: #eee;">$__TOTAL_J__</th>
                           </tr>
                         </tbody>
@@ -304,11 +308,12 @@ module.exports = `
                 </table>
               </div>
 
-              <div>
+              <div style="margin-top: 25px;">
                 <table style="margin-left: auto;
-                    margin-right: auto;
-                    background: white;
-                    border-spacing: 1px;"
+                  margin-right: auto;
+                  background: white;
+                  border: 1px solid black;
+                  border-spacing: 1px;"
                 >
                   <tr><th colspan="7" style="background-color: #777;
                     font-size: 16px;
@@ -318,10 +323,10 @@ module.exports = `
                     color: #FFF;">Tu Tipo de Preferencias MBTI</th></tr>
                   <tr><th colspan="7"
                     style="background-color: #444;
-                      padding: 12px;
                       color: #FFF;
                       width: 474px;
                       padding: 14px 16px;
+                      text-align: center;
                       font-size: 60px;
                       font-weight: 400;
                       font-family: constantiaregular,serif;
@@ -329,12 +334,12 @@ module.exports = `
                     >
                       $__MBTI__
                   </th></tr>
+                  <tr><th colspan="7" style="background-color: #DDD; color: #00A; padding: 14px 16px;">
+                    <a href="$__DOMAIN__/$__LINK__">Ver gr&aacute;ficos</a>
+                  </th></tr>
                 </table>
               </div>
 
-              <p style="text-align: center;">
-                <a href="$__DOMAIN__/$__LINK__">Ver gr&aacute;ficos</a>
-              </p>
               <p style="color:#555">
                 Muchas gracias por confiar en nosotros, si te interesa recibir m&aacute;s informaci&oacute;n escrib&iacute; a <a href="mailto:marubuteler@gmail.com">marubuteler@gmail.com</a>.
               </p>
