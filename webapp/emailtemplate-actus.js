@@ -353,7 +353,7 @@ module.exports = `
     <tr>
       <td style="background: #000; padding: 18px 6px 9px; text-align: end;">
         <span style="color: white; font-size: 15px; letter-spacing: 1px; vertical-align: top;">desarrollado por</span>
-        <a style="display: inline-block;" href="http://www.enneagonstudios.com/" target="_blank" rel="noopener noreferrer">
+        <a style="display: inline-block;" href="https://www.enneagonstudios.com/" target="_blank" rel="noopener noreferrer">
           <img style="margin-left: 9px; margin-right: 24px; cursor: pointer;" src="http://www.actus.com.ar/assets/img/email_9S_footer.png" alt="Enneagon Studios Logo" />
         </a>
       </td>
