@@ -105,7 +105,7 @@ app.prepare().then(() => {
         })
         // - admin overrides
         email.to = 'marubuteler@gmail.com'
-        email.subject = `Creactivistas Admin | Actus: Resultados de ${nombreCliente}`,
+        email.subject = `Creactivistas Admin | Actus: Resultados de ${nombreCliente} (${emailCliente})`,
         email.text = `Hola Maru, este email fue enviado automáticamente luego de que ${nombreCliente} completó el test Actus. Si recibiste este correo es probable que su casilla de correos no soportara HTML. Ponete en contacto con el admin si necesitás recuperar los resultados desde la DB.`
         email.bcc = ['abuteler@enneagonstudios.com']
         // - enviar email admin
@@ -148,7 +148,7 @@ app.prepare().then(() => {
         })
         // - admin overrides
         email.to = 'marubuteler@gmail.com'
-        email.subject = `Creactivistas Admin | Big 5: Resultados de ${clientName}`,
+        email.subject = `Creactivistas Admin | Big 5: Resultados de ${clientName} (${clientEmail})`,
         email.text = `Hola Maru, este email fue enviado automáticamente luego de que ${clientName} completó el test Big 5. Si recibiste este correo es probable que su casilla de correos no soportara HTML. Ponete en contacto con el admin si necesitás recuperar los resultados desde la DB.`
         email.bcc = ['abuteler@enneagonstudios.com']
         // - enviar email admins
