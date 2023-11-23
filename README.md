@@ -1,10 +1,10 @@
-# Creactivistas MBTI based personality test
+# Creactivistas online personality tests
 
-Note: MBTI stands for Myers–Briggs Type Indicator.
+Single page application comprising of two different personality tests:
+- One based in MBTI (Myers–Briggs Type Indicator)
+- The other based in the ["Big-Five"](https://en.wikipedia.org/wiki/Big_Five_personality_traits) personality traits.
 
-Webapp built on React, bootstrapped with create-react-app.
-
-You can see it live and find out your own score [here] (http://creactivistas.enneagonstudios.com/).
+See the app live and find out your own score [here] (http://creactivistas.enneagonstudios.com/).
 
 
 ## Credits
