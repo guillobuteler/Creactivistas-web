@@ -1,11 +1,17 @@
-describe('Landing page', () => {
-    it('Loads the navigation menu', () => {
-        cy.visit('http://localhost:3000');
-        cy.get('nav')
-            .should('exist')
-            .and('have.descendants', 'div');
-    })
-    it('Loads the welcome section', () => {
-        cy.get('section[data-testid="welcome"]').should('exist');
-    });
-})
+describe("Landing page", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:3000/");
+  });
+  it("Loads the site navigation", () => {
+    cy.get("nav")
+      .should("exist")
+      .and("have.descendants", "ul")
+      .and("have.descendants", "a");
+  });
+  it("Loads the view-loader section", () => {
+    cy.get('section[data-testid="view-loader"]').should("exist");
+  });
+  it("Loads the welcome message", () => {
+    cy.get('h1').should("have.text", 'Tests de personalidad');
+  });
+});

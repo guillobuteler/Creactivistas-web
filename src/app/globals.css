@@ -6,6 +6,14 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  --creactivistas-primary-blue: 0, 154, 203;
+  --creactivistas-primary-blue-light: 1, 173, 194;
+  --creactivistas-primary-green: 0, 191, 183;
+  --creactivistas-primary-green-light1: 0, 206, 176;
+  --creactivistas-primary-green-light2: 0, 218, 171;
+  --creactivistas-primary-green-light3: 1, 225, 166;
+  --creactivistas-primary-green-light4: 0, 235, 161;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,11 +25,14 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: black;
+  background-color: rgb(255,255,255);
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right,
+      rgba(var(--creactivistas-primary-blue), .42),
+      rgba(var(--creactivistas-primary-green-light2), .1) 20%,
+      rgba(var(--creactivistas-primary-green-light2), .1) 80%,
+      rgba(var(--creactivistas-primary-blue), .42));
+  background-size: 100% 100%;
 }
