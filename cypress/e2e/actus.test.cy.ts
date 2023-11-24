@@ -10,6 +10,6 @@ describe("Actus page", () => {
   });
 
   it("Loads the button to start the test", () => {
-    cy.get('button[data-testid="start-mbti"]').should("exist");
+    cy.get('button[data-testid="end-mbti"]').should("exist");
   });
 });
