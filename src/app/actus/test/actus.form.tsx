@@ -1,4 +1,3 @@
-import Card from "../../../components/card";
 
 export default function ActusForm() {
   return (

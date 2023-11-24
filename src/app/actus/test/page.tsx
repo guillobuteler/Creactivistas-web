@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from "next/navigation";
-import Button from "../../../components/button";
+import Button from "@/components/button";
 import ActusInstructions from "./actus.instructions";
 import ActusForm from "./actus.form";
 
