@@ -14,7 +14,10 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
+        'creactivistas-blue': 'rgb(var(--creactivistas-primary-blue))',
+        'creactivistas-blue-light': 'rgb(var(--creactivistas-primary-blue-light))',
         'creactivistas-green': 'rgb(var(--creactivistas-primary-green))',
+        'creactivistas-green-light4': 'rgb(var(--creactivistas-primary-green-light4))',
       }
     },
   },
