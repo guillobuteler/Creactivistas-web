@@ -20,7 +20,7 @@ export default function Rating({
 
   return (
     <>
-      <div className="flex items-center gap-2">
+      <div data-testid="rating-container" className="flex items-center gap-2">
         {/* 
           Star shape
           <svg
@@ -33,15 +33,16 @@ export default function Rating({
           </svg>
         */}
         {score.map(({ label, active }, index) => (
-          <div key={index} className="flex flex-col gap-1">
+          <div data-testid="score-container" key={index} className={`flex flex-col gap-1 ${active ? 'active-score' : ''}`}>
             <svg
-              className={`w-4 h-4 ${
+              className={`w-4 h-4 cursor-pointer ${
                 active ? "text-teal-400" : "text-gray-300"
               }`}
               viewBox="0 0 16 16"
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
               onClick={() => setSelected(index)}
+              data-testid="score"
             >
               <rect width="16" height="16" rx="4" />
             </svg>

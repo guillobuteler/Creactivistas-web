@@ -26,14 +26,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <main className="font-sans flex min-h-screen flex-col gap-8 justify-start p-5 bg-white sm:w-4/5 md:w-4/5 lg:w-3/4 xl:w-3/5 m-auto">
+      <body className={`${inter.className} min-w-9s`}>
+        <main className="font-sans flex min-h-screen flex-col gap-8 justify-start p-2 sm:p-5 bg-white sm:w-4/5 md:w-4/5 lg:w-3/4 xl:w-3/5 m-auto">
           <header className="flex flex-col w-full">
             <Logo />
             <Nav />
           </header>
           <section
-            className="flex flex-col gap-5 text-center px-6"
+            className="flex flex-col gap-5 text-center sm:px-6"
             data-testid="view-loader"
           >
             {children}

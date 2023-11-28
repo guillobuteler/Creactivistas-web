@@ -9,9 +9,12 @@ describe('<ActusForm />', () => {
     })
 
     it('allows the user to score the MBTI questions in 4 steps', () => {
-        let currentStep = screen.getByTestId('current-step')
-
-        expect(currentStep).toEqual(1);
-
+        let steps = screen.getAllByTestId('step-bubble');
+        expect(steps.length).toEqual(4);
+    })
+    
+    it('starts in step 1', () => {
+        let steps = screen.getAllByTestId('step-bubble');
+        expect(steps[0].className.indexOf('active')).toBeTruthy();
     })
 })

@@ -18,7 +18,10 @@ const config: Config = {
         'creactivistas-blue-light': 'rgb(var(--creactivistas-primary-blue-light))',
         'creactivistas-green': 'rgb(var(--creactivistas-primary-green))',
         'creactivistas-green-light4': 'rgb(var(--creactivistas-primary-green-light4))',
-      }
+      },
+      minWidth: {
+        '9s': '425px',
+      },
     },
   },
   plugins: [],
