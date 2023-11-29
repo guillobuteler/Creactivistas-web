@@ -9,7 +9,7 @@ export default function FormQuestionGroup({
 }: FormQuestionGroupProps) {
   return (
     <div className="flex flex-col gap-4">
-      {questions?.map((question, index) => <FormQuestion key={index} id={question.key} label={question.label} />)}
+      {questions?.map((question, index) => <FormQuestion questionKey={question.key} label={question.label} />)}
     </div>
   );
 }

@@ -1,16 +1,15 @@
 import Rating from "@/components/rating";
-import { useState } from "react";
+import { QuestionKey } from "../mbti.types";
 
 type FormQuestionProps = {
-  id: string;
+  questionKey: QuestionKey;
   label: string;
 }
-export default function FormQuestion({id, label}:FormQuestionProps) {
-  const [selected, setSelected] = useState(0);
+export default function FormQuestion({questionKey, label}:FormQuestionProps) {
   return (
     <div className="flex justify-between">
       <p data-testid="question-text" className="text-left pr-8">{label}</p>
-      <Rating selected={selected} setSelected={setSelected} />
+      <Rating questionKey={questionKey} />
     </div>
   );
 }

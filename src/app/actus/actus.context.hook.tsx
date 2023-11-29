@@ -1,9 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import {
-  Answer,
-  QuestionKeys,
-  QuestionsGroup,
-} from "./test/mbti.types";
+import { Answer, QuestionKeys, QuestionsGroup } from "./test/mbti.types";
 import { QuestionsMatrix } from "./test/mbti.data";
 
 const ActusContext = createContext<ActusContext | null>(null);
@@ -28,8 +24,8 @@ type ActusContextProviderProps = {
 const initForm = () => {
   const formSteps: FormStep[] = [];
   for (let i = 1; i <= 4; i++) {
-    const start = (i-1)*5;
-    const end = 5*i;
+    const start = (i - 1) * 5;
+    const end = 5 * i;
     const formStep: FormStep = {
       number: i,
       questions: QuestionsMatrix.slice(start, end),
@@ -41,9 +37,7 @@ const initForm = () => {
 const initAnswers = () => {
   const answers: Answer[] = [];
   Object.values(QuestionKeys).forEach((key) => {
-    const answer: Answer | any = {};
-    answer[key] = 0;
-    answers.push(answer);
+    answers.push({ key, score: 0 });
   });
   return answers;
 };
@@ -72,7 +66,8 @@ export default function ActusContextProvider({
 
 export function useActusContext() {
   const context = useContext(ActusContext);
-  if (!context) throw new Error("This hook must be used within the ActusContextProvider");
+  if (!context)
+    throw new Error("This hook must be used within the ActusContextProvider");
 
   return context;
 }

@@ -1,21 +1,26 @@
-import { Dispatch, SetStateAction } from "react";
+import { useActusContext } from "@/app/actus/actus.context.hook";
+import { QuestionKey } from "@/app/actus/test/mbti.types";
 
 type RatingProps = {
+  questionKey: QuestionKey;
   minScore?: number;
   maxScore?: number;
-  selected: number;
-  setSelected: Dispatch<SetStateAction<number>>;
 };
-
+type Rating = {
+  score: number;
+  active: boolean;
+};
 export default function Rating({
+  questionKey,
   minScore = 0,
   maxScore = 5,
-  selected,
-  setSelected,
 }: RatingProps) {
-  const score = [];
+  const { answers, setAnswers } = useActusContext();
+  const boxes: Rating[] = [];
+  let answerIndex = answers.findIndex((answer) => answer.key === questionKey);
+  const score = answers[answerIndex]?.score;
   for (let i = minScore; i <= maxScore; i++) {
-    score.push({ label: i, active: i <= selected });
+    boxes.push({ score: i, active: i <= score });
   }
 
   return (
@@ -32,8 +37,12 @@ export default function Rating({
             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
           </svg>
         */}
-        {score.map(({ label, active }, index) => (
-          <div data-testid="score-container" key={index} className={`flex flex-col gap-1 ${active ? 'active-score' : ''}`}>
+        {boxes.map(({ score, active }, index) => (
+          <div
+            data-testid="score-container"
+            key={index}
+            className={`flex flex-col gap-1 ${active ? "active-score" : ""}`}
+          >
             <svg
               className={`w-4 h-4 cursor-pointer ${
                 active ? "text-teal-400" : "text-gray-300"
@@ -41,12 +50,15 @@ export default function Rating({
               viewBox="0 0 16 16"
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
-              onClick={() => setSelected(index)}
+              onClick={() => {
+                answers[answerIndex] = { key:questionKey, score };
+                return setAnswers([...answers]);
+              }}
               data-testid="score"
             >
               <rect width="16" height="16" rx="4" />
             </svg>
-            <span>{label}</span>
+            <span>{score}</span>
           </div>
         ))}
       </div>

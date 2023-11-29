@@ -60,7 +60,8 @@ export type Question = {
 };
 
 export type Answer = {
-  [key in QuestionKeys]: number;
+  key: QuestionKey;
+  score: number;
 };
 
 export type AxisDetails = {

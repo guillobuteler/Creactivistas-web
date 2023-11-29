@@ -5,7 +5,6 @@ type FormStepProps = {
   questions: QuestionsGroup[];
 };
 export default function FormStep({ questions }: FormStepProps) {
-  // console.log(questions);
   return (
     <div data-testid="step" className="flex flex-col">
       <h2 className="flex text-2xl text-teal-700 font-semibold tracking-wide pb-2">
