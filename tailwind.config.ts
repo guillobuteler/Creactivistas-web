@@ -17,6 +17,7 @@ const config: Config = {
         'creactivistas-blue': 'rgb(var(--creactivistas-primary-blue))',
         'creactivistas-blue-light': 'rgb(var(--creactivistas-primary-blue-light))',
         'creactivistas-green': 'rgb(var(--creactivistas-primary-green))',
+        'creactivistas-green-light2': 'rgb(var(--creactivistas-primary-green-light2))',
         'creactivistas-green-light4': 'rgb(var(--creactivistas-primary-green-light4))',
       },
       minWidth: {

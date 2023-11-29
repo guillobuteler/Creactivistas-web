@@ -1,39 +1,41 @@
-export const questionToAxisMap = {
+import { AxisDetails, QuestionsGroup, mbtiScale } from "./mbti.types";
+
+export const questionsToAxisMap: AxisDetails = {
   I: {
     title: "Resultados de Introversion",
-    keys: ["1b", "5a", "9a", "12a", "14b"],
+    questionKeys: ["1b", "5a", "9a", "12a", "14b"],
   },
   E: {
     title: "Resultados de Extroversion",
-    keys: ["1a", "5b", "9b", "12b", "14a"],
+    questionKeys: ["1a", "5b", "9b", "12b", "14a"],
   },
   N: {
     title: "Resultados de iNtuition",
-    keys: ["2a", "6b", "10a", "15a", "18b"],
+    questionKeys: ["2a", "6b", "10a", "15a", "18b"],
   },
   S: {
     title: "Resultados de Sensing",
-    keys: ["2b", "6a", "10b", "15b", "18a"],
+    questionKeys: ["2b", "6a", "10b", "15b", "18a"],
   },
   T: {
     title: "Resultados de Thinking",
-    keys: ["3a", "7a", "11b", "16b", "20b"],
+    questionKeys: ["3a", "7a", "11b", "16b", "20b"],
   },
   F: {
     title: "Resultados de Feeling",
-    keys: ["3b", "7b", "11a", "16a", "20a"],
+    questionKeys: ["3b", "7b", "11a", "16a", "20a"],
   },
   P: {
     title: "Resultados de Perceiving",
-    keys: ["4a", "8a", "13b", "17b", "19a"],
+    questionKeys: ["4a", "8a", "13b", "17b", "19a"],
   },
   J: {
     title: "Resultados de Judging",
-    keys: ["4b", "8b", "13a", "17a", "19b"],
+    questionKeys: ["4b", "8b", "13a", "17a", "19b"],
   },
 };
 
-export const mbtiScales = [
+export const mbtiScales: mbtiScale[] = [
   {
     title: "La escala IE",
     question: "¿Dónde preferís enfocar tu atención?",
@@ -56,7 +58,7 @@ export const mbtiScales = [
   },
 ];
 
-export const questionsMatrix = [
+export const QuestionsMatrix: QuestionsGroup[] = [
   [
     {
       key: "1a",
@@ -124,7 +126,10 @@ export const questionsMatrix = [
     { key: "8b", label: "Armar un esquema de trabajo y seguirlo" },
   ],
   [
-    { key: "9a", label: "Los pensamientos y emociones que otros no pueden ver" },
+    {
+      key: "9a",
+      label: "Los pensamientos y emociones que otros no pueden ver",
+    },
     {
       key: "9b",
       label: "Actividades y ocurrencias en las cuales otros participan",
@@ -186,7 +191,10 @@ export const questionsMatrix = [
       key: "19a",
       label: "Sentirme libre de hacer las cosas según se presenten",
     },
-    { key: "19b", label: "Saber anticipadamente qué es lo que tengo que hacer" },
+    {
+      key: "19b",
+      label: "Saber anticipadamente qué es lo que tengo que hacer",
+    },
   ],
   [
     {
@@ -197,6 +205,177 @@ export const questionsMatrix = [
     { key: "20b", label: "Usar mi habilidad para analizar situaciones" },
   ],
 ];
+
+// export const QuestionsArray: Question[] = [
+//   {
+//     key: "1a",
+//     label: "Tomar decisiones después de conocer qué piensan los demás",
+//     score: 0,
+//   },
+//   { key: "1b", label: "Tomar decisiones sin consultar a otros", score: 0 },
+//   {
+//     key: "2a",
+//     label: "Ser identificado como imaginativo o intuitivo",
+//     score: 0,
+//   },
+//   { key: "2b", label: "Ser identificado como concreto y preciso", score: 0 },
+//   {
+//     key: "3a",
+//     label:
+//       "Tomar decisiones sobre las personas basándome en datos disponibles y un análisis sistemático de las situaciones",
+//     score: 0,
+//   },
+//   {
+//     key: "3b",
+//     label:
+//       "Tomar decisiones sobre las personas basándome en la empatía, emociones y entendimiento de sus necesidades y valores",
+//     score: 0,
+//   },
+
+//   {
+//     key: "4a",
+//     label:
+//       "Permitir que los compromisos ocurran sólo si los otros quieren asumirlos",
+//     score: 0,
+//   },
+//   {
+//     key: "4b",
+//     label: "Presionar para asegurarme de que los compromisos sean cumplidos",
+//     score: 0,
+//   },
+//   {
+//     key: "5a",
+//     label: "Tener tiempo para reflexionar y estar tranquilo y en silencio solo",
+//     score: 0,
+//   },
+//   {
+//     key: "5b",
+//     label: "Tener tiempo para estar activo y enérgico con otros",
+//     score: 0,
+//   },
+
+//   {
+//     key: "6a",
+//     label:
+//       "Usar métodos que conozco bien y son efectivos para cumplir con mi trabajo",
+//     score: 0,
+//   },
+//   {
+//     key: "6b",
+//     label: "Pensar en nuevos métodos para hacer las tareas",
+//     score: 0,
+//   },
+//   {
+//     key: "7a",
+//     label:
+//       "Llegar a conclusiones basándome en un análisis lógico, racional y metódico",
+//     score: 0,
+//   },
+//   {
+//     key: "7b",
+//     label:
+//       "Llegar a conclusiones basándome en lo que siento y creo desde la experiencia acerca de la vida y las personas",
+//     score: 0,
+//   },
+//   {
+//     key: "8a",
+//     label: "Evitar comprometerme con fechas límite (deadlines)",
+//     score: 0,
+//   },
+//   { key: "8b", label: "Armar un esquema de trabajo y seguirlo", score: 0 },
+//   {
+//     key: "9a",
+//     label: "Los pensamientos y emociones que otros no pueden ver",
+//     score: 0,
+//   },
+//   {
+//     key: "9b",
+//     label: "Actividades y ocurrencias en las cuales otros participan",
+//     score: 0,
+//   },
+//   { key: "10a", label: "Lo abstracto y teórico", score: 0 },
+//   { key: "10b", label: "Lo concreto y real", score: 0 },
+//   { key: "11a", label: "Ayudar a otros a explorar sus emociones", score: 0 },
+//   {
+//     key: "11b",
+//     label: "Ayudar a otros a tomar decisiones lógicas",
+//     score: 0,
+//   },
+//   {
+//     key: "12a",
+//     label: "Comunicar muy poco de mis pensamientos y emociones",
+//     score: 0,
+//   },
+//   {
+//     key: "12b",
+//     label: "Comunicar libremente mis pensamientos y emociones",
+//     score: 0,
+//   },
+//   {
+//     key: "13a",
+//     label: "Planificar de antemano basándome en proyecciones",
+//     score: 0,
+//   },
+//   {
+//     key: "13b",
+//     label: "Planificar a medida que aparecen las necesidades",
+//     score: 0,
+//   },
+//   { key: "14a", label: "Conocer gente nueva", score: 0 },
+//   {
+//     key: "14b",
+//     label: "Estar solo o con una persona a quien conozco bien",
+//     score: 0,
+//   },
+//   { key: "15a", label: "El mundo de las ideas", score: 0 },
+//   { key: "15b", label: "El mundo de las hechos comprobables", score: 0 },
+//   { key: "16a", label: "Las convicciones", score: 0 },
+//   { key: "16b", label: "Conclusiones verificables", score: 0 },
+//   {
+//     key: "17a",
+//     label:
+//       "Llevar registro de mis compromisos y citas en agendas lo más que pueda",
+//     score: 0,
+//   },
+//   {
+//     key: "17b",
+//     label:
+//       "Evitar registrar mis compromisos y citas en agendas lo más que pueda",
+//     score: 0,
+//   },
+//   {
+//     key: "18a",
+//     label: "Llevar a la práctica planes cuidadosa y detalladamente precisos",
+//     score: 0,
+//   },
+//   {
+//     key: "18b",
+//     label:
+//       "Diseñar planes y estructuras sin necesariamente llevarlos a la práctica",
+//     score: 0,
+//   },
+//   {
+//     key: "19a",
+//     label: "Sentirme libre de hacer las cosas según se presenten",
+//     score: 0,
+//   },
+//   {
+//     key: "19b",
+//     label: "Saber anticipadamente qué es lo que tengo que hacer",
+//     score: 0,
+//   },
+//   {
+//     key: "20a",
+//     label:
+//       "Experimentar situaciones, discusiones o películas con alto contenido emocional",
+//     score: 0,
+//   },
+//   {
+//     key: "20b",
+//     label: "Usar mi habilidad para analizar situaciones",
+//     score: 0,
+//   },
+// ];
 
 export const testSampleAnswers = {
   "1a": 1,

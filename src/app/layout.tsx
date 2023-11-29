@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/nav";
 import Logo from "@/components/logo";
 import Footer from "@/components/footer";
+import ClientProviders from "@/util/client.providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,7 +37,9 @@ export default function RootLayout({
             className="flex flex-col gap-5 text-center sm:px-6"
             data-testid="view-loader"
           >
-            {children}
+            <ClientProviders>
+              {children}
+            </ClientProviders>
           </section>
         </main>
         <Footer />
