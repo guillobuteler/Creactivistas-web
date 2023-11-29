@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import ActusFormQuestion from "./actus.form.question";
+import FormQuestion from "./form.question";
 
-describe("<ActusFormQuestion />", () => {
+describe("<FormQuestion />", () => {
   beforeEach(() => {
-    render(<ActusFormQuestion id="foo" label="Bar question to be rated" />);
+    render(<FormQuestion id="foo" label="Bar question to be rated" />);
   });
 
   it("should display the question's text", () => {

@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import {
   Answer,
-  QuestionKey,
   QuestionKeys,
   QuestionsGroup,
 } from "./test/mbti.types";
@@ -28,10 +27,12 @@ type ActusContextProviderProps = {
 
 const initForm = () => {
   const formSteps: FormStep[] = [];
-  for (let i = 1; i === 4; i++) {
+  for (let i = 1; i <= 4; i++) {
+    const start = (i-1)*5;
+    const end = 5*i;
     const formStep: FormStep = {
       number: i,
-      questions: [...QuestionsMatrix.slice((i - 1) * 5, 5)],
+      questions: QuestionsMatrix.slice(start, end),
     };
     formSteps.push(formStep);
   }
@@ -44,7 +45,6 @@ const initAnswers = () => {
     answer[key] = 0;
     answers.push(answer);
   });
-  console.log(answers);
   return answers;
 };
 
