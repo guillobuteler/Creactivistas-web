@@ -5,11 +5,14 @@ import { QuestionsMatrix } from "./test/mbti.data";
 const ActusContext = createContext<ActusContext | null>(null);
 
 type ActusContext = {
+  inProgress: boolean;
+  setInProgress: React.Dispatch<React.SetStateAction<boolean>>;
   stepNumber: number;
   setStepNumber: React.Dispatch<React.SetStateAction<number>>;
   actusSteps: FormStep[];
   answers: Answer[];
   setAnswers: React.Dispatch<React.SetStateAction<Answer[]>>;
+  resetTest: () => void;
 };
 
 type FormStep = {
@@ -45,18 +48,26 @@ const initAnswers = () => {
 export default function ActusContextProvider({
   children,
 }: ActusContextProviderProps) {
+  const [inProgress, setInProgress] = useState<boolean>(false);
   const [stepNumber, setStepNumber] = useState<number>(1);
   const [actusSteps] = useState<FormStep[]>(initForm());
   const [answers, setAnswers] = useState<Answer[]>(initAnswers());
-
+  const resetTest = () => {
+    setStepNumber(1);
+    setAnswers(initAnswers());
+    setInProgress(false);
+  };
   return (
     <ActusContext.Provider
       value={{
+        inProgress,
+        setInProgress,
         stepNumber,
         setStepNumber,
         actusSteps,
         answers,
         setAnswers,
+        resetTest,
       }}
     >
       {children}

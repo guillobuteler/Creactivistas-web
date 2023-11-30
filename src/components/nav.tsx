@@ -13,7 +13,7 @@ export default function Nav() {
           <Link href={"/"} className={`${pathname === '/' ? active : ''}`}>Inicio</Link>
         </li>
         <li>
-          <Link href={"/actus"} className={`${pathname === '/actus' ? active : ''}`} data-test-id="nav-actus">Actus</Link>
+          <Link href={"/actus"} className={`${pathname.includes('/actus') ? active : ''}`} data-test-id="nav-actus">Actus</Link>
         </li>
         <li>
           <Link href={"/big5"} className={`${pathname === '/big5' ? active : ''}`} data-test-id="nav-big5">Big 5</Link>
