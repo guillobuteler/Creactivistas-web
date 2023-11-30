@@ -1,7 +1,7 @@
 type CardProps = {
   title: string;
   onClick: () => void;
-  color?: "primary" | "secondary";
+  color?: "primary" | "secondary" | "tertiary";
   dataTestId?: string;
 };
 export default function Button({
@@ -11,7 +11,11 @@ export default function Button({
   dataTestId,
 }: CardProps) {
   const bgColor =
-    color == "primary" ? "bg-creactivistas-blue-light hover:bg-creactivistas-green" : "bg-pink-600 hover:bg-pink-400";
+    color == "primary"
+      ? "bg-creactivistas-blue-light hover:bg-creactivistas-green"
+      : color == "secondary"
+      ? "bg-pink-600 hover:bg-pink-400"
+      : "bg-gray-500 hover:bg-gray-400";
   return (
     <div>
       <button

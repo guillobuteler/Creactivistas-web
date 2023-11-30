@@ -5,9 +5,13 @@ import ActusInstructions from "./components/instructions";
 import FormHeader from "./components/form.header";
 import FormStep from "./components/form.step";
 import FormFooter from "./components/form.footer";
+import { useEffect } from "react";
 
 export default function ActusTest() {
-  const { stepNumber, actusSteps } = useActusContext();
+  const { inProgress, setInProgress, stepNumber, actusSteps } = useActusContext();
+  useEffect(()=>{
+    if(!inProgress) setInProgress(true);
+  }, [inProgress, setInProgress])
   const stepQuestions = actusSteps[stepNumber - 1]?.questions;
   return (
     <div className="flex flex-col gap-6 pb-16">

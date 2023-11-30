@@ -20,16 +20,14 @@ export default function ActusTest() {
           />
           <Button
             title="Reset test"
-            onClick={() => confirm("sure?") && resetTest()}
+            color="tertiary"
+            onClick={() => confirm("Cualquier valor registrado hasta el momento se perderá. Continuar?") && resetTest()}
           />
         </div>
       ) : (
         <Button
           title="Empezar test"
-          onClick={() => {
-            setInProgress(true);
-            router.push("/actus/test");
-          }}
+          onClick={() => router.push("/actus/test")}
           dataTestId="start-mbti"
         />
       )}
