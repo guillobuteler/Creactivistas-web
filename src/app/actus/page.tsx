@@ -123,7 +123,7 @@ export default function ActusTest() {
           </>
         ) : (
           <>
-            <div className="flex flex-col gap-3 w-2/5">
+            <div className="flex flex-col gap-3 w-3/5 lg:w-2/5">
               <input
                 className={`border ${borderColorName} p-1 rounded`}
                 type="text"
@@ -143,7 +143,7 @@ export default function ActusTest() {
                 />
                 {showEmailInvalid && (
                   <span className="text-red-500">
-                    ^ El email debe ser válido.{" "}
+                    ^ El email debe ser válido.
                   </span>
                 )}
               </div>
@@ -161,7 +161,7 @@ export default function ActusTest() {
                 />
                 {showEmail2Invalid && (
                   <span className="text-red-500">
-                    ^ El email debe ser válido e idéntico.{" "}
+                    ^ El email debe ser válido e idéntico.
                   </span>
                 )}
               </div>
