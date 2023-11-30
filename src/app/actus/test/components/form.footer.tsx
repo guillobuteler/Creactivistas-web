@@ -22,7 +22,7 @@ export default function FormFooter() {
   return (
     <section
       data-testid="buttons-container"
-      className="flex justify-center gap-4"
+      className="flex justify-center gap-4 mt-6"
     >
       {stepNumber > 1 && (
         <Button

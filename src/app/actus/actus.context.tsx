@@ -4,7 +4,17 @@ import { QuestionsMatrix } from "./test/mbti.data";
 
 const ActusContext = createContext<ActusContext | null>(null);
 
+export type User = {
+  name: string;
+  email: string;
+};
+
+export const validEmailExpression: RegExp =
+  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
 type ActusContext = {
+  user: User;
+  setUser: React.Dispatch<React.SetStateAction<User>>;
   inProgress: boolean;
   setInProgress: React.Dispatch<React.SetStateAction<boolean>>;
   stepNumber: number;
@@ -24,6 +34,10 @@ type ActusContextProviderProps = {
   children: React.ReactNode;
 };
 
+const initUser = () => {
+  return { name: "", email: "" };
+};
+
 const initForm = () => {
   const formSteps: FormStep[] = [];
   for (let i = 1; i <= 4; i++) {
@@ -37,6 +51,7 @@ const initForm = () => {
   }
   return formSteps;
 };
+
 const initAnswers = () => {
   const answers: Answer[] = [];
   Object.values(QuestionKeys).forEach((key) => {
@@ -48,6 +63,7 @@ const initAnswers = () => {
 export default function ActusContextProvider({
   children,
 }: ActusContextProviderProps) {
+  const [user, setUser] = useState<User>(initUser());
   const [inProgress, setInProgress] = useState<boolean>(false);
   const [stepNumber, setStepNumber] = useState<number>(1);
   const [actusSteps] = useState<FormStep[]>(initForm());
@@ -60,6 +76,8 @@ export default function ActusContextProvider({
   return (
     <ActusContext.Provider
       value={{
+        user,
+        setUser,
         inProgress,
         setInProgress,
         stepNumber,

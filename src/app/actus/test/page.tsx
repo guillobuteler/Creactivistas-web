@@ -8,7 +8,7 @@ import FormFooter from "./components/form.footer";
 import { useEffect } from "react";
 
 export default function ActusTest() {
-  const { inProgress, setInProgress, stepNumber, actusSteps } = useActusContext();
+  const { inProgress, setInProgress, stepNumber, actusSteps, user } = useActusContext();
   useEffect(()=>{
     if(!inProgress) setInProgress(true);
   }, [inProgress, setInProgress])
@@ -24,6 +24,7 @@ export default function ActusTest() {
         <FormStep questions={stepQuestions} />
         <FormFooter />
       </div>
+      <h3 className="text-lg">{user.name}<span className="pl-3">{`< ${user.email} >`}</span></h3>
     </div>
   );
 }
