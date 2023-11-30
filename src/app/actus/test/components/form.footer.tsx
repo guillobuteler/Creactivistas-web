@@ -2,36 +2,50 @@ import { useRouter } from "next/navigation";
 import Button from "@/components/button";
 import { useActusContext } from "../../actus.context";
 
-export default function FormFooter () {
+export default function FormFooter() {
   const router = useRouter();
   const { stepNumber, setStepNumber } = useActusContext();
+  const handleClick = (action: "prev" | "next" | "submit") => {
+    window.scrollTo({top:0});
+    switch (action) {
+      case "prev":
+        setStepNumber(stepNumber - 1);
+        break;
+      case "next":
+        setStepNumber(stepNumber + 1);
+        break;
+      case "submit":
+        router.push("/actus/resultados");
+        break;
+    }
+  };
   return (
     <section
-          data-testid="buttons-container"
-          className="flex justify-center gap-4"
-        >
-          {stepNumber > 1 && (
-            <Button
-              title="Anterior"
-              onClick={() => setStepNumber(stepNumber - 1)}
-              dataTestId="prev-step"
-            />
-          )}
-          {stepNumber < 4 && (
-            <Button
-              title="Siguiente"
-              onClick={() => setStepNumber(stepNumber + 1)}
-              dataTestId="next-step"
-            />
-          )}
-          {stepNumber === 4 && (
-            <Button
-              title="Ver Resultados"
-              color="secondary"
-              onClick={() => router.push("/actus/resultados")}
-              dataTestId="end-mbti"
-            />
-          )}
-        </section>
+      data-testid="buttons-container"
+      className="flex justify-center gap-4"
+    >
+      {stepNumber > 1 && (
+        <Button
+          title="Anterior"
+          onClick={() => handleClick("prev")}
+          dataTestId="prev-step"
+        />
+      )}
+      {stepNumber < 4 && (
+        <Button
+          title="Siguiente"
+          onClick={() => handleClick("next")}
+          dataTestId="next-step"
+        />
+      )}
+      {stepNumber === 4 && (
+        <Button
+          title="Ver Resultados"
+          color="secondary"
+          onClick={() => handleClick("submit")}
+          dataTestId="end-mbti"
+        />
+      )}
+    </section>
   );
-};
+}
