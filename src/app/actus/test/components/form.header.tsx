@@ -1,4 +1,4 @@
-import { useActusContext } from "../../actus.context.hook";
+import { useActusContext } from "../../actus.context";
 
 export default function FormHeader() {
   const { stepNumber, setStepNumber } = useActusContext();

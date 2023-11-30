@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 import Button from "@/components/button";
-import { useActusContext } from "../../actus.context.hook";
+import { useActusContext } from "../../actus.context";
 
 export default function FormFooter () {
   const router = useRouter();

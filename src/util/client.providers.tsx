@@ -1,6 +1,6 @@
 "use client";
 
-import ActusContextProvider from "@/app/actus/actus.context.hook";
+import ActusContextProvider from "@/app/actus/actus.context";
 import React from "react"
 
 type ClientProvidersProps = {

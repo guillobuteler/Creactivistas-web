@@ -1,11 +1,14 @@
-import {render, screen} from '@testing-library/react'
+import { screen} from '@testing-library/react'
 // import userEvent from '@testing-library/user-event'
 import FormHeader from './form.header';
+import { actusBeforeAll, actusRender } from './jest.setup';
+
+beforeAll(actusBeforeAll);
 
 describe('<FormHeader />', () => {
     // AAA: Arrange, Act, Assert
     beforeEach(() => {
-        render(<FormHeader />);
+        actusRender(<FormHeader />);
     })
 
     it('shows the MBTI test in 4 steps', () => {

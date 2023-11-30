@@ -1,6 +1,6 @@
 "use client";
 
-import { useActusContext } from "../actus.context.hook";
+import { useActusContext } from "../actus.context";
 import ActusInstructions from "./components/instructions";
 import FormHeader from "./components/form.header";
 import FormStep from "./components/form.step";

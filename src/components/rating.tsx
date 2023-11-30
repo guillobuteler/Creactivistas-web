@@ -1,8 +1,9 @@
-import { useActusContext } from "@/app/actus/actus.context.hook";
+
 import { QuestionKey } from "@/app/actus/test/mbti.types";
 
 type RatingProps = {
-  questionKey: QuestionKey;
+  selected: number;
+  updateScore: (arg:number) => void;
   minScore?: number;
   maxScore?: number;
 };
@@ -11,16 +12,16 @@ type Rating = {
   active: boolean;
 };
 export default function Rating({
-  questionKey,
+  selected,
+  updateScore,
   minScore = 0,
   maxScore = 5,
 }: RatingProps) {
-  const { answers, setAnswers } = useActusContext();
+  
   const boxes: Rating[] = [];
-  let answerIndex = answers.findIndex((answer) => answer.key === questionKey);
-  const score = answers[answerIndex]?.score;
+  
   for (let i = minScore; i <= maxScore; i++) {
-    boxes.push({ score: i, active: i <= score });
+    boxes.push({ score: i, active: i <= selected });
   }
 
   return (
@@ -51,8 +52,7 @@ export default function Rating({
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
               onClick={() => {
-                answers[answerIndex] = { key:questionKey, score };
-                return setAnswers([...answers]);
+                updateScore(score)
               }}
               data-testid="score"
             >
