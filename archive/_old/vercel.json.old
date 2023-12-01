@@ -1,9 +1,0 @@
-{
-  "version": 2,
-  "alias": "creactivistas.vercel.app",
-  "routes": [
-    { "src": "/", "dest":"/index" },
-    { "src": "/api/big5.js", "methods": ["GET", "POST"] },
-    { "src": "/big5/resultados/(?<id>[^/]*)", "dest": "/big5/resultados.js?id=$id" }
-  ]
-}
