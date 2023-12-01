@@ -4,7 +4,7 @@ import { useActusContext } from "../../actus.context";
 
 export default function FormFooter() {
   const router = useRouter();
-  const { stepNumber, setStepNumber } = useActusContext();
+  const { stepNumber, setStepNumber, submitTest } = useActusContext();
   const handleClick = (action: "prev" | "next" | "submit") => {
     window.scrollTo({top:0});
     switch (action) {
@@ -15,6 +15,7 @@ export default function FormFooter() {
         setStepNumber(stepNumber + 1);
         break;
       case "submit":
+        submitTest();
         router.push("/actus/resultados");
         break;
     }

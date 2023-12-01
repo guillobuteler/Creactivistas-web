@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { Answer, QuestionKeys, QuestionsGroup, AxesKey } from "./mbti.types";
-import { AxesDetails, QuestionsMatrix } from "./mbti.data";
+import { AxesDetails, QuestionsMatrix, mbtiScales } from "./mbti.data";
 
 const ActusContext = createContext<ActusContext | null>(null);
 
@@ -25,6 +25,7 @@ type ActusContext = {
   resetTest: () => void;
   submitTest: () => void;
   calculateAxisTotal: (arg: AxesKey) => number;
+  resultMBTI: string;
 };
 
 type FormStep = {
@@ -70,23 +71,29 @@ export default function ActusContextProvider({
   const [stepNumber, setStepNumber] = useState<number>(1);
   const [actusSteps] = useState<FormStep[]>(initForm());
   const [answers, setAnswers] = useState<Answer[]>(initAnswers());
+  const [resultMBTI, setResultMBTI] = useState<string>("");
 
   const resetTest = () => {
     setStepNumber(1);
     setAnswers(initAnswers());
+    setResultMBTI("");
     setInProgress(false);
   };
 
   const submitTest = () => {
-    // todo: process all
-    resetTest();
+    const result = mbtiScales.map(({ axes }) =>
+      calculateAxisTotal(axes[0]) > calculateAxisTotal(axes[1])
+        ? axes[0]
+        : axes[1]
+    );
+    setResultMBTI(result.join(" "));
   };
 
-  const calculateAxisTotal = (key: AxesKey) => AxesDetails[key].questionKeys.reduce(
-    (acc, qKey) =>
-      answers.filter(({ key }) => key === qKey)[0].score + acc,
-    0
-  );
+  const calculateAxisTotal = (key: AxesKey) =>
+    AxesDetails[key].questionKeys.reduce(
+      (acc, qKey) => answers.filter(({ key }) => key === qKey)[0].score + acc,
+      0
+    );
 
   return (
     <ActusContext.Provider
@@ -103,6 +110,7 @@ export default function ActusContextProvider({
         resetTest,
         submitTest,
         calculateAxisTotal,
+        resultMBTI,
       }}
     >
       {children}

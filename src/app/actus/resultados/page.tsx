@@ -7,7 +7,7 @@ import DetailsTable from "./components/details.table";
 import MBTIResult from "./components/mbti.result.table";
 
 export default function ActusResultados() {
-  const { user } = useActusContext();
+  const { user, resultMBTI } = useActusContext();
   return (
     <div data-testid="resultados-mbti" className="flex flex-col gap-6 pb-16">
       <Card title="Resultados MBTI">
@@ -30,7 +30,7 @@ export default function ActusResultados() {
         {mbtiScales.map((scale, i) => (
           <DetailsTable key={i} scale={scale} />
         ))}
-        <MBTIResult result={"ISTJ"} />
+        <MBTIResult result={resultMBTI} />
       </div>
       <Card>
         <p>
