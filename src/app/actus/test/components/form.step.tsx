@@ -1,4 +1,4 @@
-import { QuestionsGroup } from "../mbti.types";
+import { QuestionsGroup } from "../../mbti.types";
 import FormQuestionGroup from "./form.question.group";
 
 type FormStepProps = {

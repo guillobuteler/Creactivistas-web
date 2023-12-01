@@ -1,5 +1,5 @@
 
-import { QuestionKey } from "@/app/actus/test/mbti.types";
+import { QuestionKey } from "@/app/actus/mbti.types";
 
 type RatingProps = {
   selected: number;

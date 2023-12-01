@@ -1,6 +1,6 @@
 import Rating from "@/components/rating";
 import { useActusContext } from "@/app/actus/actus.context";
-import { QuestionKey } from "../mbti.types";
+import { QuestionKey } from "../../mbti.types";
 
 type FormQuestionProps = {
   questionKey: QuestionKey;

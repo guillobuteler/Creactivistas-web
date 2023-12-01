@@ -1,7 +1,7 @@
 import ActusContextProvider from "../../actus.context";
 import React from "react";
 
-import { QuestionsGroup } from "../mbti.types";
+import { QuestionsGroup } from "../../mbti.types";
 import { render } from "@testing-library/react";
 
 export const ActusStepOneMock: QuestionsGroup[] = [

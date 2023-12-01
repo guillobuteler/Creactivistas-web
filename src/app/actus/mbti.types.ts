@@ -1,4 +1,4 @@
-enum Axis {
+enum Axes {
   I = "I",
   E = "E",
   N = "N",
@@ -8,7 +8,7 @@ enum Axis {
   P = "P",
   J = "J",
 }
-type AxisKey = keyof typeof Axis;
+export type AxesKey = keyof typeof Axes;
 
 export enum QuestionKeys {
   "1a" = "1a",
@@ -64,17 +64,18 @@ export type Answer = {
   score: number;
 };
 
-export type AxisDetails = {
-  [key in Axis]: {
-    title: string;
-    questionKeys: QuestionKey[];
-  };
+export type Axis = {
+  title: string;
+  questionKeys: QuestionKey[];
+};
+export type AxesDetails = {
+  [key in Axes]: Axis;
 };
 
 export type mbtiScale = {
   title: string;
   question: string;
-  axis: [AxisKey, AxisKey];
+  axes: [AxesKey, AxesKey];
 };
 
 export type QuestionsGroup = Question[];

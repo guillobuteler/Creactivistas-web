@@ -1,5 +1,5 @@
 import FormQuestion from "./form.question";
-import { Question } from "../mbti.types";
+import { Question } from "../../mbti.types";
 
 type FormQuestionGroupProps = {
   questions: Question[];

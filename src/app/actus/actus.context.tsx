@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
-import { Answer, QuestionKeys, QuestionsGroup } from "./test/mbti.types";
-import { QuestionsMatrix } from "./test/mbti.data";
+import { Answer, QuestionKeys, QuestionsGroup, AxesKey } from "./mbti.types";
+import { AxesDetails, QuestionsMatrix } from "./mbti.data";
 
 const ActusContext = createContext<ActusContext | null>(null);
 
@@ -23,6 +23,8 @@ type ActusContext = {
   answers: Answer[];
   setAnswers: React.Dispatch<React.SetStateAction<Answer[]>>;
   resetTest: () => void;
+  submitTest: () => void;
+  calculateAxisTotal: (arg: AxesKey) => number;
 };
 
 type FormStep = {
@@ -68,11 +70,24 @@ export default function ActusContextProvider({
   const [stepNumber, setStepNumber] = useState<number>(1);
   const [actusSteps] = useState<FormStep[]>(initForm());
   const [answers, setAnswers] = useState<Answer[]>(initAnswers());
+
   const resetTest = () => {
     setStepNumber(1);
     setAnswers(initAnswers());
     setInProgress(false);
   };
+
+  const submitTest = () => {
+    // todo: process all
+    resetTest();
+  };
+
+  const calculateAxisTotal = (key: AxesKey) => AxesDetails[key].questionKeys.reduce(
+    (acc, qKey) =>
+      answers.filter(({ key }) => key === qKey)[0].score + acc,
+    0
+  );
+
   return (
     <ActusContext.Provider
       value={{
@@ -86,6 +101,8 @@ export default function ActusContextProvider({
         answers,
         setAnswers,
         resetTest,
+        submitTest,
+        calculateAxisTotal,
       }}
     >
       {children}

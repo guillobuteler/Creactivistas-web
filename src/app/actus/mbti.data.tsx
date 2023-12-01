@@ -1,6 +1,6 @@
-import { AxisDetails, QuestionsGroup, mbtiScale } from "./mbti.types";
+import { AxesDetails as AxesDetailsType, QuestionsGroup, mbtiScale } from "./mbti.types";
 
-export const questionsToAxisMap: AxisDetails = {
+export const AxesDetails: AxesDetailsType = {
   I: {
     title: "Resultados de Introversion",
     questionKeys: ["1b", "5a", "9a", "12a", "14b"],
@@ -39,22 +39,22 @@ export const mbtiScales: mbtiScale[] = [
   {
     title: "La escala IE",
     question: "¿Dónde preferís enfocar tu atención?",
-    axis: ["I", "E"],
+    axes: ["I", "E"],
   },
   {
     title: "La escala NS",
     question: "¿Cómo procesas información y te enteras de cosas?",
-    axis: ["N", "S"],
+    axes: ["N", "S"],
   },
   {
     title: "La escala TF",
     question: "¿Cómo tomas decisiones?",
-    axis: ["T", "F"],
+    axes: ["T", "F"],
   },
   {
     title: "La escala PJ",
     question: "¿Cómo te orientas en relación al mundo exterior?",
-    axis: ["P", "J"],
+    axes: ["P", "J"],
   },
 ];
 
