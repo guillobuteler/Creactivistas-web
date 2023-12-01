@@ -10,10 +10,11 @@ export default function ActusResultados() {
   const { user, resultMBTI } = useActusContext();
   return (
     <div data-testid="resultados-mbti" className="flex flex-col gap-6 pb-16">
-      <Card title="Resultados MBTI">
+      <Card title="Resultados">
         <p>
-          Estos son tus resultados{" "}
-          <span className=" font-medium text-indigo-600">{user.name}</span>!
+          Hola <span className=" font-medium text-indigo-600">{user.name}</span>
+          ! Estos son tus resultados en el test Actus basado en el test de
+          personalidad MBTI.
         </p>
 
         <p>
@@ -37,8 +38,13 @@ export default function ActusResultados() {
           Muchas gracias por confiar en nosotros, si te interesa recibir un
           feedback personalizado acerca de tu perfil de personalidad o solicitar
           el armado de tu gráfico de los 4 elementos por favor escribinos a{" "}
-          <a href="mailto:contacto@actus.com.ar" className="text-creactivistas-green-light2 underline">contacto@actus.com.ar</a> para
-          coordinar una entrevista.
+          <a
+            href="mailto:contacto@actus.com.ar"
+            className="text-creactivistas-green-light2 underline"
+          >
+            contacto@actus.com.ar
+          </a>{" "}
+          para coordinar una entrevista.
         </p>
       </Card>
     </div>
