@@ -1,14 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Button from "@/components/button";
-import ActusDescription from "./actus.description";
-import { useActusContext, validEmailExpression } from "./actus.context";
 import { useCallback, useEffect, useState } from "react";
-
-const borderColorOk = "border-sky-300";
-const borderColorReq = "border-rose-400";
-type BorderColor = "border-sky-300" | "border-rose-400";
+import { useActusContext, validEmailExpression } from "./actus.context";
+import ActusDescription from "./actus.description";
+import Button from "@/components/button";
+import AwesomeInput from "@/components/awesome.input";
 
 export default function ActusTest() {
   const { inProgress, setUser, resetTest } = useActusContext();
@@ -16,89 +13,56 @@ export default function ActusTest() {
 
   // name
   const [name, setName] = useState("");
-  const [borderColorName, setBorderColorName] =
-    useState<BorderColor>(borderColorReq);
-
+  const [isNameValid, setIsNameValid] = useState(false);
   // email
   const [email, setEmail] = useState("");
-  const [showEmailInvalid, setShowEmailInvalid] = useState(false);
-  const [borderColorEmail, setBorderColorEmail] =
-    useState<BorderColor>(borderColorReq);
-
+  const [isEmailValid, setIsEmailValid] = useState(false);
   // email confirmation
   const [email2, setEmail2] = useState("");
-  const [showEmail2Invalid, setShowEmail2Invalid] = useState(false);
-  const [borderColorEmail2, setBorderColorEmail2] =
-    useState<BorderColor>(borderColorReq);
-
-  // everything's ok
+  const [isEmail2Valid, setIsEmail2Valid] = useState(false);
+  // are all requirements met?
   const [requirementsOk, setRequirementsOk] = useState(false);
 
-  useEffect(() => {
-    if (borderColorName === borderColorOk && name === "")
-      setBorderColorName(borderColorReq);
-    if (borderColorName === borderColorReq && name !== "")
-      setBorderColorName(borderColorOk);
-  }, [name, borderColorName]);
-
-  useEffect(() => {
-    if (borderColorEmail === borderColorOk) {
-      if (email === "" || showEmailInvalid) setBorderColorEmail(borderColorReq);
-    }
-    if (borderColorEmail === borderColorReq) {
-      if (email !== "" && !showEmailInvalid) setBorderColorEmail(borderColorOk);
-    }
-  }, [email, borderColorEmail, showEmailInvalid]);
-
-  useEffect(() => {
-    if (borderColorEmail2 === borderColorOk) {
-      if (email2 === "" || showEmail2Invalid)
-        setBorderColorEmail2(borderColorReq);
-    }
-    if (borderColorEmail2 === borderColorReq) {
-      if (email2 !== "" && !showEmail2Invalid)
-        setBorderColorEmail2(borderColorOk);
-    }
-  }, [email2, borderColorEmail2, showEmail2Invalid]);
-
-  useEffect(() => {
-    if (
-      borderColorName === borderColorOk &&
-      borderColorEmail === borderColorOk &&
-      borderColorEmail2 === borderColorOk &&
-      !showEmailInvalid &&
-      !showEmail2Invalid
-    )
-      setRequirementsOk(true);
-    else setRequirementsOk(false);
-  }, [
-    borderColorName,
-    borderColorEmail,
-    borderColorEmail2,
-    showEmailInvalid,
-    showEmail2Invalid,
-  ]);
-
-  const handleEmailBlur = useCallback(
+  const validateName = useCallback(
     (value: string) => {
-      if (!validEmailExpression.test(value)) setShowEmailInvalid(true);
-      else if (showEmailInvalid) setShowEmailInvalid(false);
+      const condition = value !== "";
+      if ((condition && !isNameValid) || (!condition && isNameValid))
+        setIsNameValid(condition);
+      return condition;
     },
-    [showEmailInvalid]
+    [isNameValid]
   );
 
-  const handleEmailDuplicateBlur = useCallback(
+  const validateEmail = useCallback(
     (value: string) => {
-      if (value !== email) setShowEmail2Invalid(true);
-      else if (showEmail2Invalid) setShowEmail2Invalid(false);
+      const condition = validEmailExpression.test(value);
+      if ((condition && !isEmailValid) || (!condition && isEmailValid))
+        setIsEmailValid(condition);
+      return condition;
     },
-    [email, showEmail2Invalid]
+    [isEmailValid]
+  );
+
+  const validateEmail2 = useCallback(
+    (value: string) => {
+      const condition = validEmailExpression.test(value) && value === email;
+      if ((condition && !isEmail2Valid) || (!condition && isEmail2Valid))
+        setIsEmail2Valid(condition);
+      return condition;
+    },
+    [isEmail2Valid, email]
   );
 
   const handleStart = () => {
     setUser({ name, email });
     router.push("/actus/test");
   };
+
+  useEffect(() => {
+    if (isNameValid && isEmailValid && isEmail2Valid) {
+      setRequirementsOk(true);
+    }
+  }, [isNameValid, isEmailValid, isEmail2Valid]);
 
   return (
     <section className="flex flex-col gap-8 pb-16" data-testid="actus">
@@ -124,47 +88,32 @@ export default function ActusTest() {
         ) : (
           <>
             <div className="flex flex-col gap-3 w-3/5 lg:w-2/5">
-              <input
-                className={`border ${borderColorName} p-1 rounded`}
+              <AwesomeInput
                 type="text"
                 placeholder="Ingresar nombre completo *"
                 value={name}
                 onChange={({ target }) => setName(target.value)}
+                onBlur={({ target }) => validateName(target.value)}
+                valid={isNameValid}
               />
-              <div className="flex flex-col place-items-start">
-                <input
-                  className={`border ${borderColorEmail} p-1 rounded w-full`}
-                  type="email"
-                  placeholder="Ingresar email *"
-                  value={email}
-                  onChange={({ target }) => setEmail(target.value)}
-                  onBlur={({ target }) => handleEmailBlur(target.value)}
-                  required
-                />
-                {showEmailInvalid && (
-                  <span className="text-red-500">
-                    ^ El email debe ser válido.
-                  </span>
-                )}
-              </div>
-              <div className="flex flex-col place-items-start">
-                <input
-                  className={`border ${borderColorEmail2} p-1 rounded w-full`}
-                  type="email"
-                  placeholder="Confirmación de su email *"
-                  value={email2}
-                  onChange={({ target }) => setEmail2(target.value)}
-                  onBlur={({ target }) =>
-                    handleEmailDuplicateBlur(target.value)
-                  }
-                  required
-                />
-                {showEmail2Invalid && (
-                  <span className="text-red-500">
-                    ^ El email debe ser válido e idéntico.
-                  </span>
-                )}
-              </div>
+              <AwesomeInput
+                type="email"
+                placeholder="Ingresa tu email *"
+                value={email}
+                onChange={({ target }) => setEmail(target.value)}
+                onBlur={({ target }) => validateEmail(target.value)}
+                valid={isEmailValid}
+                invalidMessage="^ El email debe ser válido."
+              />
+              <AwesomeInput
+                type="email"
+                placeholder="Ingresa tu email *"
+                value={email2}
+                onChange={({ target }) => setEmail2(target.value)}
+                onBlur={({ target }) => validateEmail2(target.value)}
+                valid={isEmail2Valid}
+                invalidMessage="^ El email debe ser válido e idéntico."
+              />
             </div>
             <Button
               title="Empezar test"
