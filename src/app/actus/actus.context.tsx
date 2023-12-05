@@ -14,7 +14,7 @@ export const validEmailExpression: RegExp =
 
 type ActusContext = {
   user: User;
-  setUser: React.Dispatch<React.SetStateAction<User>>;
+  startTest: (arg: User) => void;
   inProgress: boolean;
   setInProgress: React.Dispatch<React.SetStateAction<boolean>>;
   stepNumber: number;
@@ -37,8 +37,27 @@ type ActusContextProviderProps = {
   children: React.ReactNode;
 };
 
-const initUser = () => {
+const initUser: () => User = () => {
+  const storedUser = localStorage.getItem("user");
+  if (storedUser) return JSON.parse(storedUser);
+
   return { name: "", email: "" };
+};
+
+const initResultMBTI = () => {
+  const storedMBTI = localStorage.getItem("mbti");
+  return storedMBTI ? JSON.parse(storedMBTI) : "";
+};
+
+const initAnswers = () => {
+  const storedAnswers = localStorage.getItem("answers");
+  if (storedAnswers) return JSON.parse(storedAnswers);
+
+  const answers: Answer[] = [];
+  Object.values(QuestionKeys).forEach((key) => {
+    answers.push({ key, score: 0 });
+  });
+  return answers;
 };
 
 const initForm = () => {
@@ -55,38 +74,45 @@ const initForm = () => {
   return formSteps;
 };
 
-const initAnswers = () => {
-  const answers: Answer[] = [];
-  Object.values(QuestionKeys).forEach((key) => {
-    answers.push({ key, score: 0 });
-  });
-  return answers;
-};
-
 export default function ActusContextProvider({
   children,
 }: ActusContextProviderProps) {
   const [user, setUser] = useState<User>(initUser());
-  const [inProgress, setInProgress] = useState<boolean>(false);
+  const [inProgress, setInProgress] = useState<boolean>(
+    initUser().email !== ""
+  );
   const [stepNumber, setStepNumber] = useState<number>(1);
   const [actusSteps] = useState<FormStep[]>(initForm());
   const [answers, setAnswers] = useState<Answer[]>(initAnswers());
-  const [resultMBTI, setResultMBTI] = useState<string>("");
+  const [resultMBTI, setResultMBTI] = useState<string>(initResultMBTI());
+
+  const startTest = (user: User) => {
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+  };
 
   const resetTest = () => {
     setStepNumber(1);
     setAnswers(initAnswers());
     setResultMBTI("");
     setInProgress(false);
+    localStorage.removeItem("mbti");
+    localStorage.removeItem("user");
+    localStorage.removeItem("answers");
   };
 
   const submitTest = () => {
-    const result = mbtiScales.map(({ axes }) =>
-      calculateAxisTotal(axes[0]) > calculateAxisTotal(axes[1])
-        ? axes[0]
-        : axes[1]
-    );
-    setResultMBTI(result.join(" "));
+    const result = mbtiScales
+      .map(({ axes }) =>
+        calculateAxisTotal(axes[0]) > calculateAxisTotal(axes[1])
+          ? axes[0]
+          : axes[1]
+      )
+      .join(" ");
+    setResultMBTI(result);
+    localStorage.setItem("mbti", result);
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("answers", JSON.stringify(answers));
   };
 
   const calculateAxisTotal = (key: AxesKey) =>
@@ -99,7 +125,7 @@ export default function ActusContextProvider({
     <ActusContext.Provider
       value={{
         user,
-        setUser,
+        startTest,
         inProgress,
         setInProgress,
         stepNumber,

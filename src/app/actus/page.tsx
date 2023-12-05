@@ -8,7 +8,7 @@ import Button from "@/components/button";
 import AwesomeInput from "@/components/awesome.input";
 
 export default function ActusTest() {
-  const { inProgress, setUser, resetTest } = useActusContext();
+  const { inProgress, user, startTest, resetTest } = useActusContext();
   const router = useRouter();
 
   // name
@@ -54,7 +54,7 @@ export default function ActusTest() {
   );
 
   const handleStart = () => {
-    setUser({ name, email });
+    startTest({ name, email });
     router.push("/actus/test");
   };
 
@@ -84,6 +84,10 @@ export default function ActusTest() {
                 ) && resetTest()
               }
             />
+            <h3 className="text-lg">
+              {user.name}
+              <span className="pl-3">{`< ${user.email} >`}</span>
+            </h3>
           </>
         ) : (
           <>
@@ -109,7 +113,10 @@ export default function ActusTest() {
                 type="email"
                 placeholder="Ingresa tu email *"
                 value={email2}
-                onChange={({ target }) => setEmail2(target.value)}
+                onChange={({ target }) => {
+                  setEmail2(target.value);
+                  validateEmail2(target.value);
+                }}
                 onBlur={({ target }) => validateEmail2(target.value)}
                 valid={isEmail2Valid}
                 invalidMessage="^ El email debe ser válido e idéntico."
