@@ -1,19 +1,19 @@
 # Creactivistas online personality tests
 
 Single page application comprising of two different personality tests:
-- One based in MBTI (Myers–Briggs Type Indicator)
-- The other based in the ["Big-Five"](https://en.wikipedia.org/wiki/Big_Five_personality_traits) personality traits.
+- One based in [MBTI](https://en.wikipedia.org/wiki/Myers%E2%80%93Briggs_Type_Indicator) (Myers–Briggs Type Indicator)
+- The other based in the [Big-Five](https://en.wikipedia.org/wiki/Big_Five_personality_traits) personality traits.
 
 See the app live and find out your own score [here](http://creactivistas.enneagonstudios.com/).
 
 ## Improvements over the past version
-- Updated Next v9.4.4 to v14.0.3, and upgraded from vanilla JS to Typescript + TailwindCSS.
+- Upgraded Next v9.4.4 to v14.0.3, and upgraded from vanilla JS to Typescript + TailwindCSS.
 - New design, more delightful, fully responsive, and matching the brand's palette.
 - Removed the heavy weight (overkill) Material UI library, in favor of creating a few custom components to replace those previously installed and imported. Most notably: 
-- 1. An AwesomeInput component, extending React's input component with valid/invalid behavior, namely via neutral, valid, and invalid border colors, and an optional invalid message.
-- 2. A styled Button, with primary, secondary and tertiary colors, matching the brand's palette
-- 3. A styled Card, reused for descriptions and instructions throughout the site
-- 4. A Rating component, matching the brand's palette, to allow the user to score each question from the test.
+- 1. An `AwesomeInput` component (😁), extending React's `input` component with valid/invalid behavior, namely via neutral, valid, and invalid border colors, and an optional invalid message.
+- 2. A styled `Button`, with primary, secondary and tertiary colors, matching the brand's palette
+- 3. A styled `Card`, reused for descriptions and instructions throughout the site
+- 4. A `Rating` component, matching the brand's palette, to allow the user to score each question from the test.
 - 5. The layout was significantly simplified by using Tailwind and CSS's flex capabilities, instead of using MUI's Grid and Table component trees.
 - Complete UX redesign of the Actus MBTI test
 - - Better user name and email input validation (whereas before validation happened on submit, now the button to proceed is disabled until all requirements are met).
