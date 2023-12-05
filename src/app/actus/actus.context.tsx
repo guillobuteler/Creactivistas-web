@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState } from "react";
+"use client";
+
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { Answer, QuestionKeys, QuestionsGroup, AxesKey } from "./mbti.types";
 import { AxesDetails, QuestionsMatrix, mbtiScales } from "./mbti.data";
 
@@ -37,22 +39,9 @@ type ActusContextProviderProps = {
   children: React.ReactNode;
 };
 
-const initUser: () => User = () => {
-  const storedUser = localStorage.getItem("user");
-  if (storedUser) return JSON.parse(storedUser);
-
-  return { name: "", email: "" };
-};
-
-const initResultMBTI = () => {
-  const storedMBTI = localStorage.getItem("mbti");
-  return storedMBTI ? JSON.parse(storedMBTI) : "";
-};
+const initUser = () => ({ name: "", email: "" });
 
 const initAnswers = () => {
-  const storedAnswers = localStorage.getItem("answers");
-  if (storedAnswers) return JSON.parse(storedAnswers);
-
   const answers: Answer[] = [];
   Object.values(QuestionKeys).forEach((key) => {
     answers.push({ key, score: 0 });
@@ -78,13 +67,27 @@ export default function ActusContextProvider({
   children,
 }: ActusContextProviderProps) {
   const [user, setUser] = useState<User>(initUser());
-  const [inProgress, setInProgress] = useState<boolean>(
-    initUser().email !== ""
-  );
+  const [inProgress, setInProgress] = useState<boolean>(false);
   const [stepNumber, setStepNumber] = useState<number>(1);
   const [actusSteps] = useState<FormStep[]>(initForm());
   const [answers, setAnswers] = useState<Answer[]>(initAnswers());
-  const [resultMBTI, setResultMBTI] = useState<string>(initResultMBTI());
+  const [resultMBTI, setResultMBTI] = useState<string>("");
+
+  useEffect(() => {
+    // this fixes a SSR error where the window object isn't defined
+    if (typeof window !== "undefined") {
+      const lsUser = localStorage.getItem("user");
+      const lsMBTI = localStorage.getItem("mbti");
+      const lsAnswers = localStorage.getItem("answers");
+      // placing it within a useEffect prevents a mismatch between the ssr'd HTML output vs client
+      if (lsUser) {
+        setUser(JSON.parse(lsUser));
+        setInProgress(true);
+      }
+      if (lsMBTI) setResultMBTI(JSON.parse(lsMBTI));
+      if (lsAnswers) setAnswers(JSON.parse(lsAnswers));
+    }
+  }, []);
 
   const startTest = (user: User) => {
     setUser(user);

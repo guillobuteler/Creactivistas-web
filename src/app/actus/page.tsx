@@ -84,10 +84,12 @@ export default function ActusTest() {
                 ) && resetTest()
               }
             />
-            <h3 className="text-lg">
-              {user.name}
-              <span className="pl-3">{`< ${user.email} >`}</span>
-            </h3>
+            {user.name && (
+              <h3 className="text-lg">
+                {user.name}
+                <span className="pl-3">{`< ${user.email} >`}</span>
+              </h3>
+            )}
           </>
         ) : (
           <>
