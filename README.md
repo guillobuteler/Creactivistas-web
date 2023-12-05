@@ -4,7 +4,7 @@ Single page application comprising of two different personality tests:
 - One based in MBTI (Myers–Briggs Type Indicator)
 - The other based in the ["Big-Five"](https://en.wikipedia.org/wiki/Big_Five_personality_traits) personality traits.
 
-See the app live and find out your own score [here] (http://creactivistas.enneagonstudios.com/).
+See the app live and find out your own score [here](http://creactivistas.enneagonstudios.com/).
 
 ## Improvements over the past version
 - Updated Next v9.4.4 to v14.0.3, and upgraded from vanilla JS to Typescript + TailwindCSS.
