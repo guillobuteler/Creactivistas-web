@@ -120,8 +120,6 @@ export default function ActusContextProvider({
       .join(" ");
     setResultMBTI(result);
     localStorage.setItem("mbti", result);
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("answers", JSON.stringify(answers));
   };
 
   const calculateAxisTotal = (key: AxesKey) =>
