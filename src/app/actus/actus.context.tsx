@@ -16,17 +16,17 @@ export const validEmailExpression: RegExp =
 
 type ActusContext = {
   user: User;
-  startTest: (arg: User) => void;
+  startTest: (user: User) => void;
   inProgress: boolean;
   setInProgress: React.Dispatch<React.SetStateAction<boolean>>;
   stepNumber: number;
   setStepNumber: React.Dispatch<React.SetStateAction<number>>;
   actusSteps: FormStep[];
   answers: Answer[];
-  setAnswers: React.Dispatch<React.SetStateAction<Answer[]>>;
+  saveAnswer: (key: number, answer: Answer) => void;
   resetTest: () => void;
   submitTest: () => void;
-  calculateAxisTotal: (arg: AxesKey) => number;
+  calculateAxisTotal: (key: AxesKey) => number;
   resultMBTI: string;
 };
 
@@ -94,6 +94,12 @@ export default function ActusContextProvider({
     localStorage.setItem("user", JSON.stringify(user));
   };
 
+  const saveAnswer = (key: number, answer: Answer) => {
+    answers[key] = answer;
+    setAnswers([...answers]);
+    localStorage.setItem("answers", JSON.stringify(answers));
+  };
+
   const resetTest = () => {
     setStepNumber(1);
     setAnswers(initAnswers());
@@ -135,7 +141,7 @@ export default function ActusContextProvider({
         setStepNumber,
         actusSteps,
         answers,
-        setAnswers,
+        saveAnswer,
         resetTest,
         submitTest,
         calculateAxisTotal,
