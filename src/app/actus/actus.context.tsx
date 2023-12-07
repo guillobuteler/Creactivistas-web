@@ -84,7 +84,7 @@ export default function ActusContextProvider({
         setUser(JSON.parse(lsUser));
         setInProgress(true);
       }
-      if (lsMBTI) setResultMBTI(JSON.parse(lsMBTI));
+      if (lsMBTI) setResultMBTI(lsMBTI);
       if (lsAnswers) setAnswers(JSON.parse(lsAnswers));
     }
   }, []);
