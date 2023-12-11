@@ -1,7 +1,13 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Answer, QuestionKeys, QuestionsGroup, AxesKey } from "./mbti.types";
+import {
+  Answer,
+  QuestionKeys,
+  QuestionsGroup,
+  AxesKey,
+  AxesTotal,
+} from "./mbti.types";
 import { AxesDetails, QuestionsMatrix, mbtiScales } from "./mbti.data";
 
 const ActusContext = createContext<ActusContext | null>(null);
@@ -33,7 +39,6 @@ type ActusContext = {
   setStepNumber: React.Dispatch<React.SetStateAction<number>>;
   actusSteps: FormStep[];
   answers: Answer[];
-  totals: string[];
   saveAnswer: (key: number, answer: Answer) => void;
   resetTest: () => void;
   submitTest: () => void;
@@ -59,6 +64,14 @@ const initAnswers = () => {
   });
   return answers;
 };
+
+// const initAxesTotals = () => {
+//   const axes: Answer[] = [];
+//   Object.values(QuestionKeys).forEach((key) => {
+//     answers.push({ key, score: 0 });
+//   });
+//   return answers;
+// };
 
 const initForm = () => {
   const formSteps: FormStep[] = [];
@@ -91,7 +104,6 @@ export default function ActusContextProvider({
       const lsUser = localStorage.getItem("user");
       const lsMBTI = localStorage.getItem("mbti");
       const lsAnswers = localStorage.getItem("answers");
-      const lsTotals = localStorage.getItem("totals");
       // placing it within a useEffect prevents a mismatch between the ssr'd HTML output vs client
       if (lsUser) {
         setUser(JSON.parse(lsUser));
@@ -99,7 +111,6 @@ export default function ActusContextProvider({
       }
       if (lsMBTI) setResultMBTI(lsMBTI);
       if (lsAnswers) setAnswers(JSON.parse(lsAnswers));
-      if (lsTotals) setTotals(JSON.parse(lsTotals));
     }
   }, []);
 
@@ -129,10 +140,9 @@ export default function ActusContextProvider({
     mbtiScales.map(({ axes }) => {
       axes.forEach((axes) => totals.push(calculateAxisTotal(axes).toString()));
     });
+
     const result = calculateMBTIFromTotals(totals);
-    setTotals(totals);
     setResultMBTI(result);
-    localStorage.setItem("totals", JSON.stringify(totals));
     localStorage.setItem("mbti", result);
   };
 
@@ -153,7 +163,6 @@ export default function ActusContextProvider({
         setStepNumber,
         actusSteps,
         answers,
-        totals,
         saveAnswer,
         resetTest,
         submitTest,
