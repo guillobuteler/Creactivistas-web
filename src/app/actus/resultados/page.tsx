@@ -1,13 +1,15 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Card from "@/components/card";
+import Button from "@/components/button";
 import { useActusContext } from "../actus.context";
 import { mbtiScales } from "../mbti.data";
 import DetailsTable from "./components/details.table";
 import MBTIResult from "./components/mbti.result.table";
-
 export default function ActusResultados() {
-  const { user, resultMBTI } = useActusContext();
+  const router = useRouter();
+  const { user, resultMBTI, totals } = useActusContext();
   return (
     <div data-testid="resultados-mbti" className="flex flex-col gap-6 pb-16">
       <Card title="Resultados">
@@ -32,6 +34,11 @@ export default function ActusResultados() {
           <DetailsTable key={i} scale={scale} />
         ))}
         <MBTIResult result={resultMBTI} />
+        <Button
+          title="Ver gráficos"
+          onClick={() => router.push(`/actus/resultados/${totals.join(",")}`)}
+          dataTestId="see-charts"
+        />
       </div>
       <Card>
         <p>

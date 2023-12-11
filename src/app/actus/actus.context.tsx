@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState } from "react";
+"use client";
+
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { Answer, QuestionKeys, QuestionsGroup, AxesKey } from "./mbti.types";
 import { AxesDetails, QuestionsMatrix, mbtiScales } from "./mbti.data";
 
@@ -12,19 +14,30 @@ export type User = {
 export const validEmailExpression: RegExp =
   /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
+export const calculateMBTIFromTotals = (totals: string[]) => {
+  const [I, E, N, S, T, F, P, J] = totals;
+  const mbti = [];
+  mbti.push(I > E ? "I" : "E");
+  mbti.push(N > S ? "N" : "S");
+  mbti.push(T > F ? "T" : "F");
+  mbti.push(P > J ? "P" : "J");
+  return mbti.join(" ");
+};
+
 type ActusContext = {
   user: User;
-  setUser: React.Dispatch<React.SetStateAction<User>>;
+  startTest: (user: User) => void;
   inProgress: boolean;
   setInProgress: React.Dispatch<React.SetStateAction<boolean>>;
   stepNumber: number;
   setStepNumber: React.Dispatch<React.SetStateAction<number>>;
   actusSteps: FormStep[];
   answers: Answer[];
-  setAnswers: React.Dispatch<React.SetStateAction<Answer[]>>;
+  totals: string[];
+  saveAnswer: (key: number, answer: Answer) => void;
   resetTest: () => void;
   submitTest: () => void;
-  calculateAxisTotal: (arg: AxesKey) => number;
+  calculateAxisTotal: (key: AxesKey) => number;
   resultMBTI: string;
 };
 
@@ -37,8 +50,14 @@ type ActusContextProviderProps = {
   children: React.ReactNode;
 };
 
-const initUser = () => {
-  return { name: "", email: "" };
+const initUser = () => ({ name: "", email: "" });
+
+const initAnswers = () => {
+  const answers: Answer[] = [];
+  Object.values(QuestionKeys).forEach((key) => {
+    answers.push({ key, score: 0 });
+  });
+  return answers;
 };
 
 const initForm = () => {
@@ -55,14 +74,6 @@ const initForm = () => {
   return formSteps;
 };
 
-const initAnswers = () => {
-  const answers: Answer[] = [];
-  Object.values(QuestionKeys).forEach((key) => {
-    answers.push({ key, score: 0 });
-  });
-  return answers;
-};
-
 export default function ActusContextProvider({
   children,
 }: ActusContextProviderProps) {
@@ -71,22 +82,58 @@ export default function ActusContextProvider({
   const [stepNumber, setStepNumber] = useState<number>(1);
   const [actusSteps] = useState<FormStep[]>(initForm());
   const [answers, setAnswers] = useState<Answer[]>(initAnswers());
+  const [totals, setTotals] = useState<string[]>([]);
   const [resultMBTI, setResultMBTI] = useState<string>("");
+
+  useEffect(() => {
+    // this fixes a SSR error where the window object isn't defined
+    if (typeof window !== "undefined") {
+      const lsUser = localStorage.getItem("user");
+      const lsMBTI = localStorage.getItem("mbti");
+      const lsAnswers = localStorage.getItem("answers");
+      const lsTotals = localStorage.getItem("totals");
+      // placing it within a useEffect prevents a mismatch between the ssr'd HTML output vs client
+      if (lsUser) {
+        setUser(JSON.parse(lsUser));
+        setInProgress(true);
+      }
+      if (lsMBTI) setResultMBTI(lsMBTI);
+      if (lsAnswers) setAnswers(JSON.parse(lsAnswers));
+      if (lsTotals) setTotals(JSON.parse(lsTotals));
+    }
+  }, []);
+
+  const startTest = (user: User) => {
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+  };
+
+  const saveAnswer = (key: number, answer: Answer) => {
+    answers[key] = answer;
+    setAnswers([...answers]);
+    localStorage.setItem("answers", JSON.stringify(answers));
+  };
 
   const resetTest = () => {
     setStepNumber(1);
     setAnswers(initAnswers());
     setResultMBTI("");
     setInProgress(false);
+    localStorage.removeItem("mbti");
+    localStorage.removeItem("user");
+    localStorage.removeItem("answers");
   };
 
   const submitTest = () => {
-    const result = mbtiScales.map(({ axes }) =>
-      calculateAxisTotal(axes[0]) > calculateAxisTotal(axes[1])
-        ? axes[0]
-        : axes[1]
-    );
-    setResultMBTI(result.join(" "));
+    const totals: string[] = [];
+    mbtiScales.map(({ axes }) => {
+      axes.forEach((axes) => totals.push(calculateAxisTotal(axes).toString()));
+    });
+    const result = calculateMBTIFromTotals(totals);
+    setTotals(totals);
+    setResultMBTI(result);
+    localStorage.setItem("totals", JSON.stringify(totals));
+    localStorage.setItem("mbti", result);
   };
 
   const calculateAxisTotal = (key: AxesKey) =>
@@ -99,14 +146,15 @@ export default function ActusContextProvider({
     <ActusContext.Provider
       value={{
         user,
-        setUser,
+        startTest,
         inProgress,
         setInProgress,
         stepNumber,
         setStepNumber,
         actusSteps,
         answers,
-        setAnswers,
+        totals,
+        saveAnswer,
         resetTest,
         submitTest,
         calculateAxisTotal,

@@ -7,13 +7,10 @@ type FormQuestionProps = {
   label: string;
 }
 export default function FormQuestion({questionKey, label}:FormQuestionProps) {
-  const { answers, setAnswers } = useActusContext();
-  const handleUpdateScore = (score:number) => {
-    answers[answerIndex] = { key:questionKey, score };
-    return setAnswers([...answers]);
-  }
-  let answerIndex = answers.findIndex((answer) => answer.key === questionKey);
+  const { answers, saveAnswer } = useActusContext();
+  const answerIndex = answers.findIndex((answer) => answer.key === questionKey);
   const score = answers[answerIndex]?.score;
+  const handleUpdateScore = (score:number) => saveAnswer(answerIndex, { key:questionKey, score });
   return (
     <div data-testid={`question-${questionKey}`} className="flex justify-between">
       <p className="text-left pr-8">{label}</p>
