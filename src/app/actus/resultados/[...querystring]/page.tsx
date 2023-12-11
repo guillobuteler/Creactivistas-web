@@ -2,11 +2,11 @@
 
 import { useParams } from "next/navigation";
 
-// import AllAxisRadar from "./all.axis.radar";
 import ActusAxisRadar from "./actus.axis.radar";
+// import AllAxisRadar from "./all.axis.radar";
+import AllAxisBar from "./all.axis.bar";
 import { calculateMBTIFromTotals } from "../../actus.context";
 import Card from "@/components/card";
-import AllAxisBar from "./all.axis.bar";
 
 export default function ChartedResults() {
   const { querystring } = useParams();
