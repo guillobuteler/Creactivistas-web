@@ -8,8 +8,7 @@ import validMongoId from '../../lib/valid-mongoid'
 import formatId from '../../lib/format-id'
 const { publicRuntimeConfig: { URL } } = getConfig()
 
-export default class B5Compare extends Component {
-  //B5Compare.displayName = "B5Compare";
+class B5Compare extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -53,7 +52,7 @@ export default class B5Compare extends Component {
       <div>
         <h2>Compare</h2>
         <p>Compare results from the bigfive personality test with multiple people.</p>
-        <p>Type in <i>either</i> the ID you got i.e. <Code>58a70606a835c400c8b38e84</Code> <br /><i>- or -</i><br /> the link i.e. <Code>{URL}/result/58a70606a835c400c8b38e84</Code><br /> in the <i>ID-input field</i>.</p>
+        <p>Type in <i>either</i> the ID you got i.e. <Code>58a70606a835c400c8b38e84</Code> <br /><i>- or -</i><br /> the link i.e. <Code>{URL}/result/58a70606a835c400c8b38e84</Code><br /> in the field below.</p>
         <div style={{ textAlign: 'left' }}>
           {people && people.length > 0 && people.map((person, i) =>
             <div key={i} className='persons'>
@@ -93,3 +92,7 @@ export default class B5Compare extends Component {
     )
   }
 }
+
+B5Compare.displayName = "B5Compare";
+
+export default B5Compare;

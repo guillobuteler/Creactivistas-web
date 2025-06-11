@@ -10,7 +10,7 @@ const startTest = e => {
   Router.pushRoute(`/big5/test/${lang}`)
 }
 
-export default () => {
+const Big5Index = () => {
   return (
     <div>
       <div style={{ paddingBottom: '20px', borderBottom: '1px solid rgb(234, 234, 234)' }}>
@@ -20,12 +20,12 @@ export default () => {
         <p>Este es un test de personalidad gratuito de código abierto para medir los cinco grandes rasgos de la personalidad.</p>
         <p>
           Pruebas y evaluaciones se toman de <a href='http://ipip.ori.org' rel='noopener noreferrer' target='_blank'>ipip.ori.org</a>
-          <FaExternalLinkAlt size='8' style={{ verticalAlign: 'top' }} />, Inventado por <i>Johnson's (2014) 120-item IPIP NEO-PI-R</i>.
+          <FaExternalLinkAlt size='8' style={{ verticalAlign: 'top' }} />, Inventado por <i>Johnson&apos;s (2014) 120-item IPIP NEO-PI-R</i>.
         </p>
         <p>
           La siguiente prueba contiene una serie de preguntas que se estima que le llevarán mas o menos <b>diez minutos</b> para completarlo.
         </p>
-        <p>Una vez que haya enviado la prueba, recibirá un informe detallado de la personalidad en los siguientes dominios:  <i>Apertura a la experiencia, conciencia, extraversión, afabilidad y neuroticismo.</i></p>
+        <p>Una vez que haya enviado la prueba, recibirá un informe detallado de la personalidad en los siguientes dominios:  <i>Apertura a la experiencia, conciencia, extraversión, afabilidad y neuroticismo</i>.</p>
         <h2>Consejos</h2>
         <p>- Responde honestamente, incluso si no te gusta la respuesta.</p>
         <p>- Descríbete a ti mismo como generalmente eres ahora, no como deseas ser en el futuro.</p>
@@ -46,3 +46,7 @@ export default () => {
     </div>
   )
 }
+
+Big5Index.displayName = "Big5Index";
+
+export default Big5Index;

@@ -15,7 +15,7 @@ const { getItems: getInventory, getInfo } = require('@alheimsins/b5-johnson-120-
 const getItems = require('../../lib/get-items')
 const sleep = require('../../lib/sleep')
 
-export default class extends Component {
+class Big5Test extends Component {
   static async getInitialProps ({ query, req }) {
     const lang = query.lang || 'es'
     const inventory = await getInventory(lang)
@@ -182,7 +182,7 @@ export default class extends Component {
         </div>
         <ProgressBar progress={progress} />
         {
-          restore && <p onClick={this.handleClearAnswers} style={{ color: '#FF0080', marginTop: '10px', cursor: 'pointer' }}><FaInfoCircle /> Your state is restored from LocalStorage. Click here to start over again.</p>
+          restore && <p onClick={this.handleClearAnswers} style={{ color: '#FF0080', marginTop: '10px', cursor: 'pointer' }}><FaInfoCircle /> Your state is restored from LocalStorage. Click here to start over.</p>
         }
         {isComplete || (
           <div>
@@ -191,7 +191,7 @@ export default class extends Component {
             </div>
             <div className='infocliente'>
               <input type='email' name='email' value={email} onChange={handleChange} placeholder='Email *' className={emailErr ? 'text err' : 'text'} />
-              <p style={emailErr ? { color: 'red', margin: '5px 0 0' } : { display: 'none' }}>* La direcci&oacute;n de email debe ser v&aacute;lida.</p>
+              <p style={emailErr ? { color: 'red', margin: '5px 0 0' } : { display: 'none' }}>* La dirección de email debe ser válida.</p>
             </div>
             <div className='navigation'>
               <Button type='submit' value='Empezar' onClick={handleSubmit} background='#0da0a0' border='1px solid #0b8080' disabled={name.length === 0 || email.length === 0} />
@@ -216,7 +216,7 @@ export default class extends Component {
               <Button type='submit' value='Paso previo' onClick={handleBack} disabled={!previous} />
             </div>
             <div>
-              <Button type='submit' value={done ? 'Ver resultados' : 'Siguiente'} onClick={handleSubmit} background={done ? '#FF0080' : 'black'} border={done ? '1px solid #FF0080' : '1px solid black'} disabled={!next} />
+              <Button type='submit' value={done ? 'Ver resultados' : 'Siguiente'} onClick={handleSubmit} background={done ? '#FF0080' : 'black'} border={done ? '1px solid #FF0080' : '1px solid black'} disabled={done ? false : !next} />
             </div>
           </div>
         )}
@@ -257,3 +257,7 @@ export default class extends Component {
     )
   }
 }
+
+Big5Test.displayName = "Big5Test";
+
+export default Big5Test;

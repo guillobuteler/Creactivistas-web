@@ -43,22 +43,22 @@ const users = [
 ]
 
 const Users = ({ users }) => (
-  <div className='about'>
+  <div className='about users-list'>
     {users.map(user => (
-      <div key={user.nick.name} className='info'>
+      <div key={user.nick.name} className='info user-info'>
         <div>
-          <span className='avatar'>
+          <span className='avatar user-avatar'>
             <img alt='Avatar' width='80' height='80' src={user.avatar} />
           </span>
         </div>
-        <div className='text'>
-          <div className='name'>
+        <div className='text user-text'>
+          <div className='name user-name'>
             {user.name}
           </div>
-          <div className='nick'>
+          <div className='nick user-nick'>
             <a href={user.nick.link}>@{user.nick.name}</a>
           </div>
-          <div className='description'>
+          <div className='description user-description'>
             <i>{user.description}</i>
           </div>
         </div>
@@ -101,8 +101,9 @@ const Users = ({ users }) => (
     </style>
   </div>
 )
+Users.displayName = "Users";
 
-export default () => {
+const Creditos = () => {
   const dev = users.filter(user => user.dev)
   const trans = users.filter(user => !user.dev)
   return (
@@ -159,7 +160,7 @@ export default () => {
         `}
       </style>
       <div>
-        <p>Este test está basado en el proyecto de c&oacute;digo abierto desarrollado por:</p>
+        <p>Este test está basado en el proyecto de código abierto desarrollado por:</p>
         <a href='https://alheimsins.net' target='_blank' style={{ color: 'black', marginRight: 18 }} rel='noopener noreferrer'>
           {Logo({ color: 'black' })}ALHEIMSINS
         </a>
@@ -172,9 +173,12 @@ export default () => {
       </div>
       <hr style={{ width: '50%', margin: '50px auto 25px' }} />
       <section>
-        Su implementaci&oacute;n en el sitio de Creactivistas estuvo a cargo del estudio de diseño y desarrollo web <br />
-        <a href='http://www.enneagonstudios.com' style={{ color: '#6979a7', fontSize: '1.2em', fontWeight: 600 }} title='Visitar sitio web' target='_blank' rel='noopener noreferrer'>EnneagonStudios.com</a> <a href='mailto:contacto@enneagonstudios.com' style={{ fontSize: '.9em', color: '#0da0a0 !important' }} rel='noopener noreferrer' target='_blank'>(contacto@enneagonstudios.com)</a>
+        Su implementación en el sitio de Creactivistas estuvo a cargo del estudio de diseño y desarrollo web <br />
+        <a href='http://www.enneagonstudios.com' style={{ color: '#6979a7', fontSize: '1.2em', fontWeight: 600 }} title='Visitar sitio web' target='_blank' rel='noopener noreferrer'>EnneagonStudios</a>
       </section>
     </>
   )
 }
+Creditos.displayName = "Creditos";
+
+export default Creditos;
