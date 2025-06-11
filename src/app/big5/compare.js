@@ -8,7 +8,8 @@ import validMongoId from '../../lib/valid-mongoid'
 import formatId from '../../lib/format-id'
 const { publicRuntimeConfig: { URL } } = getConfig()
 
-export default class extends Component {
+export default class B5Compare extends Component {
+  //B5Compare.displayName = "B5Compare";
   constructor (props) {
     super(props)
     this.state = {
