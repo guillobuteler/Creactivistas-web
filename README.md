@@ -3,7 +3,7 @@
 Single page application comprising of two different personality tests:
 - One based in [MBTI](https://en.wikipedia.org/wiki/Myers%E2%80%93Briggs_Type_Indicator) (Myers–Briggs Type Indicator)
 - The other based in the [Big-Five](https://en.wikipedia.org/wiki/Big_Five_personality_traits) personality traits.
-
+- WIP: Empathy test.
 See the app live and find out your own score [here](http://creactivistas.enneagonstudios.com/).
 
 ## Improvements over the past version
